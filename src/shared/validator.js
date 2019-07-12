@@ -1,11 +1,11 @@
 /**
- * Chek if email is valid
- * @prop String email
+ * Chek if username is valid
+ * @prop String username
  * @returns Boolean
  */
-export const isEmail = (email) => {
+export const isUsername = (username) => {
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
+    return re.test(username);
 }
 
 /**

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Row, Form, FormGroup, FormControl, ControlLabel, Button, HelpBlock } from 'react-bootstrap';
 import './login.css';
-import { isEmail, isEmpty, isLength, isContainWhiteSpace } from 'shared/validator';
+import { isUsername, isEmpty, isLength, isContainWhiteSpace } from 'shared/validator';
 
 class Login extends Component {
 
@@ -11,7 +11,7 @@ class Login extends Component {
         this.state = {
             formData: {}, // Contains login form data
             errors: {}, // Contains login field errors
-            formSubmitted: false, // Indicates submit status of login form 
+            formSubmitted: false, // Indicates submit status of login form
             loading: false // Indicates in progress state of login form
         }
     }
@@ -30,14 +30,14 @@ class Login extends Component {
     }
 
     validateLoginForm = (e) => {
-        
+
         let errors = {};
         const { formData } = this.state;
 
-        if (isEmpty(formData.email)) {
-            errors.email = "Email can't be blank";
-        } else if (!isEmail(formData.email)) {
-            errors.email = "Please enter a valid email";
+        if (isEmpty(formData.username)) {
+            errors.username = "Username can't be blank";
+        } else if (!isUsername(formData.username)) {
+            errors.username = "Please enter a valid username";
         }
 
         if (isEmpty(formData.password)) {
@@ -52,18 +52,18 @@ class Login extends Component {
             return true;
         } else {
             return errors;
-        }    
+        }
     }
 
     login = (e) => {
-        
+
         e.preventDefault();
 
         let errors = this.validateLoginForm();
 
         if(errors === true){
-            alert("You are successfully signed in...");
-            window.location.reload()   
+            alert("You are successfully signed in with:"+"Username:"+this.state.formData.username+""+"Password:"+this.state.formData.password);
+            window.location.reload()
         } else {
             this.setState({
                 errors: errors,
@@ -80,19 +80,21 @@ class Login extends Component {
             <div className="Login">
                 <Row>
                     <form onSubmit={this.login}>
-                        <FormGroup controlId="email" validationState={ formSubmitted ? (errors.email ? 'error' : 'success') : null }>
-                            <ControlLabel>Email</ControlLabel>
-                            <FormControl type="text" name="email" placeholder="Enter your email" onChange={this.handleInputChange} />
-                        { errors.email && 
-                            <HelpBlock>{errors.email}</HelpBlock> 
-                        }
+                        {/*<li type="Sign Up" bsStyle="secondary">Sign Up</li>*/}
+                        <label><h2><b>Log in</b></h2></label>
+                        <FormGroup controlId="username" validationState={ formSubmitted ? (errors.username ? 'error' : 'success') : null }>
+                            <ControlLabel>Username</ControlLabel>
+                            <FormControl type="text" name="username" placeholder="Enter your username" onChange={this.handleInputChange} />
+                            { errors.username &&
+                            <HelpBlock>{errors.username}</HelpBlock>
+                            }
                         </FormGroup >
                         <FormGroup controlId="password" validationState={ formSubmitted ? (errors.password ? 'error' : 'success') : null }>
                             <ControlLabel>Password</ControlLabel>
                             <FormControl type="password" name="password" placeholder="Enter your password" onChange={this.handleInputChange} />
-                        { errors.password && 
-                            <HelpBlock>{errors.password}</HelpBlock> 
-                        }
+                            { errors.password &&
+                            <HelpBlock>{errors.password}</HelpBlock>
+                            }
                         </FormGroup>
                         <Button type="submit" bsStyle="primary">Sign-In</Button>
                     </form>
