@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { Row, Form, FormGroup, FormControl, ControlLabel, Button, HelpBlock } from 'react-bootstrap';
 import './login.css';
 import { isUsername, isEmpty, isLength, isContainWhiteSpace } from 'shared/validator';
-
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Register from 'components/register/Register';
 class Login extends Component {
 
     constructor(props) {
@@ -63,7 +64,7 @@ class Login extends Component {
 
         if(errors === true){
             alert("You are successfully signed in with:"+"Username:"+this.state.formData.username+""+"Password:"+this.state.formData.password);
-            window.location.reload()
+            window.location.reload();
         } else {
             this.setState({
                 errors: errors,
@@ -77,6 +78,7 @@ class Login extends Component {
         const { errors, formSubmitted } = this.state;
 
         return (
+            
             <div className="Login">
                 <Row>
                     <form onSubmit={this.login}>
@@ -96,9 +98,14 @@ class Login extends Component {
                             <HelpBlock>{errors.password}</HelpBlock>
                             }
                         </FormGroup>
+                        <p>
                         <Button type="submit" bsStyle="primary">Sign-In</Button>
+                            <Link href='/registration' onClick='Register.render();'>Register here,if you are not signed up.</Link></p>
                     </form>
+
                 </Row>
+
+
             </div>
         )
     }
