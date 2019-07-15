@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Row, Form, FormGroup, FormControl, ControlLabel, Button, HelpBlock } from 'react-bootstrap';
+import { Row, FormGroup, FormControl, ControlLabel, Button, HelpBlock } from 'react-bootstrap';
 import './registration.css';
 import { isUsername, isName, isSurname, isEmail, isEmpty, isLength, isContainWhiteSpace } from 'shared/validator';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {  Route, Link } from "react-router-dom";
 class Registration extends Component {
 
     constructor(props) {
