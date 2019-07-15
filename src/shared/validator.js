@@ -1,15 +1,4 @@
 
-//****************************LOGIN FORM*******************************************************
-/**
- * Check if username is valid
- * @prop String username
- * @returns Boolean
- */
-export const isUsername = (username) => {
-    const re = /^\S*$/;
-    return re.test(username);
-}
-// ****************************REGISTRATION FORM************************************************
 /**
  * Check if name is valid
  * @prop String name

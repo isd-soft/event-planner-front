@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Row, FormGroup, FormControl, ControlLabel, Button, HelpBlock } from 'react-bootstrap';
 import './registration.css';
-import { isUsername, isName, isSurname, isEmail, isEmpty, isLength, isContainWhiteSpace } from 'shared/validator';
+import {  isName, isSurname, isEmail, isEmpty, isLength, isContainWhiteSpace } from 'shared/validator';
 import {  Route, Link } from "react-router-dom";
 class Registration extends Component {
 
@@ -54,12 +54,6 @@ class Registration extends Component {
             errorsRegistration.email = "Please enter a valid email.";
         }
 
-        if (isEmpty(formDataRegistration.username)) {
-            errorsRegistration.username = "Username can't be blank";
-        } else if (!isUsername(formDataRegistration.username)) {
-            errorsRegistration.username = "Please enter a valid username";
-        }
-
 
         if (isEmpty(formDataRegistration.password)) {
             errorsRegistration.password = "Password can't be blank";
@@ -85,7 +79,7 @@ class Registration extends Component {
         let errorsRegistration = this.validateRegistrationForm();
 
         if(errorsRegistration === true){
-            alert("You are successfully signed up with:"+"Username:"+this.state.formDataRegistration.username+""+"Password:"+this.state.formDataRegistration.password);
+            alert("You are successfully signed up with:"+"      Email:"+this.state.formDataRegistration.email+""+"       Password:"+this.state.formDataRegistration.password);
             window.location.reload();
         } else {
             this.setState({
@@ -134,15 +128,6 @@ class Registration extends Component {
                                 }
                             </FormGroup>
 
-                            <FormGroup controlId="username"
-                                       validationState={formSubmittedRegistration ? (errorsRegistration.username ? 'error' : 'success') : null}>
-                                <ControlLabel>Username</ControlLabel>
-                                <FormControl type="text" name="username" placeholder="Enter your username"
-                                             onChange={this.handleChange}/>
-                                {errorsRegistration.username &&
-                                <HelpBlock>{errorsRegistration.username}</HelpBlock>
-                                }
-                            </FormGroup>
 
                             <FormGroup controlId="password"
                                        validationState={formSubmittedRegistration ? (errorsRegistration.password ? 'error' : 'success') : null}>
