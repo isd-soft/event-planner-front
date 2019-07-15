@@ -1,15 +1,47 @@
+
+//****************************LOGIN FORM*******************************************************
 /**
- * Chek if username is valid
+ * Check if username is valid
  * @prop String username
  * @returns Boolean
  */
 export const isUsername = (username) => {
-    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re = /^\S*$/;
     return re.test(username);
+}
+// ****************************REGISTRATION FORM************************************************
+/**
+ * Check if name is valid
+ * @prop String name
+ * @returns Boolean
+ */
+export const isName = (name) => {
+    const re = /[A-Z][a-zA-Z][^#&<>\"~;$^%{}?]{1,20}$/;
+    return re.test(name);
 }
 
 /**
- * Chek if vatiable is empty
+ * Check if surname is valid
+ * @prop String surname
+ * @returns Boolean
+ */
+export const isSurname = (surname) => {
+    const re = /[A-Z][a-zA-Z][^#&<>\"~;$^%{}?]{1,20}$/;
+    return re.test(surname);
+}
+
+/**
+ * Check if email is valid
+ * @prop String email
+ * @returns Boolean
+ */
+export const isEmail = (email) => {
+    const re =/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
+    return re.test(email);
+}
+
+/**
+ * Check if vatiable is empty
  * @prop String thing
  * @returns Boolean
  */
@@ -93,3 +125,5 @@ export const isContainWhiteSpace = (str) => {
         return false;
     }
 }
+
+

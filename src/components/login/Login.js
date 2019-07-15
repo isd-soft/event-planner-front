@@ -3,7 +3,6 @@ import { Row, Form, FormGroup, FormControl, ControlLabel, Button, HelpBlock } fr
 import './login.css';
 import { isUsername, isEmpty, isLength, isContainWhiteSpace } from 'shared/validator';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Register from 'components/register/Register';
 class Login extends Component {
 
     constructor(props) {
