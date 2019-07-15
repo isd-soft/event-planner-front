@@ -38,7 +38,7 @@ class Register extends Component {
                 <div className="Register">
                     <Row>
                         <form onSubmit={this.register}>
-                            <label><h2><b>Registration</b></h2></label>
+                            <label><h2><b>Sign-up</b></h2></label>
                             <FormGroup controlId="name"
                                        validationState={formSubmitted ? (errors.username ? 'error' : 'success') : null}>
                                 <ControlLabel>Name</ControlLabel>
@@ -67,16 +67,6 @@ class Register extends Component {
                                 {errors.username &&
                                 <HelpBlock>{errors.username}</HelpBlock>
                                 }
-                            </FormGroup>
-
-                            <FormGroup controlId="role">
-                                <ControlLabel>Your role</ControlLabel>
-                                <p>
-                                <select name="role">
-                                    <option value="Administrator">Administrator</option>
-                                    <option value="Organiser">Organiser</option>
-                                    <option value="Participant">Participant</option>
-                                </select></p>
                             </FormGroup>
 
                             <FormGroup controlId="username"

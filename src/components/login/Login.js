@@ -78,7 +78,7 @@ class Login extends Component {
         const { errors, formSubmitted } = this.state;
 
         return (
-            
+
             <div className="Login">
                 <Row>
                     <form onSubmit={this.login}>
@@ -100,7 +100,7 @@ class Login extends Component {
                         </FormGroup>
                         <p>
                         <Button type="submit" bsStyle="primary">Sign-In</Button>
-                            <Link href='/registration' onClick='Register.render();'>Register here,if you are not signed up.</Link></p>
+                            <Link href='/registration' onClick={''}>Register here,if you are not signed up.</Link></p>
                     </form>
 
                 </Row>
