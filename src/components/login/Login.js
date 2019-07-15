@@ -100,7 +100,7 @@ class Login extends Component {
                         </FormGroup>
                         <p>
                         <Button type="submit" bsStyle="primary">Sign-In</Button>
-                            <Link href='/registration' onClick={''}>Register here,if you are not signed up.</Link></p>
+                            <Link to='/registration'>Register here,if you are not signed up.</Link></p>
                     </form>
 
                 </Row>

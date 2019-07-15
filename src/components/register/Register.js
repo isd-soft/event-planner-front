@@ -98,8 +98,11 @@ class Register extends Component {
                                 <HelpBlock>{errors.password}</HelpBlock>
                                 }
                             </FormGroup>
+                            <p>
                             <Button type="submit" bsStyle="primary">Sign-Up</Button>
-                        </form>
+                            <Link to='/login'>Log in here,if you are signed up.</Link></p>
+
+                    </form>
 
                     </Row>
 
