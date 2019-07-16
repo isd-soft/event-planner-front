@@ -5,7 +5,7 @@
  * @returns Boolean
  */
 export const isName = (name) => {
-    const re = /[A-Z][a-zA-Z][^#&<>\"~;$^%{}?]{1,20}$/;
+    const re = /^[_A-z0-9]*((-|\s)*[_A-z0-9])*$/;
     return re.test(name);
 }
 
@@ -15,7 +15,7 @@ export const isName = (name) => {
  * @returns Boolean
  */
 export const isSurname = (surname) => {
-    const re = /[A-Z][a-zA-Z][^#&<>\"~;$^%{}?]{1,20}$/;
+    const re = /^[_A-z0-9]*((-|\s)*[_A-z0-9])*$/;
     return re.test(surname);
 }
 
@@ -113,6 +113,16 @@ export const isContainWhiteSpace = (str) => {
     } else {
         return false;
     }
+}
+
+
+
+export const passwordMatching=(str1, str2)=>{
+
+    if(str1===str2){
+        return true;
+    }else{return false;}
+
 }
 
 

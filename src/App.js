@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import Login from 'components/login/Login';
-import Register from 'components/registration/Registration';
+import Register from 'components/register/Register';
 import FetchRandomUser from 'components/test/FetchRandomUser'
-import {BrowserRouter as Router, Route} from "react-router-dom";
-import Auth from 'components/LoginComponent';
+import {BrowserRouter as Router, Route,Switch} from "react-router-dom";
 
 
 class App extends Component {
@@ -12,10 +11,11 @@ class App extends Component {
             <Router>
 
                 <div>
+                    {/*<Route path='/'component={FetchRandomUser}/>*/}
                     <Route path='/login' component={Login}/>
-                    <Route path='/registration' component={Register}/>
-                    {/*<Route path='/fetch' component={FetchRandomUser}/>*/}
-                    <Router path='/auth' component={Auth}/>
+                    <Route path='/registration' component={Registration}/>
+                    <Route path='/dashboard' component={Dashboard}/>
+
                 </div>
 
             </Router>
