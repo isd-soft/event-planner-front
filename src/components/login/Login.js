@@ -41,6 +41,7 @@ class Login extends Component {
             errors.email = "Please enter a valid email";
         }
 
+<<<<<<< HEAD
         if (isEmpty(formData.password)) {
             errors.password = "Password can't be blank";
         } else if (isContainWhiteSpace(formData.password)) {
@@ -48,6 +49,15 @@ class Login extends Component {
         } else if (!isLength(formData.password, {gte: 6, lte: 16, trim: true})) {
             errors.password = "Password's length must between 6 to 16";
         }
+=======
+        // if (isEmpty(formData.password)) {
+        //     errors.password = "Password can't be blank";
+        // }  else if (isContainWhiteSpace(formData.password)) {
+        //     errors.password = "Password should not contain white spaces";
+        // } else if (!isLength(formData.password, { gte: 6, lte: 16, trim: true })) {
+        //     errors.password = "Password's length must between 6 to 16";
+        // }
+>>>>>>> origin/master
 
         if (isEmpty(errors)) {
             return true;
@@ -56,14 +66,40 @@ class Login extends Component {
         }
     }
 
+    // async componentDidMount() {
+    //     const url = "http://localhost:8080/login";
+    //     const response = await fetch(url);
+    //     const data = await response.json();
+    //     this.setState({person: data.results[0], loading: false});
+    // }
     login = (e) => {
 
         e.preventDefault();
 
-        let errors = this.validateLoginForm();
+        let obj = {};
+        obj.username = this.state.username;
+        obj.password = this.state.password;
 
+        fetch('http://localhost:8080/login', {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin":"*",
+
+<<<<<<< HEAD
         if (errors === true) {
             alert("You are successfully signed in with:" + "        Email:" + this.state.formData.email + "" + "       Password:" + this.state.formData.password);
+=======
+                },
+                method: 'GET'
+
+                }
+        ).then();
+        console.log(obj.password, obj.username)
+        let errors = this.validateLoginForm();
+// let errors=false;
+        if(errors === true){
+            alert("You are successfully signed in with:"+"        Email:"+this.state.formData.email+""+"       Password:"+this.state.formData.password);
+>>>>>>> origin/master
             window.location.reload();
         } else {
             this.setState({
@@ -71,6 +107,7 @@ class Login extends Component {
                 formSubmitted: true
             });
         }
+
     }
 
     render() {
