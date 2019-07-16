@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import Login from 'components/login/Login';
-import Register from 'components/register/Register';
+import Registration from 'components/registration/Registration';
 import FetchRandomUser from 'components/test/FetchRandomUser'
 import {BrowserRouter as Router, Route,Switch} from "react-router-dom";
+import Dashboard from 'components/dashboard/Dashboard'
 
 
 class App extends Component {

@@ -15,8 +15,6 @@ class Registration extends Component {
             errorsRegistration: {}, // Contains registration field errorsRegistration
             formSubmittedRegistration: false, // Indicates submit status of registration form
             loadingRegistration: false, // Indicates in progress state of registration form
-            // username:null,
-            // password:null
         }
     }
 
