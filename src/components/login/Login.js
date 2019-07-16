@@ -1,8 +1,9 @@
-import React, { Component } from "react";
-import { Row, FormGroup, FormControl, ControlLabel, Button, HelpBlock } from 'react-bootstrap';
+import React, {Component} from "react";
+import {Row, FormGroup, FormControl, ControlLabel, Button, HelpBlock} from 'react-bootstrap';
 import './login.css';
-import {  isEmpty,isEmail, isLength, isContainWhiteSpace } from 'shared/validator';
-import {  Route, Link } from "react-router-dom";
+import {isEmpty, isEmail, isLength, isContainWhiteSpace} from 'shared/validator';
+import {Route, Link} from "react-router-dom";
+
 class Login extends Component {
 
     constructor(props) {
@@ -21,7 +22,7 @@ class Login extends Component {
         const value = target.value;
         const name = target.name;
 
-        let { formData } = this.state;
+        let {formData} = this.state;
         formData[name] = value;
 
         this.setState({
@@ -32,7 +33,7 @@ class Login extends Component {
     validateLoginForm = (e) => {
 
         let errors = {};
-        const { formData } = this.state;
+        const {formData} = this.state;
 
         if (isEmpty(formData.email)) {
             errors.email = "Email can't be blank";
@@ -42,9 +43,9 @@ class Login extends Component {
 
         if (isEmpty(formData.password)) {
             errors.password = "Password can't be blank";
-        }  else if (isContainWhiteSpace(formData.password)) {
+        } else if (isContainWhiteSpace(formData.password)) {
             errors.password = "Password should not contain white spaces";
-        } else if (!isLength(formData.password, { gte: 6, lte: 16, trim: true })) {
+        } else if (!isLength(formData.password, {gte: 6, lte: 16, trim: true})) {
             errors.password = "Password's length must between 6 to 16";
         }
 
@@ -61,8 +62,8 @@ class Login extends Component {
 
         let errors = this.validateLoginForm();
 
-        if(errors === true){
-            alert("You are successfully signed in with:"+"        Email:"+this.state.formData.email+""+"       Password:"+this.state.formData.password);
+        if (errors === true) {
+            alert("You are successfully signed in with:" + "        Email:" + this.state.formData.email + "" + "       Password:" + this.state.formData.password);
             window.location.reload();
         } else {
             this.setState({
@@ -74,31 +75,34 @@ class Login extends Component {
 
     render() {
 
-        const { errors, formSubmitted } = this.state;
+        const {errors, formSubmitted} = this.state;
 
         return (
 
             <div className="Login">
                 <Row>
                     <form onSubmit={this.login}>
-                        {/*<li type="Sign Up" bsStyle="secondary">Sign Up</li>*/}
                         <label><h2><b>Log in</b></h2></label>
-                        <FormGroup controlId="email" validationState={ formSubmitted ? (errors.email ? 'error' : 'success') : null }>
+                        <FormGroup controlId="email"
+                                   validationState={formSubmitted ? (errors.email ? 'error' : 'success') : null}>
                             <ControlLabel>Email</ControlLabel>
-                            <FormControl type="text" name="email" placeholder="Enter your email" onChange={this.handleInputChange} />
-                            { errors.username &&
+                            <FormControl type="text" name="email" placeholder="Enter your email"
+                                         onChange={this.handleInputChange}/>
+                            {errors.username &&
                             <HelpBlock>{errors.email}</HelpBlock>
                             }
-                        </FormGroup >
-                        <FormGroup controlId="password" validationState={ formSubmitted ? (errors.password ? 'error' : 'success') : null }>
+                        </FormGroup>
+                        <FormGroup controlId="password"
+                                   validationState={formSubmitted ? (errors.password ? 'error' : 'success') : null}>
                             <ControlLabel>Password</ControlLabel>
-                            <FormControl type="password" name="password" placeholder="Enter your password" onChange={this.handleInputChange} />
-                            { errors.password &&
+                            <FormControl type="password" name="password" placeholder="Enter your password"
+                                         onChange={this.handleInputChange}/>
+                            {errors.password &&
                             <HelpBlock>{errors.password}</HelpBlock>
                             }
                         </FormGroup>
                         <p>
-                        <Button type="submit" bsStyle="primary">Sign-In</Button>
+                            <Button type="submit" bsStyle="primary">Sign-In</Button>
                             <Link to='/registration'>Register here,if you are not signed up.</Link></p>
                     </form>
 
