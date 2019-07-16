@@ -1,6 +1,5 @@
 ### Setup
 
-To clone the repository on your computer 
 
 To install dependencies,
 ```bash
