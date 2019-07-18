@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import Login from 'components/login/Login';
 import Registration from 'components/registration/Registration';
 import FetchRandomUser from 'components/test/FetchRandomUser'
-import {BrowserRouter as Router, Route,Switch} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Dashboard from 'components/dashboard/Dashboard'
+import MyProfile from 'components/myProfile/MyProfile'
 
 
 class App extends Component {
@@ -16,7 +17,7 @@ class App extends Component {
                     <Route path='/login' component={Login}/>
                     <Route path='/registration' component={Registration}/>
                     <Route path='/dashboard' component={Dashboard}/>
-
+                    <Route path={'/profile'} component={MyProfile}/>
                 </div>
 
             </Router>

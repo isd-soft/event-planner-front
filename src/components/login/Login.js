@@ -6,9 +6,6 @@ import {  Route, Link } from "react-router-dom";
 import axios from 'axios';
 class Login extends Component {
 
-
-
-
     constructor(props) {
         super(props)
 
@@ -45,6 +42,14 @@ class Login extends Component {
             errors.email = "Email can't be blank";
         } else if (!isEmail(formData.email)) {
             errors.email = "Please enter a valid email";
+        }
+
+        if (isEmpty(formData.password)) {
+            errors.password = "Password can't be blank"
+        }  else if (isContainWhiteSpace(formData.password)) {
+            errors.password = "Password should not contain white spaces";
+        } else if (!isLength(formData.password, { gte: 6, lte: 16, trim: true })) {
+            errors.password = "Password's length must between 6 to 16";
         }
         if (isEmpty(errors)) {
             return true;
@@ -88,13 +93,12 @@ class Login extends Component {
             <div className="Login">
                 <Row>
                     <form onSubmit={this.login}>
-                        {/*<li type="Sign Up" bsStyle="secondary">Sign Up</li>*/}
                         <label><h2><b>Log in</b></h2></label>
-                        <FormGroup controlId="username" validationState={ formSubmitted ? (errors.username ? 'error' : 'success') : null }>
-                            <ControlLabel>Username</ControlLabel>
-                            <FormControl type="text" name="username" placeholder="Enter your username" onChange={this.handleInputChange} />
-                            { errors.username &&
-                            <HelpBlock>{errors.username}</HelpBlock>
+                        <FormGroup controlId="email" validationState={ formSubmitted ? (errors.email ? 'error' : 'success') : null }>
+                            <ControlLabel>Email</ControlLabel>
+                            <FormControl type="text" name="email" placeholder="Enter your username" onChange={this.handleInputChange} />
+                            { errors.email &&
+                            <HelpBlock>{errors.email}</HelpBlock>
                             }
                         </FormGroup >
                         <FormGroup controlId="password" validationState={ formSubmitted ? (errors.password ? 'error' : 'success') : null }>
