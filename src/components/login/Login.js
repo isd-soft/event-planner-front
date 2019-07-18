@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import { Row, FormGroup, FormControl, ControlLabel, Button, HelpBlock } from 'react-bootstrap';
+import React, {Component} from "react";
+import {Button, ControlLabel, FormControl, FormGroup, HelpBlock, Row} from 'react-bootstrap';
 import './login.css';
-import {  isEmpty,isEmail, isLength, isContainWhiteSpace } from 'shared/validator';
-import {  Route, Link } from "react-router-dom";
+import {isContainWhiteSpace, isEmail, isEmpty, isLength} from 'shared/validator';
+import {Link} from "react-router-dom";
 import axios from 'axios';
-import  setToken from '../util/AuthorizationToken'
+import setToken from '../util/AuthorizationToken'
 
 
 class Login extends Component {
 
     constructor(props) {
-        super(props)
+        super(props);
 
         this.state = {
             formData: {}, // Contains login form data
@@ -34,7 +34,7 @@ class Login extends Component {
         this.setState({
             formData: formData
         });
-    }
+    };
 
     validateLoginForm = (e) => {
 
@@ -59,25 +59,31 @@ class Login extends Component {
         } else {
             return errors;
         }
-    }
+    };
 
     login = (e) => {
 
         e.preventDefault();
         let errors = this.validateLoginForm();
-        axios.post('http://localhost:8080/signin', {
+        axios.post('http://localhost:8080/authenticate', {
             username:this.state.formData.username,
             password:this.state.formData.password
         }).then(res=>{
                 const token=res.data.token;
+            if (token) {
+                this.props.history.push("/dashboard");
+            }
                 localStorage.setItem("jwtToken", token);
                 setToken(token);
                 // console.log(jwt.decode(token));
                 console.log(setToken(token));
+
     })
             .catch(function (error) {
                 console.log(error);
             });
+
+
         if(errors === true){
             alert("You are successfully signed in with:"+"        Email:"+this.state.formData.username+""+"       Password:"+this.state.formData.password);
             window.location.reload();
@@ -88,9 +94,9 @@ class Login extends Component {
             });
         }
 
-    }
-    
-    
+    };
+
+
     render() {
 
         const { errors, formSubmitted } = this.state;
