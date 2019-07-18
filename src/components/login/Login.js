@@ -107,11 +107,13 @@ class Login extends Component {
                 <Row>
                     <form onSubmit={this.login}>
                         <label><h2><b>Log in</b></h2></label>
-                        <FormGroup controlId="email" validationState={ formSubmitted ? (errors.email ? 'error' : 'success') : null }>
-                            <ControlLabel>Email</ControlLabel>
-                            <FormControl type="text" name="email" placeholder="Enter your username" onChange={this.handleInputChange} />
-                            { errors.email &&
-                            <HelpBlock>{errors.email}</HelpBlock>
+                        <FormGroup controlId="username"
+                                   validationState={formSubmitted ? (errors.username ? 'error' : 'success') : null}>
+                            <ControlLabel>Username</ControlLabel>
+                            <FormControl type="text" name="username" placeholder="Enter your username"
+                                         onChange={this.handleInputChange}/>
+                            {errors.username &&
+                            <HelpBlock>{errors.username}</HelpBlock>
                             }
                         </FormGroup >
                         <FormGroup controlId="password" validationState={ formSubmitted ? (errors.password ? 'error' : 'success') : null }>
