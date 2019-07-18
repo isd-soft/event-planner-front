@@ -4,6 +4,9 @@ import './login.css';
 import {  isEmpty,isEmail, isLength, isContainWhiteSpace } from 'shared/validator';
 import {  Route, Link } from "react-router-dom";
 import axios from 'axios';
+import  setToken from '../util/AuthorizationToken'
+
+
 class Login extends Component {
 
     constructor(props) {
@@ -62,13 +65,16 @@ class Login extends Component {
 
         e.preventDefault();
         let errors = this.validateLoginForm();
-        axios.post('http://localhost:8080/authenticate', {
+        axios.post('http://localhost:8080/signin', {
             username:this.state.formData.username,
             password:this.state.formData.password
-        })
-            .then(function (response) {
-                console.log(response);
-            })
+        }).then(res=>{
+                const token=res.data.token;
+                localStorage.setItem("jwtToken", token);
+                setToken(token);
+                // console.log(jwt.decode(token));
+                console.log(setToken(token));
+    })
             .catch(function (error) {
                 console.log(error);
             });
@@ -83,7 +89,8 @@ class Login extends Component {
         }
 
     }
-
+    
+    
     render() {
 
         const { errors, formSubmitted } = this.state;

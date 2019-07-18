@@ -4,6 +4,7 @@ import './registration.css';
 import {isContainWhiteSpace, isEmail, isEmpty, isLength, isName, isSurname} from 'shared/validator';
 import {Link} from "react-router-dom";
 import axios from 'axios';
+import setToken from "../util/AuthorizationToken";
 
 class Registration extends Component {
 
@@ -15,6 +16,7 @@ class Registration extends Component {
             errorsRegistration: {}, // Contains registration field errorsRegistration
             formSubmittedRegistration: false, // Indicates submit status of registration form
             loadingRegistration: false, // Indicates in progress state of registration form
+
         }
     }
 
@@ -82,7 +84,7 @@ class Registration extends Component {
         let errorsRegistration = this.validateRegistrationForm();
 
 
-        axios.post('http://localhost:8080/registration', {})
+        axios.post('http://localhost:8080/registration',{})
             .then(function (response) {
                 console.log(response);
             })

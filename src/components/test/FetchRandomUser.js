@@ -1,6 +1,6 @@
 // import React, {Component} from "react";
 // import axios from 'axios';
-//
+// import setAuthorizationToken from 'service/AuthorizationToken'
 // class FetchRandomUser extends Component {
 //     state = {
 //         loading: true,
@@ -13,14 +13,10 @@
 //     //
 //     async componentDidMount() {
 //
-//         axios.get("http://localhost:8080/all", {
-//             headers: {
-//                 "Content-Type":"application.json",
-//                 "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYXZhaW51c2UiLCJleHAiOjE1NjMyODYxMDAsImlhdCI6MTU2MzI2ODEwMH0.EfbVpTVqRTRX5xSC3i-EtnFMuC3AU312JA3HVidy8PXle6FgcLzlQpSsjP2J8JkEHbeQMql4Kn77dBsVxMr9ZA "
-//             }
-//         })
+//         axios.get("http://localhost:8080/all", setAuthorizationToken(localStorage.token)
+//         )
 //             .then(function (response) {
-//                 console.log(response);
+//
 //             })
 //             .catch(function (error) {
 //                 console.log(error);
