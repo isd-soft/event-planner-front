@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Pagination,} from 'react-bootstrap';
 import './dashboard.css';
-import userphoto from './face-0.png';
+import logo from './face-0.png';
 import {Route, Link} from "react-router-dom";
 
 export default class Dashboard extends Component {
@@ -9,8 +9,7 @@ export default class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            bgImage: this.props.bgImage,
-            avatar: this.props.avatar,
+
             username: this.props.username,
         };
     }
@@ -27,19 +26,23 @@ export default class Dashboard extends Component {
                 <div className="side-nav">
                     <div className="author">
                         <h4 className={"nameOfCompany"}>ISD Events</h4>
-                        <div className="userphoto">
+                        <div className="logo">
                             <a
-                                className="simple-text userphoto-mini"
+                                className="simple-text logo-mini"
                             >
-                                <div className="userphoto-img">
-                                    <img src={userphoto} alt="userphoto" />
+                                <div className="logo-img">
+                                    <img src={logo} alt="logo"/>
                                 </div>
                             </a>
+                            <hr></hr>
+
                             <h4
                                 className="name_surname_text"
                             >
-                                 Name Surname
+                                Name Surname
                             </h4>
+                            <br></br>
+
                         </div>
 
                         {/*<a href="#changePhoto">*/}
@@ -63,6 +66,8 @@ export default class Dashboard extends Component {
                                     </a>
                                 </Link>
                             </p>
+                            <br></br>
+
                             <p>
                                 <Link to={"/profile"}>
                                     <a href="#">
@@ -103,61 +108,7 @@ export default class Dashboard extends Component {
                             <a href="#" className="btn btn-primary">Participate</a>
                         </div>
                     </div>
-                    <div className="card" href="#event3">
-                        {/*<img className="card-img-top" src="..." alt="Card image cap"/>*/}
-                        <div className="card-body">
-                            <h5 className="event-title">Event Title</h5>
-                            <h4 className="event-category">Category:</h4>
-                            <h4 className="event-date">Date:</h4>
-                            <h4 className="event-duration">Duration:</h4>
-                            <h4 className="event-location">Location:</h4>
-                            <h4 className="event-date">Price:</h4>
-                            <a href="#" className="btn btn-primary">Participate</a>
-                        </div>
-                    </div>
-                    <div className="card" href="#event4">
-                        {/*<img className="card-img-top" src="..." alt="Card image cap"/>*/}
-                        <div className="card-body">
-                            <h5 className="event-title">Event Title</h5>
-                            <h4 className="event-category">Category:</h4>
-                            <h4 className="event-date">Date:</h4>
-                            <h4 className="event-duration">Duration:</h4>
-                            <h4 className="event-location">Location:</h4>
-                            <h4 className="event-date">Price:</h4>
-                            <a href="#" className="btn btn-primary">Participate</a>
-                        </div>
-                    </div>
-                    <div className="card" href="#event5">
-                        {/*<img className="card-img-top" src="..." alt="Card image cap"/>*/}
-                        <div className="card-body">
-                            <h5 className="event-title">Event Title</h5>
-                            <h4 className="event-category">Category:</h4>
-                            <h4 className="event-date">Date:</h4>
-                            <h4 className="event-duration">Duration:</h4>
-                            <h4 className="event-location">Location:</h4>
-                            <h4 className="event-date">Price:</h4>
-                            <a href="#" className="btn btn-primary">Participate</a>
-                        </div>
-                    </div>
                 </li>
-
-                <Pagination>
-                    <Pagination.First />
-                    <Pagination.Prev />
-                    <Pagination.Item>{1}</Pagination.Item>
-                    <Pagination.Ellipsis />
-
-                    <Pagination.Item>{10}</Pagination.Item>
-                    <Pagination.Item>{11}</Pagination.Item>
-                    <Pagination.Item active>{12}</Pagination.Item>
-                    <Pagination.Item>{13}</Pagination.Item>
-                    <Pagination.Item disabled>{14}</Pagination.Item>
-
-                    <Pagination.Ellipsis />
-                    <Pagination.Item>{20}</Pagination.Item>
-                    <Pagination.Next />
-                    <Pagination.Last />
-                </Pagination>
 
             </div>
 

@@ -6,6 +6,7 @@ import Dashboard from 'components/dashboard/Dashboard'
 import MyProfile from 'components/myProfile/MyProfile'
 
 
+
 class App extends Component {
     render() {
         return (
@@ -17,6 +18,7 @@ class App extends Component {
                     <Route path='/registration' component={Registration}/>
                     <Route path='/dashboard' component={Dashboard}/>
                     <Route path={'/profile'} component={MyProfile}/>
+
                 </div>
 
             </Router>

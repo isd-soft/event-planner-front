@@ -12,7 +12,7 @@ export default class MyProfile extends Component {
             <div>
                 <div className="header">
                     <Link to={"/login"}>
-                        <a>
+                        <a className={"logOutButton"}>
                             <button className={"logOutButton"}>Log out</button>
                         </a>
                     </Link>
@@ -84,7 +84,7 @@ export default class MyProfile extends Component {
                             <h4 className="gender">Gender:</h4>
                             <h4 className="description">Description:</h4>
                             <h4 className="username">Username:</h4>
-                            <a href="#" className="btn btn-primary">Edit</a>
+                            <a href="/edit" className="btn btn-primary">Edit</a>
                         </div>
                     </div>
                 </div>
