@@ -403,6 +403,14 @@ body {
     text-align: center;
 }
 
+.side-nav .dashboard-text {
+    color: white;
+    font-family: 'Lucida Bright', 'Lucida', monospace;
+    margin-left: 50px;
+    margin-top: 5px;
+    font-size: 15px;
+}
+
 .sidebar .logo-tim {
     border-radius: 50%;
     border: 1px solid #333;

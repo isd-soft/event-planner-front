@@ -1,7 +1,9 @@
 import React, {Component} from "react";
 import {Pagination,} from 'react-bootstrap';
 import './dashboard.css';
-import logo from './face-0.png';
+import 'components/myProfile/myProfile.css'
+import logo1 from './face-0.png';
+import logo from './dashboard-icon.png'
 import {Route, Link} from "react-router-dom";
 
 export default class Dashboard extends Component {
@@ -9,8 +11,14 @@ export default class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
-            username: this.props.username,
+            name: "Speianu",
+            surname: "Dana"
+            // title: this.state.title,
+            // category:this.state.category,
+            // date: this.state.date,
+            // duration: this.state.duration,
+            // location:this.state.location,
+            // price:this.state.price
         };
     }
 
@@ -31,45 +39,36 @@ export default class Dashboard extends Component {
                                 className="simple-text logo-mini"
                             >
                                 <div className="logo-img">
-                                    <img src={logo} alt="logo"/>
+                                    <img src={logo1} alt="logo1"/>
                                 </div>
                             </a>
-                            <hr></hr>
 
                             <h4
                                 className="name_surname_text"
                             >
-                                Name Surname
+                                {this.state.name} {this.state.surname}
                             </h4>
-                            <br></br>
 
                         </div>
 
-                        {/*<a href="#changePhoto">*/}
-
-                        {/*/!*<h4 className="title">*!/*/}
-                        {/*/!*{this.props.username}*!/*/}
-                        {/*/!*<br/>*!/*/}
-                        {/*/!*<small>{this.props.username}</small>*!/*/}
-                        {/*/!*</h4>*!/*/}
-                        {/*</a>*/}
                     </div>
                     <nav>
                         <ul>
                             <p>
+                                {/*<div className={"dashboard-icon"}>*/}
+                                {/*<img src={logo} className={"dashboard_icon"} alt="logo"/>*/}
+                            {/*</div>*/}
                                 <Link to={"/dashboard"} className={"dashboard-text"}>
-                                    <a href="#">
-                                        <br></br>
+                                        <hr></hr>
                                         <span><i className="fa fa-bar-chart"></i></span>
                                         <span><i className="fa fa-user"></i></span>
                                         <span className={"dashboard-text"}>Dashboard</span>
-                                    </a>
                                 </Link>
                             </p>
-                            <br></br>
+                            <hr></hr>
 
                             <p>
-                                <Link to={"/profile"}>
+                                <Link to={"/profile"} className={"dashboard-text"}>
                                     <a href="#">
                                         <span><i className="fa fa-bar-chart"></i></span>
                                         <span className={"dashboard-text"}> My Profile</span>
