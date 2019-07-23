@@ -182,8 +182,8 @@ class RegisterPage extends React.Component {
 
         this.state = {
             user: {
-                firstName: '',
-                lastName: '',
+                firstname: '',
+                lastname: '',
                 username: '',
                 password: '',
                 email: ''
@@ -235,19 +235,19 @@ class RegisterPage extends React.Component {
             <div className="col-md-6 col-md-offset-3">
                 <h2>Register</h2>
                 <form name="form" onSubmit={this.handleSubmit}>
-                    <div className={'form-group' + (submitted && !user.firstName ? ' has-error' : '')}>
-                        <label htmlFor="firstName">First Name</label>
-                        <input type="text" className="form-control" name="firstName" value={user.firstName}
+                    <div className={'form-group' + (submitted && !user.firstname ? ' has-error' : '')}>
+                        <label htmlFor="firstname">First Name</label>
+                        <input type="text" className="form-control" name="firstname" value={user.firstname}
                                onChange={this.handleChange}/>
-                        {submitted && !user.firstName &&
+                        {submitted && !user.firstname &&
                         <div className="help-block">First Name is required</div>
                         }
                     </div>
-                    <div className={'form-group' + (submitted && !user.lastName ? ' has-error' : '')}>
+                    <div className={'form-group' + (submitted && !user.lastname ? ' has-error' : '')}>
                         <label htmlFor="lastName">Last Name</label>
-                        <input type="text" className="form-control" name="lastName" value={user.lastName}
+                        <input type="text" className="form-control" name="lastname" value={user.lastname}
                                onChange={this.handleChange}/>
-                        {submitted && !user.lastName &&
+                        {submitted && !user.lastname &&
                         <div className="help-block">Last Name is required</div>
                         }
                     </div>

@@ -32,6 +32,7 @@ export default class Dashboard extends Component {
             'http://localhost:8080/events'
         ).then(response => {
             this.setState({events: response.data.content});
+            //console.log(username);
             console.log(response)
         })
             .catch(error => {
