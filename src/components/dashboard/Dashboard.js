@@ -1,34 +1,55 @@
 import React, {Component} from "react";
-import {Pagination,} from 'react-bootstrap';
 import './dashboard.css';
-import 'components/myProfile/myProfile.css'
-import logo1 from './face-0.png';
-import logo from './dashboard-icon.png'
-import {Route, Link} from "react-router-dom";
+import logo from './face-0.png';
+import {Link} from "react-router-dom";
+import axios from 'axios'
 
 export default class Dashboard extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            name: "Speianu",
-            surname: "Dana"
-            // title: this.state.title,
-            // category:this.state.category,
-            // date: this.state.date,
-            // duration: this.state.duration,
-            // location:this.state.location,
-            // price:this.state.price
-        };
+            username: this.props.username,
+            events: []
+
+        }
+    }
+
+    componentDidMount() {
+        axios.interceptors.request.use((config) => {
+                let token = localStorage.getItem('jwtToken');
+
+                if (token) {
+                    config.headers['Authorization'] = `Bearer ${token}`;
+                }
+                return config;
+            },
+            (error) => {
+                return Promise.reject(error);
+            }
+        );
+        axios.get(
+            'http://localhost:8080/events'
+        ).then(response => {
+            this.setState({events: response.data.content});
+            console.log(response)
+        })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
 
     render() {
+
         return (
+
             <div>
                 <div className="header">
                     <Link to={"/login"}>
-                        <a><button className={"logOutButton"}>Log out</button></a>
+                        <a>
+                            <button className={"logOutButton"}>Log out</button>
+                        </a>
                     </Link>
                 </div>
                 <div className="side-nav">
@@ -39,36 +60,45 @@ export default class Dashboard extends Component {
                                 className="simple-text logo-mini"
                             >
                                 <div className="logo-img">
-                                    <img src={logo1} alt="logo1"/>
+                                    <img src={logo} alt="logo"/>
                                 </div>
                             </a>
+                            <hr></hr>
 
                             <h4
                                 className="name_surname_text"
                             >
-                                {this.state.name} {this.state.surname}
+                                Name Surname
                             </h4>
+                            <br></br>
 
                         </div>
 
+                        {/*<a href="#changePhoto">*/}
+
+                        {/*/!*<h4 className="title">*!/*/}
+                        {/*/!*{this.props.username}*!/*/}
+                        {/*/!*<br/>*!/*/}
+                        {/*/!*<small>{this.props.username}</small>*!/*/}
+                        {/*/!*</h4>*!/*/}
+                        {/*</a>*/}
                     </div>
                     <nav>
                         <ul>
                             <p>
-                                {/*<div className={"dashboard-icon"}>*/}
-                                {/*<img src={logo} className={"dashboard_icon"} alt="logo"/>*/}
-                            {/*</div>*/}
                                 <Link to={"/dashboard"} className={"dashboard-text"}>
-                                        <hr></hr>
+                                    <a href="#">
+                                        <br></br>
                                         <span><i className="fa fa-bar-chart"></i></span>
                                         <span><i className="fa fa-user"></i></span>
                                         <span className={"dashboard-text"}>Dashboard</span>
+                                    </a>
                                 </Link>
                             </p>
-                            <hr></hr>
+                            <br></br>
 
                             <p>
-                                <Link to={"/profile"} className={"dashboard-text"}>
+                                <Link to={"/profile"}>
                                     <a href="#">
                                         <span><i className="fa fa-bar-chart"></i></span>
                                         <span className={"dashboard-text"}> My Profile</span>
@@ -83,40 +113,30 @@ export default class Dashboard extends Component {
                     <label className={"title"}>The list of events</label>
                 </div>
                 <li>
-                    <div className="card" href="#event1">
-                        {/*<img className="card-img-top" src="..." alt="Card image cap"/>*/}
-                        <div className="card-body">
-                            <h5 className="event-title">Event Title</h5>
-                            <h4 className="event-category">Category:</h4>
-                            <h4 className="event-date">Date:</h4>
-                            <h4 className="event-duration">Duration:</h4>
-                            <h4 className="event-location">Location:</h4>
-                            <h4 className="event-date">Price:</h4>
-                            <a href="#" className="btn btn-primary">Participate</a>
+                    {this.state.events.map(event => (<li key={event.id}>
+                        <div className="card" href="#event1">
+                            {/*<img className="card-img-top" src="..." alt="Card image cap"/>*/}
+                            <div className="card-body">
+
+                                <h5 className="event-title">Event Title:{event.title}</h5>
+                                <h4 className="event-category">Category:{event.category}</h4>
+                                <h4 className="event-date">Date:{event.date}</h4>
+                                <h4 className="event-duration">Duration:{event.duration}</h4>
+                                <h4 className="event-location">Location:{event.location}</h4>
+                                <h4 className="event-date">Price:{event.price}</h4>
+                                <a href="#" className="btn btn-primary">Participate:{event.participants}</a>
+                            </div>
                         </div>
-                    </div>
-                    <div className="card" href="#event2">
-                        {/*<img className="card-img-top" src="..." alt="Card image cap"/>*/}
-                        <div className="card-body">
-                            <h5 className="event-title">Event Title</h5>
-                            <h4 className="event-category">Category:</h4>
-                            <h4 className="event-date">Date:</h4>
-                            <h4 className="event-duration">Duration:</h4>
-                            <h4 className="event-location">Location:</h4>
-                            <h4 className="event-date">Price:</h4>
-                            <a href="#" className="btn btn-primary">Participate</a>
-                        </div>
-                    </div>
+                    </li>))}
+
                 </li>
 
             </div>
 
 
         )
-            ;
+
     }
 }
-
-
 
 

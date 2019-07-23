@@ -1,10 +1,12 @@
-import axios from 'axios';
+import axios from "axios";
+
 
 export default function setToken(token) {
-    if(token){
-        axios.defaults.headers.common['Authorization']=`Bearer ${token}`;
-    }else{
-        delete axios.defaults.headers.common['Authorization'];
+    axios.defaults.headers.common['Authorization'] = '';
+    delete axios.defaults.headers.common['Authorization'];
+
+    if (token) {
+        axios.defaults.headers.common['Authorization'] = `${token}`;
     }
 
 }

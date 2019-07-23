@@ -6,7 +6,6 @@ import Dashboard from 'components/dashboard/Dashboard'
 import MyProfile from 'components/myProfile/MyProfile'
 
 
-
 class App extends Component {
     render() {
         return (

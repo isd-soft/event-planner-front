@@ -74,7 +74,8 @@ class Login extends Component {
                 this.props.history.push("/dashboard");
             }
                 localStorage.setItem("jwtToken", token);
-                setToken(token);
+
+            setToken(token);
                 // console.log(jwt.decode(token));
                 console.log(setToken(token));
 
