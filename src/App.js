@@ -4,6 +4,7 @@ import Registration from 'components/registration/RegisterPage';
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import Dashboard from 'components/dashboard/Dashboard'
 import MyProfile from 'components/myProfile/MyProfile'
+import NewEvent from 'components/newEvent/NewEvent'
 
 
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
                     <Route path='/registration' component={Registration}/>
                     <Route path='/dashboard' component={Dashboard}/>
                     <Route path={'/profile'} component={MyProfile}/>
+                    <Route path={'/create'} component={NewEvent}/>
 
                 </div>
 
