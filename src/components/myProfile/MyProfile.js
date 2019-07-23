@@ -13,13 +13,10 @@ export default class MyProfile extends Component {
     constructor(props){
         super(props);
     this.state = {
-            name: '',
-            surname: '',
-            gender: '',
-            email:'',
-            description:'',
-            username:''
+            userinfo:{}
         }
+        // this.getUser = this.getUser.bind(this);
+
     }
     componentDidMount() {
         axios.interceptors.request.use((config) => {
@@ -35,9 +32,9 @@ export default class MyProfile extends Component {
             }
         );
         axios.get(
-            'http://localhost:8080/userinfo/6',{mode:'no-cors'}
+            'http://localhost:8080/userinfo/{userId}'
         ).then(response => {
-            this.setState({userInfo: response.data.content});
+            this.setState({username: response.data.content});
             console.log(response)
         })
             .catch(error => {
@@ -52,11 +49,11 @@ export default class MyProfile extends Component {
         return (
             <div>
                 <div className="header">
-                    {/*<Link to={"/login"}>*/}
-                        <a className={"logOutButton"}>
-                            <button className={"btn btn-primary"}>Log out</button>
+                    <Link to={"/login"}>
+                        <a>
+                            <button className={"logOutButton"}>Log out</button>
                         </a>
-                    {/*</Link>*/}
+                    </Link>
                 </div>
                 <div className="side-nav">
                     <div className="author">
@@ -69,36 +66,48 @@ export default class MyProfile extends Component {
                                     <img src={logo} alt="logo"/>
                                 </div>
                             </a>
+                            <hr></hr>
+
                             <h4
                                 className="name_surname_text"
                             >
-                                {this.componentDidMount()} {this.state.surname}
+                                {this.state.username} Surname
                             </h4>
+                            <br></br>
+
                         </div>
-
-
                     </div>
                     <nav>
                         <ul>
-                            <hr></hr>
-
                             <p>
-
                                 <Link to={"/dashboard"} className={"dashboard-text"}>
-                                    <span><i className="fa fa-bar-chart"></i></span>
-                                    <span><i className="fa fa-user"></i></span>
-                                    <span className={"dashboard-text"}>Dashboard</span>
-                                </Link>
-                            </p>
-                            <hr></hr>
-
-                            <p>
-                                <Link to={"/profile"} className={"dashboard-text"}>
                                     <a href="#">
+                                        <br></br>
                                         <span><i className="fa fa-bar-chart"></i></span>
                                         <span><i className="fa fa-user"></i></span>
-                                        <span className={"dashboard-text"}>My Profile</span>
+                                        <span className={"dashboard-text"}>Dashboard</span>
                                     </a>
+                                </Link>
+                            </p>
+                            <br></br>
+
+                            <p>
+                                <Link to={"/profile"}>
+                                    <a href="#">
+                                        <span><i className="fa fa-bar-chart"></i></span>
+                                        <span className={"dashboard-text"}> My Profile</span>
+                                    </a>
+                                </Link>
+                            </p>
+
+                            <br></br>
+
+                            <p>
+                                <Link to={"/create"}>
+                                    {/*<a href="#">*/}
+                                    <span><i className="fa fa-bar-chart"></i></span>
+                                    <span className={"dashboard-text"}>Create Event</span>
+                                    {/*</a>*/}
                                 </Link>
                             </p>
 
@@ -111,8 +120,8 @@ export default class MyProfile extends Component {
                 <div className="profile-card" href="#profile">
 
                     <div className="logo-img">
-                        <img src={logo} alt="logo"/>
-
+                        {/*<img src={logo} alt="logo"/>*/}
+                        <hr></hr>
                         {/*<img className="card-img-top" src="..." alt="Card image cap"/>*/}
                         <div className="profile-card-body">
                             <FormGroup controlId="name">
