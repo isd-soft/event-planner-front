@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import './myProfile.css';
 import logo from './face-0.png';
 import {Route, Link} from "react-router-dom";
-import {ControlLabel, FormControl, FormGroup, HelpBlock} from "react-bootstrap";
+import {ControlLabel, FormControl, FormGroup} from "react-bootstrap";
 import {isContainWhiteSpace, isEmail, isEmpty, isLength} from 'shared/validator';
 import axios from 'axios';
 
@@ -10,29 +10,53 @@ import axios from 'axios';
 
 export default class MyProfile extends Component {
 
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
     this.state = {
-            name: "Speianu",
-            surname: "Dana",
-            gender: "Female",
-            email:"speianu.dana@gmail.com",
-            description:" ",
-            username:" "
-        };
+            name: '',
+            surname: '',
+            gender: '',
+            email:'',
+            description:'',
+            username:''
+        }
     }
-    changeEditMode = () =>{
+    componentDidMount() {
+        axios.interceptors.request.use((config) => {
+                let token = localStorage.getItem('jwtToken');
 
+                if (token) {
+                    config.headers['Authorization'] = `Bearer ${token}`;
+                }
+                return config;
+            },
+            (error) => {
+                return Promise.reject(error);
+            }
+        );
+        axios.get(
+            'http://localhost:8080/userinfo/6',{mode:'no-cors'}
+        ).then(response => {
+            this.setState({userInfo: response.data.content});
+            console.log(response)
+        })
+            .catch(error => {
+                console.log(error);
+            });
     }
+
+
+
     render() {
+
         return (
             <div>
                 <div className="header">
-                    <Link to={"/login"}>
+                    {/*<Link to={"/login"}>*/}
                         <a className={"logOutButton"}>
-                            <button className={"logOutButton"}>Log out</button>
+                            <button className={"btn btn-primary"}>Log out</button>
                         </a>
-                    </Link>
+                    {/*</Link>*/}
                 </div>
                 <div className="side-nav">
                     <div className="author">
@@ -48,7 +72,7 @@ export default class MyProfile extends Component {
                             <h4
                                 className="name_surname_text"
                             >
-                                {this.state.name} {this.state.surname}
+                                {this.componentDidMount()} {this.state.surname}
                             </h4>
                         </div>
 
@@ -56,12 +80,11 @@ export default class MyProfile extends Component {
                     </div>
                     <nav>
                         <ul>
+                            <hr></hr>
+
                             <p>
-                                {/*<div className={"dashboard-icon"}>*/}
-                                {/*<img src={logo} className={"dashboard_icon"} alt="logo"/>*/}
-                                {/*</div>*/}
+
                                 <Link to={"/dashboard"} className={"dashboard-text"}>
-                                    <hr></hr>
                                     <span><i className="fa fa-bar-chart"></i></span>
                                     <span><i className="fa fa-user"></i></span>
                                     <span className={"dashboard-text"}>Dashboard</span>
@@ -134,8 +157,7 @@ export default class MyProfile extends Component {
                             </div>
 
 
-                            {/*<a href="/edit" className="btn btn-primary" onClick={this.changeEditMode}>Edit</a>*/}
-                            <a href="/save" className="btn btn-primary" onClick={this.changeEditMode}>Save</a>
+                            <a href="/save" className="btn btn-primary" >Save</a>
 
                         </div>
                     </div>

@@ -73,15 +73,6 @@ export default class Dashboard extends Component {
                             <br></br>
 
                         </div>
-
-                        {/*<a href="#changePhoto">*/}
-
-                        {/*/!*<h4 className="title">*!/*/}
-                        {/*/!*{this.props.username}*!/*/}
-                        {/*/!*<br/>*!/*/}
-                        {/*/!*<small>{this.props.username}</small>*!/*/}
-                        {/*/!*</h4>*!/*/}
-                        {/*</a>*/}
                     </div>
                     <nav>
                         <ul>
@@ -106,6 +97,17 @@ export default class Dashboard extends Component {
                                 </Link>
                             </p>
 
+                            <br></br>
+
+                            <p>
+                                <Link to={"/create"}>
+                                    {/*<a href="#">*/}
+                                        <span><i className="fa fa-bar-chart"></i></span>
+                                        <span className={"dashboard-text"}>Create Event</span>
+                                    {/*</a>*/}
+                                </Link>
+                            </p>
+
                         </ul>
                     </nav>
                 </div>
@@ -115,7 +117,6 @@ export default class Dashboard extends Component {
                 <li>
                     {this.state.events.map(event => (<li key={event.id}>
                         <div className="card" href="#event1">
-                            {/*<img className="card-img-top" src="..." alt="Card image cap"/>*/}
                             <div className="card-body">
 
                                 <h5 className="event-title">Event Title:{event.title}</h5>
