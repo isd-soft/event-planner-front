@@ -44,7 +44,7 @@ export default class MyProfile extends Component {
 
         console.log('State:'+this.state.user);
 
-        axios.put('http://localhost:8080/userinfo/' + id,user
+        axios.put('http://localhost:8080/user/' + id,user
                 )
             .then(res => console.log(res.data));
     }
@@ -64,7 +64,7 @@ export default class MyProfile extends Component {
 
         let id = localStorage.getItem('id');
         axios.get(
-            'http://localhost:8080/userinfo/' + id
+            'http://localhost:8080/user/' + id
         ).then(response => {
             this.setState({user: response.data});
             // console.log(response)

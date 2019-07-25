@@ -44,7 +44,7 @@ export default class Dashboard extends Component {
 
         let id=localStorage.getItem('id');
         axios.get(
-            'http://localhost:8080/userinfo/' + id
+            'http://localhost:8080/user/' + id
         ).then(response => {
             this.setState({user: response.data});
             console.log(response)
