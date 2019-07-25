@@ -11,8 +11,9 @@ export default class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: this.props.username,
-            events: []
+            user:{},
+            events: [],
+
 
         }
     }
@@ -36,6 +37,17 @@ export default class Dashboard extends Component {
         ).then(response => {
             this.setState({events: response.data.content});
             //console.log(username);
+            console.log(response)
+        })
+            .catch(error => {
+                console.log(error);
+            });
+
+        let id=localStorage.getItem('id');
+        axios.get(
+            'http://localhost:8080/userinfo/' + id
+        ).then(response => {
+            this.setState({user: response.data});
             console.log(response)
         })
             .catch(error => {
@@ -72,9 +84,9 @@ export default class Dashboard extends Component {
                             <hr></hr>
 
                             <h4
-                                className="name_surname_text"
+                                className="firstname_lastname_text"
                             >
-                                Name Surname
+                                {this.state.user.firstname} {this.state.user.lastname}
                             </h4>
                             <br></br>
 

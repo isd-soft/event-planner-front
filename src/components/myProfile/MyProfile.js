@@ -7,21 +7,51 @@ import {isContainWhiteSpace, isEmail, isEmpty, isLength} from 'shared/validator'
 import axios from 'axios';
 
 
-
 export default class MyProfile extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-    this.state = {
-            userinfo:{}
-        }
-        // this.getUser = this.getUser.bind(this);
-
+        this.state = {
+            user: {
+                firstname: '',
+                lastname: '',
+                username: '',
+                email: '',
+                gender:'',
+                description:''
+            }
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    handleChange(event) {
+        const {name, value} = event.target;
+        const {user} = this.state;
+        this.setState({
+            user: {
+                ...user,
+                [name]: value
+            }
+        });
+    }
+
+    handleSubmit = e =>
+    {
+        let id = localStorage.getItem('id');
+        e.preventDefault();
+        const {user} = this.state;
+
+        console.log('State:'+this.state.user);
+
+        axios.put('http://localhost:8080/userinfo/' + id,user
+                )
+            .then(res => console.log(res.data));
+    }
+
     componentDidMount() {
         axios.interceptors.request.use((config) => {
                 let token = localStorage.getItem('jwtToken');
-
                 if (token) {
                     config.headers['Authorization'] = `Bearer ${token}`;
                 }
@@ -31,20 +61,21 @@ export default class MyProfile extends Component {
                 return Promise.reject(error);
             }
         );
+
+        let id = localStorage.getItem('id');
         axios.get(
-            'http://localhost:8080/userinfo/{userId}'
+            'http://localhost:8080/userinfo/' + id
         ).then(response => {
-            this.setState({username: response.data.content});
-            console.log(response)
+            this.setState({user: response.data});
+            // console.log(response)
         })
             .catch(error => {
                 console.log(error);
             });
     }
 
-
-
     render() {
+        const {user} = this.state;
 
         return (
             <div>
@@ -69,9 +100,9 @@ export default class MyProfile extends Component {
                             <hr></hr>
 
                             <h4
-                                className="name_surname_text"
-                            >
-                                {this.state.username} Surname
+                                className="firstname_lastname_text"
+                            aria-readonly={"true"}>
+                                {user.firstname} {user.lastname}
                             </h4>
                             <br></br>
 
@@ -120,53 +151,73 @@ export default class MyProfile extends Component {
                 <div className="profile-card" href="#profile">
 
                     <div className="logo-img">
-                        {/*<img src={logo} alt="logo"/>*/}
                         <hr></hr>
-                        {/*<img className="card-img-top" src="..." alt="Card image cap"/>*/}
                         <div className="profile-card-body">
-                            <FormGroup controlId="name">
-                                <ControlLabel>Name</ControlLabel>
-                                <div class="col-sm-5">
-                                <FormControl type="text" name="name" placeholder={this.state.name}/>
-                                </div>
-                            </FormGroup >
+                            <form onSubmit={this.handleSubmit}>
+                                <FormGroup controlId="firstname">
+                                    <ControlLabel class={"col-sm-5"}>First Name</ControlLabel>
+                                    <div class="col-sm-5">
+                                        <FormControl type="text" name="firstname" value={user.firstname}
+                                                     onChange={this.handleChange}/>
+                                    </div>
+                                </FormGroup>
 
-                            <FormGroup controlId="surname">
-                                <ControlLabel>Surname</ControlLabel>
-                                <div class="col-sm-5">
-                                    <FormControl type="text" name="surname" placeholder={this.state.surname}/>
-                                </div>
-                            </FormGroup >
-                            <FormGroup controlId="email">
-                                <ControlLabel>Email</ControlLabel>
-                                <div class="col-sm-5">
-                                    <FormControl type="text" name="email" placeholder={this.state.email}/>
-                                </div>
-                            </FormGroup >
-                            <FormGroup controlId="description">
-                                <ControlLabel>Description</ControlLabel>
-                                <div class="col-sm-5">
-                                    <FormControl type="text" name="description" placeholder={this.state.description}/>
-                                </div>
-                            </FormGroup >
-                            <FormGroup controlId="username">
-                                <ControlLabel>Username</ControlLabel>
-                                <div class="col-sm-5">
-                                    <FormControl type="text" name="username" placeholder={this.state.name}/>
-                                </div>
-                            </FormGroup >
-                            <div className="form-group">
-                                <label htmlFor="sell">Gender</label>
-                                <div className="col-sm-5">
-                                <select className="form-control" id="sel1">
-                                    <option>Male</option>
-                                    <option>Female</option>
-                                </select>
-                                </div>
-                            </div>
+                                <FormGroup controlId="lastname">
+                                    <ControlLabel>Last Name</ControlLabel>
+                                    <div class="col-sm-5">
+                                        <FormControl
+                                            type="text" name="lastname"
+                                            onChange={this.handleChange}
+                                            value={user.lastname}/>
+                                    </div>
+                                </FormGroup>
+
+                                    <ControlLabel >Email</ControlLabel>
+                                <div class="col-sm-5">   {user.email}
+                                    </div>
 
 
-                            <a href="/save" className="btn btn-primary" >Save</a>
+
+
+                                <FormGroup controlId="description">
+                                    <ControlLabel>Description</ControlLabel>
+                                    <div class="col-sm-5">
+                                        <FormControl
+                                            type={"text"} name={"description"}
+                                            onChange={this.handleChange}
+                                            value={user.description}/>
+                                    </div>
+                                </FormGroup>
+                                <FormGroup controlId="phoneNumber">
+                                    <ControlLabel>Phone Number</ControlLabel>
+                                    <div class="col-sm-5">
+                                        <FormControl
+                                            type={"text"} name={"phoneNumber"}
+                                            onChange={this.handleChange}
+                                            value={user.phoneNumber}/>
+                                    </div>
+                                </FormGroup>
+
+
+                                <ControlLabel >Username</ControlLabel>
+                                <div class="col-sm-5">   {user.username}
+                                </div>
+
+
+                                <div className="form-group">
+                                    <label htmlFor="sell">Gender</label>
+                                    <div className="col-sm-5">
+                                        <select className="form-control" id="sel1" name={"gender"}
+                                                onChange={this.handleChange}
+                                                value={user.gender}>
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type={"submit"} className="btn btn-primary">Save</button>
+                            </form>
+
 
                         </div>
                     </div>
