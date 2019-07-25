@@ -74,8 +74,10 @@ class Login extends Component {
             password: this.state.formData.password
         }).then(res => {
             const token = res.data.token;
-            if (token) {
+            const id = res.data.id;
+            if (token && id) {
                 localStorage.setItem("jwtToken", token);
+                localStorage.setItem("id",id);
                 this.props.history.push("/dashboard");
                 console.log(this.props)
             }

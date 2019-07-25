@@ -55,7 +55,7 @@ export default class Dashboard extends Component {
             });
     }
     logout(e){
-        localStorage.removeItem("jwtToken")
+        localStorage.clear()
 }
 
     render() {
