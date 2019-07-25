@@ -2,8 +2,10 @@ import React, {Component} from "react";
 import './newEvent.css';
 import logo from './face-0.png';
 import {Link} from "react-router-dom";
+import {isContainWhiteSpace, isEmail, isEmpty, isLength} from 'shared/validator';
 import axios from 'axios'
 import {ControlLabel, FormControl, FormGroup} from "react-bootstrap";
+
 
 export default class NewEvent extends Component {
     constructor(props) {
@@ -11,11 +13,11 @@ export default class NewEvent extends Component {
         super(props)
         this.state = {
 
-            title: "",
+            title: null,
             description: "",
             category: "",
-            date: "",
-            duration: 0,
+            startdate: null,
+            enddate: "",
             price: "",
             location: "",
             // participants: "",
@@ -24,19 +26,54 @@ export default class NewEvent extends Component {
     }
 
 
+    changeHandle = e => {
+        this.setState({[e.target.name]: e.target.value})
 
-    changeHandle=e=>{
-        this.setState({[e.target.name]:e.target.value})
+
     }
 
-    submitHandler=e=>{
+
+    verificationHandler=e=>{
+        if (isEmpty(this.title)) {
+            console.log("Title is empty")
+
+        }
+
+        if (isEmpty(this.startdate)) {
+            console.log("Start date is empty")
+
+        }
+
+
+    }
+
+    submitHandler = e => {
         e.preventDefault()
+
+
+       this.verificationHandler();
+
+
+        axios.interceptors.request.use((config) => {
+                let token = localStorage.getItem('jwtToken');
+
+                if (token) {
+                    config.headers['Authorization'] = `Bearer ${token}`;
+                }
+                return config;
+            },
+            (error) => {
+                return Promise.reject(error);
+            }
+        );
+
+
         console.log(this.state)
         axios.post("http://localhost:8080/events", this.state)
-             .then(response=>{
+            .then(response => {
                 console.log(response)
-             })
-            .catch(error=>{
+            })
+            .catch(error => {
                 console.log(error)
 
             })
@@ -47,8 +84,9 @@ export default class NewEvent extends Component {
 
     render() {
         const {
-                title, description, category, date, duration,
-                price, location, participants, organizers}=this.state
+            title, description, category, startdate, enddate,
+            price, location, participants, organizers
+        } = this.state
 
         return (
 
@@ -56,7 +94,7 @@ export default class NewEvent extends Component {
                 <div className="header">
                     <Link to={"/login"}>
 
-                            <button className={"logOutButton"}>Log out</button>
+                        <button className={"logOutButton"}>Log out</button>
 
                     </Link>
                 </div>
@@ -86,22 +124,22 @@ export default class NewEvent extends Component {
                         <ul>
                             <p>
                                 <Link to={"/dashboard"} className={"dashboard-text"}>
-                                    <a href="#">
-                                        <br></br>
-                                        <span><i className="fa fa-bar-chart"></i></span>
-                                        <span><i className="fa fa-user"></i></span>
-                                        <span className={"dashboard-text"}>Dashboard</span>
-                                    </a>
+                                    {/*<a href="#">*/}
+                                    <br></br>
+                                    <span><i className="fa fa-bar-chart"></i></span>
+                                    <span><i className="fa fa-user"></i></span>
+                                    <span className={"dashboard-text"}>Dashboard</span>
+                                    {/*</a>*/}
                                 </Link>
                             </p>
                             <br></br>
 
                             <p>
                                 <Link to={"/profile"}>
-                                    <a href="#">
-                                        <span><i className="fa fa-bar-chart"></i></span>
-                                        <span className={"dashboard-text"}> My Profile</span>
-                                    </a>
+                                    {/*<a href="#">*/}
+                                    <span><i className="fa fa-bar-chart"></i></span>
+                                    <span className={"dashboard-text"}> My Profile</span>
+                                    {/*</a>*/}
                                 </Link>
                             </p>
 
@@ -131,40 +169,40 @@ export default class NewEvent extends Component {
 
 
                             {/*Create Event -   form */}
-                            <form  onSubmit={this.submitHandler}>
+                            <form onSubmit={this.submitHandler}>
 
-                            <FormGroup controlId="event-title">
-                                <ControlLabel>Title</ControlLabel>
-                                <div className="col-sm-5">
-                                    <FormControl type="text" name="title" placeholder="Event title"
-                                                 value={title} onChange={this.changeHandle} />
-                                </div>
-                            </FormGroup>
+                                <FormGroup controlId="event-title">
+                                    <ControlLabel>* Title</ControlLabel>
+                                    <div className="col-sm-5">
+                                        <FormControl type="text" name="title" placeholder="Event title"
+                                                     value={title} onChange={this.changeHandle}/>
+                                    </div>
+                                </FormGroup>
 
-                            <FormGroup controlId="Description">
-                                <ControlLabel>Description</ControlLabel>
-                                <div className="col-sm-5">
-                                    <FormControl type="text" name="description" placeholder="Description"
-                                                 value={description}  onChange={this.changeHandle}/>
-                                </div>
-                            </FormGroup>
+                                <FormGroup controlId="Description">
+                                    <ControlLabel>Description</ControlLabel>
+                                    <div className="col-sm-5">
+                                        <FormControl type="text" name="description" placeholder="Description"
+                                                     value={description} onChange={this.changeHandle}/>
+                                    </div>
+                                </FormGroup>
 
-                            <FormGroup controlId="date">
-                                <ControlLabel>Date</ControlLabel>
-                                <div className="col-sm-5">
-                                    <FormControl type="datetime-local" name="date" placeholder='Enter date'
-                                                 value={date}  onChange={this.changeHandle}/>
-                                </div>
-                            </FormGroup>
+                                <FormGroup controlId="startdate">
+                                    <ControlLabel>* Start Date</ControlLabel>
+                                    <div className="col-sm-5">
+                                        <FormControl type="datetime-local" name="startdate" placeholder='Enter date'
+                                                     value={startdate} onChange={this.changeHandle}/>
+                                    </div>
+                                </FormGroup>
 
+                                <FormGroup controlId="enddate">
+                                    <ControlLabel>End Date</ControlLabel>
+                                    <div className="col-sm-5">
+                                        <FormControl type="datetime-local" name="enddate" placeholder='Enter date'
+                                                     value={enddate} onChange={this.changeHandle}/>
+                                    </div>
+                                </FormGroup>
 
-                            <FormGroup controlId="duration">
-                                <ControlLabel>Duration</ControlLabel>
-                                <div className="col-sm-5">
-                                    <FormControl type="text" name="duration" placeholder="Enter duration"
-                                                 value={duration} onChange={this.changeHandle}/>
-                                </div>
-                            </FormGroup>
 
                                 <FormGroup controlId="categoru">
                                     <ControlLabel>Category</ControlLabel>
@@ -175,27 +213,27 @@ export default class NewEvent extends Component {
                                 </FormGroup>
 
 
-                            <FormGroup controlId="price">
-                                <ControlLabel>Price</ControlLabel>
-                                <div className="col-sm-5">
-                                    <FormControl type="text" name="price" placeholder='Enter price'
-                                                 value={price}  onChange={this.changeHandle}/>
-                                </div>
-                            </FormGroup>
+                                <FormGroup controlId="price">
+                                    <ControlLabel>Price</ControlLabel>
+                                    <div className="col-sm-5">
+                                        <FormControl type="text" name="price" placeholder='Enter price'
+                                                     value={price} onChange={this.changeHandle}/>
+                                    </div>
+                                </FormGroup>
 
-                            <FormGroup controlId="location">
-                                <ControlLabel>Location</ControlLabel>
-                                <div className="col-sm-5">
-                                    <FormControl type="text" name="location" placeholder='Enter location'
-                                                 value={location}  onChange={this.changeHandle}/>
-                                </div>
-                            </FormGroup>
-                            {/*<hr></hr>*/}
+                                <FormGroup controlId="location">
+                                    <ControlLabel>Location</ControlLabel>
+                                    <div className="col-sm-5">
+                                        <FormControl type="text" name="location" placeholder='Enter location'
+                                                     value={location} onChange={this.changeHandle}/>
+                                    </div>
+                                </FormGroup>
+                                {/*<hr></hr>*/}
 
-                            <button type="submit" className="btn btn-primary">Create</button>
-                            {/*<a href="/dashboard" className="btn btn-primary">Create</a>*/}
+                                <button type="submit" className="btn btn-primary">Create</button>
+                                {/*<a href="/dashboard" className="btn btn-primary">Create</a>*/}
 
-                            {/*Event Form end*/}
+                                {/*Event Form end*/}
                             </form>
 
                         </div>
