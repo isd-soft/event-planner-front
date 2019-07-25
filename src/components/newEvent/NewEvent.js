@@ -6,18 +6,58 @@ import axios from 'axios'
 import {ControlLabel, FormControl, FormGroup} from "react-bootstrap";
 
 export default class NewEvent extends Component {
+    constructor(props) {
+
+        super(props)
+        this.state = {
+
+            title: "",
+            description: "",
+            category: "",
+            date: "",
+            duration: 0,
+            price: "",
+            location: "",
+            // participants: "",
+            // organizers: ""
+        }
+    }
+
+
+
+    changeHandle=e=>{
+        this.setState({[e.target.name]:e.target.value})
+    }
+
+    submitHandler=e=>{
+        e.preventDefault()
+        console.log(this.state)
+        axios.post("http://localhost:8080/events", this.state)
+             .then(response=>{
+                console.log(response)
+             })
+            .catch(error=>{
+                console.log(error)
+
+            })
+
+
+    }
 
 
     render() {
+        const {
+                title, description, category, date, duration,
+                price, location, participants, organizers}=this.state
 
         return (
 
             <div>
                 <div className="header">
                     <Link to={"/login"}>
-                        <a>
+
                             <button className={"logOutButton"}>Log out</button>
-                        </a>
+
                     </Link>
                 </div>
                 <div className="side-nav">
@@ -36,7 +76,7 @@ export default class NewEvent extends Component {
                             <h4
                                 className="name_surname_text"
                             >
-                                Name Surname
+                                Name Lastname
                             </h4>
                             <br></br>
 
@@ -86,61 +126,77 @@ export default class NewEvent extends Component {
 
                     <div className="logo-img">
                         {/*<img src={logo} alt="logo"/>*/}
-                        <hr></hr>
                         {/*<img className="card-img-top" src="..." alt="Card image cap"/>*/}
                         <div className="profile-card-body">
+
+
+                            {/*Create Event -   form */}
+                            <form  onSubmit={this.submitHandler}>
+
                             <FormGroup controlId="event-title">
                                 <ControlLabel>Title</ControlLabel>
                                 <div className="col-sm-5">
-                                    <FormControl type="text" name="event-title" placeholder="Event title"/>
+                                    <FormControl type="text" name="title" placeholder="Event title"
+                                                 value={title} onChange={this.changeHandle} />
                                 </div>
                             </FormGroup>
 
                             <FormGroup controlId="Description">
                                 <ControlLabel>Description</ControlLabel>
                                 <div className="col-sm-5">
-                                    <FormControl type="text" name="description" placeholder="Description"/>
+                                    <FormControl type="text" name="description" placeholder="Description"
+                                                 value={description}  onChange={this.changeHandle}/>
                                 </div>
                             </FormGroup>
 
                             <FormGroup controlId="date">
                                 <ControlLabel>Date</ControlLabel>
                                 <div className="col-sm-5">
-                                    <FormControl type="text" name="date" placeholder='Enter date'/>
+                                    <FormControl type="datetime-local" name="date" placeholder='Enter date'
+                                                 value={date}  onChange={this.changeHandle}/>
                                 </div>
                             </FormGroup>
+
+
                             <FormGroup controlId="duration">
                                 <ControlLabel>Duration</ControlLabel>
                                 <div className="col-sm-5">
-                                    <FormControl type="text" name="duration" placeholder="Enter duration"/>
+                                    <FormControl type="text" name="duration" placeholder="Enter duration"
+                                                 value={duration} onChange={this.changeHandle}/>
                                 </div>
                             </FormGroup>
-                            <div className="form-group">
-                                <label htmlFor="sell">Category</label>
-                                <div className="col-sm-5">
-                                    <select className="form-control" id="sel1">
-                                        <option>Education</option>
-                                        <option>Sport</option>
-                                        <option>Party</option>
 
-                                    </select>
-                                </div>
-                            </div>
+                                <FormGroup controlId="categoru">
+                                    <ControlLabel>Category</ControlLabel>
+                                    <div className="col-sm-5">
+                                        <FormControl type="text" name="category" placeholder="Enter duration"
+                                                     value={category} onChange={this.changeHandle}/>
+                                    </div>
+                                </FormGroup>
+
+
                             <FormGroup controlId="price">
                                 <ControlLabel>Price</ControlLabel>
                                 <div className="col-sm-5">
-                                    <FormControl type="text" name="price" placeholder='Enter price'/>
+                                    <FormControl type="text" name="price" placeholder='Enter price'
+                                                 value={price}  onChange={this.changeHandle}/>
                                 </div>
                             </FormGroup>
 
                             <FormGroup controlId="location">
                                 <ControlLabel>Location</ControlLabel>
                                 <div className="col-sm-5">
-                                    <FormControl type="text" name="location" placeholder='Enter location'/>
+                                    <FormControl type="text" name="location" placeholder='Enter location'
+                                                 value={location}  onChange={this.changeHandle}/>
                                 </div>
                             </FormGroup>
-                            <hr></hr>
-                            <a href="/dashboard" className="btn btn-primary">Create</a>
+                            {/*<hr></hr>*/}
+
+                            <button type="submit" className="btn btn-primary">Create</button>
+                            {/*<a href="/dashboard" className="btn btn-primary">Create</a>*/}
+
+                            {/*Event Form end*/}
+                            </form>
 
                         </div>
                     </div>
