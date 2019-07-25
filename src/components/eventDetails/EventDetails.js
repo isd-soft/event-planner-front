@@ -1,28 +1,28 @@
 import React, {Component} from "react";
-import './dashboard.css';
+import './eventDetails.css';
 import logo from './face-0.png';
-import {Link} from "react-router-dom";
-import axios from 'axios'
+import {Route, Link} from "react-router-dom";
+import {ControlLabel, FormControl, FormGroup} from "react-bootstrap";
+import axios from 'axios';
 
 
-export default class Dashboard extends Component {
-
+export default class EventDetails extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             user:{},
-            events: [],
+            _event: {}
 
-
-        }
+        };
     }
 
-    componentDidMount() {
 
+
+
+    componentDidMount() {
         axios.interceptors.request.use((config) => {
                 let token = localStorage.getItem('jwtToken');
-
                 if (token) {
                     config.headers['Authorization'] = `Bearer ${token}`;
                 }
@@ -32,41 +32,44 @@ export default class Dashboard extends Component {
                 return Promise.reject(error);
             }
         );
+
+        //get data about event
         axios.get(
-            'http://localhost:8080/events'
+            'http://localhost:8080/events/8'
         ).then(response => {
-            this.setState({events: response.data.content});
+            this.setState({_event: response.data});
             //console.log(username);
-            console.log(response)
+            // console.log(_events)
         })
             .catch(error => {
                 console.log(error);
             });
 
-        let id=localStorage.getItem('id');
+        //get data about user
+        let id = localStorage.getItem('id');
         axios.get(
             'http://localhost:8080/user/' + id
-        ).then(response => {
-            this.setState({user: response.data});
-            console.log(response)
+        ).then(res=> {
+            this.setState({user: res.data});
+            // console.log(response)
         })
             .catch(error => {
                 console.log(error);
             });
+
+
+        console.log(this.state._event);
     }
-    logout(e){
-        localStorage.clear()
-}
 
     render() {
+        const {user} = this.state;
 
         return (
-
             <div>
                 <div className="header">
                     <Link to={"/login"}>
                         <a>
-                            <button className={"logOutButton"} onClick={this.logout}>Log out</button>
+                            <button className={"logOutButton"}>Log out</button>
                         </a>
                     </Link>
                 </div>
@@ -85,7 +88,7 @@ export default class Dashboard extends Component {
 
                             <h4
                                 className="firstname_lastname_text"
-                            >
+                                aria-readonly={"true"}>
                                 {this.state.user.firstname} {this.state.user.lastname}
                             </h4>
                             <br></br>
@@ -120,8 +123,8 @@ export default class Dashboard extends Component {
                             <p>
                                 <Link to={"/create"}>
                                     {/*<a href="#">*/}
-                                        <span><i className="fa fa-bar-chart"></i></span>
-                                        <span className={"dashboard-text"}>Create Event</span>
+                                    <span><i className="fa fa-bar-chart"></i></span>
+                                    <span className={"dashboard-text"}>Create Event</span>
                                     {/*</a>*/}
                                 </Link>
                             </p>
@@ -130,32 +133,27 @@ export default class Dashboard extends Component {
                     </nav>
                 </div>
                 <div>
-                    <label className={"title"}>The list of events</label>
+                    <label className={"title"}>Event Details</label>
                 </div>
-                <li>
-                    {this.state.events.map(event => (<li key={event.id}>
-                        <div className="card" href="#event1">
-                            <div className="card-body">
 
-                                <a href={'/eventdetails'}> <h5 className="event-title">Event Title:{event.title}</h5></a>
-                                <h4 className="event-category">Category:{event.category}</h4>
-                                <h4 className="event-date">Date:{event.date}</h4>
-                                <h4 className="event-duration">Duration:{event.duration}</h4>
-                                <h4 className="event-location">Location:{event.location}</h4>
-                                <h4 className="event-date">Price:{event.price}</h4>
-                                <a href="#" className="btn btn-primary">Participate:{event.participants}</a>
-                            </div>
+                    <div  className="card" href="#event1">
+                        <div className="card-body">
+
+                            <a href={'/eventdetails'}> <h5 className="event-title">Event Title:{this.state._event.title}</h5></a>
+                            <h4 className="event-category">Category:{this.state._event.category}</h4>
+                            <h4 className="event-date">Date:{this.state._event.date}</h4>
+                            <h4 className="event-duration">Duration:{this.state._event.duration}</h4>
+                            <h4 className="event-location">Location:{this.state._event.location}</h4>
+                            <h4 className="event-date">Price:{this.state._event.price}</h4>
+                            {/*<a href="#" className="btn btn-primary">Participate:{_event.participants}</a>*/}
                         </div>
-                    </li>))}
+                    </div>
+                ))}
 
-                </li>
+
 
             </div>
 
-
-        )
-
+        );
     }
 }
-
-

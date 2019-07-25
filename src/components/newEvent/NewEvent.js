@@ -12,7 +12,7 @@ export default class NewEvent extends Component {
 
         super(props)
         this.state = {
-
+            user:{},
             title: null,
             description: "",
             category: "",
@@ -47,6 +47,33 @@ export default class NewEvent extends Component {
 
     }
 
+
+
+    componentDidMount() {
+        axios.interceptors.request.use((config) => {
+                let token = localStorage.getItem('jwtToken');
+                if (token) {
+                    config.headers['Authorization'] = `Bearer ${token}`;
+                }
+                return config;
+            },
+            (error) => {
+                return Promise.reject(error);
+            }
+        );
+
+        //get data about user
+        let id = localStorage.getItem('id');
+        axios.get(
+            'http://localhost:8080/user/' + id
+        ).then(res=> {
+            this.setState({user: res.data});
+            // console.log(response)
+        })
+            .catch(error => {
+                console.log(error);
+            });
+    }
     submitHandler = e => {
         e.preventDefault()
 
@@ -77,6 +104,7 @@ export default class NewEvent extends Component {
                 console.log(error)
 
             })
+
 
 
     }
@@ -117,7 +145,7 @@ export default class NewEvent extends Component {
                             <h4
                                 className="name_surname_text"
                             >
-                                Name Lastname
+                                {this.state.user.firstname}  {this.state.user.lastname}
                             </h4>
                             <br></br>
 
@@ -165,14 +193,8 @@ export default class NewEvent extends Component {
                 </div>
                 <div className="profile-card" href="#profile">
 
-                    <div className="logo-img">
-                        {/*<img src={logo} alt="logo"/>*/}
-                        {/*<img className="card-img-top" src="..." alt="Card image cap"/>*/}
-                        <div className="profile-card-body">
-
-
                             {/*Create Event -   form */}
-                            <form onSubmit={this.submitHandler}>
+                            <form  onSubmit={this.submitHandler}>
 
                                 <FormGroup controlId="event-title">
                                     <ControlLabel>* Title</ControlLabel>
@@ -233,20 +255,13 @@ export default class NewEvent extends Component {
                                 </FormGroup>
                                 {/*<hr></hr>*/}
 
-                                <button type="submit" className="btn btn-primary">Create</button>
+                                <button type="submit" href="/dashboard" className="btn btn-primary">Create</button>
                                 {/*<a href="/dashboard" className="btn btn-primary">Create</a>*/}
 
                                 {/*Event Form end*/}
                             </form>
-
-                        </div>
-                    </div>
                 </div>
-
-
             </div>
-
-
         )
 
     }
