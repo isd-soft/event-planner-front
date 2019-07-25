@@ -5,7 +5,7 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 import Dashboard from 'components/dashboard/Dashboard'
 import MyProfile from 'components/myProfile/MyProfile'
 import NewEvent from 'components/newEvent/NewEvent'
-
+import {ProtectedRoute} from './components/util/ProtectedRoute'
 
 class App extends Component {
     render() {
@@ -16,9 +16,9 @@ class App extends Component {
                     {/*<Route path='/'component={FetchRandomUser}/>*/}
                     <Route path='/login' component={Login}/>
                     <Route path='/registration' component={Registration}/>
-                    <Route path='/dashboard' component={Dashboard}/>
-                    <Route path={'/profile'} component={MyProfile}/>
-                    <Route path={'/create'} component={NewEvent}/>
+                    <ProtectedRoute path='/dashboard' component={Dashboard}/>
+                    <ProtectedRoute path={'/profile'} component={MyProfile}/>
+                    <ProtectedRoute path={'/create'} component={NewEvent}/>
 
                 </div>
 

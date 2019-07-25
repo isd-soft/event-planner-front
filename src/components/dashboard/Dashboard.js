@@ -4,7 +4,9 @@ import logo from './face-0.png';
 import {Link} from "react-router-dom";
 import axios from 'axios'
 
+
 export default class Dashboard extends Component {
+
 
     constructor(props) {
         super(props);
@@ -16,6 +18,7 @@ export default class Dashboard extends Component {
     }
 
     componentDidMount() {
+
         axios.interceptors.request.use((config) => {
                 let token = localStorage.getItem('jwtToken');
 
@@ -39,7 +42,9 @@ export default class Dashboard extends Component {
                 console.log(error);
             });
     }
-
+    logout(e){
+        localStorage.removeItem("jwtToken")
+}
 
     render() {
 
@@ -49,7 +54,7 @@ export default class Dashboard extends Component {
                 <div className="header">
                     <Link to={"/login"}>
                         <a>
-                            <button className={"logOutButton"}>Log out</button>
+                            <button className={"logOutButton"} onClick={this.logout}>Log out</button>
                         </a>
                     </Link>
                 </div>

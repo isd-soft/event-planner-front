@@ -3,8 +3,7 @@ import {Button, ControlLabel, FormControl, FormGroup, HelpBlock, Row} from 'reac
 import './login.css';
 import {isContainWhiteSpace, isEmail, isEmpty, isLength} from 'shared/validator';
 import {Link} from "react-router-dom";
-import axios from 'axios';
-import setToken from '../util/AuthorizationToken'
+import axios from 'axios'
 
 
 class Login extends Component {
@@ -17,8 +16,9 @@ class Login extends Component {
             errors: {}, // Contains login field errors
             formSubmitted: false, // Indicates submit status of login form
             loading: false, // Indicates in progress state of login form
-            username:null,
-            password:null
+            email: null,
+            password: null,
+
         }
     }
 
@@ -28,7 +28,7 @@ class Login extends Component {
         const value = target.value;
         const name = target.name;
 
-        let { formData } = this.state;
+        let {formData} = this.state;
         formData[name] = value;
 
         this.setState({
@@ -39,19 +39,22 @@ class Login extends Component {
     validateLoginForm = (e) => {
 
         let errors = {};
-        const { formData } = this.state;
-
+        const {formData} = this.state;
         if (isEmpty(formData.email)) {
             errors.email = "Email can't be blank";
         } else if (!isEmail(formData.email)) {
             errors.email = "Please enter a valid email";
         }
-
+        if (isEmpty(formData.username)) {
+            errors.username = "Username can't be blank";
+        } else if (!isEmail(formData.username)) {
+            errors.username = "Please enter a valid username";
+        }
         if (isEmpty(formData.password)) {
             errors.password = "Password can't be blank"
-        }  else if (isContainWhiteSpace(formData.password)) {
+        } else if (isContainWhiteSpace(formData.password)) {
             errors.password = "Password should not contain white spaces";
-        } else if (!isLength(formData.password, { gte: 6, lte: 16, trim: true })) {
+        } else if (!isLength(formData.password, {gte: 6, lte: 16, trim: true})) {
             errors.password = "Password's length must between 6 to 16";
         }
         if (isEmpty(errors)) {
@@ -65,28 +68,25 @@ class Login extends Component {
 
         e.preventDefault();
         let errors = this.validateLoginForm();
+
         axios.post('http://localhost:8080/authenticate', {
-            username:this.state.formData.username,
-            password:this.state.formData.password
-        }).then(res=>{
-                const token=res.data.token;
+            username: this.state.formData.username,
+            password: this.state.formData.password
+        }).then(res => {
+            const token = res.data.token;
             if (token) {
-                this.props.history.push("/dashboard");
-            }
                 localStorage.setItem("jwtToken", token);
-
-            setToken(token);
-                // console.log(jwt.decode(token));
-                console.log(setToken(token));
-
-    })
+                this.props.history.push("/dashboard");
+                console.log(this.props)
+            }
+        })
             .catch(function (error) {
                 console.log(error);
             });
 
 
-        if(errors === true){
-            alert("You are successfully signed in with:"+"        Email:"+this.state.formData.username+""+"       Password:"+this.state.formData.password);
+        if (errors === true) {
+            alert("You are successfully signed in with:" + "        Email:" + this.state.formData.username + "" + "       Password:" + this.state.formData.password);
             window.location.reload();
         } else {
             this.setState({
@@ -100,7 +100,7 @@ class Login extends Component {
 
     render() {
 
-        const { errors, formSubmitted } = this.state;
+        const {errors, formSubmitted} = this.state;
 
         return (
 
@@ -116,16 +116,18 @@ class Login extends Component {
                             {errors.username &&
                             <HelpBlock>{errors.username}</HelpBlock>
                             }
-                        </FormGroup >
-                        <FormGroup controlId="password" validationState={ formSubmitted ? (errors.password ? 'error' : 'success') : null }>
+                        </FormGroup>
+                        <FormGroup controlId="password"
+                                   validationState={formSubmitted ? (errors.password ? 'error' : 'success') : null}>
                             <ControlLabel>Password</ControlLabel>
-                            <FormControl type="password" name="password" placeholder="Enter your password" onChange={this.handleInputChange} />
-                            { errors.password &&
+                            <FormControl type="password" name="password" placeholder="Enter your password"
+                                         onChange={this.handleInputChange}/>
+                            {errors.password &&
                             <HelpBlock>{errors.password}</HelpBlock>
                             }
                         </FormGroup>
                         <p>
-                        <Button type="submit" bsStyle="primary">Sign-In</Button>
+                            <Button type="submit" bsStyle="primary">Sign-In</Button>
                             <Link to='/registration'>Register here,if you are not signed up.</Link></p>
                     </form>
 
