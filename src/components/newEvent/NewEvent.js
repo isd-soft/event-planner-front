@@ -17,7 +17,7 @@ export default class NewEvent extends Component {
             description: "",
             category: "",
             startdate: null,
-            enddate: "",
+            enddate: null,
             price: "",
             location: "",
             // participants: "",
@@ -51,7 +51,7 @@ export default class NewEvent extends Component {
         e.preventDefault()
 
 
-       this.verificationHandler();
+       // this.verificationHandler();
 
 
         axios.interceptors.request.use((config) => {
