@@ -74,6 +74,10 @@ export default class MyProfile extends Component {
             });
     }
 
+    logout(){
+        localStorage.clear();
+    }
+
     render() {
         const {user} = this.state;
 
@@ -82,7 +86,7 @@ export default class MyProfile extends Component {
                 <div className="header">
                     <Link to={"/login"}>
                         <a>
-                            <button className={"logOutButton"}>Log out</button>
+                            <button className={"logOutButton"} onClick={this.logout}>Log out</button>
                         </a>
                     </Link>
                 </div>

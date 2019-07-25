@@ -81,6 +81,9 @@ export default class NewEvent extends Component {
 
     }
 
+    logout(){
+        localStorage.clear();
+    }
 
     render() {
         const {
@@ -94,7 +97,7 @@ export default class NewEvent extends Component {
                 <div className="header">
                     <Link to={"/login"}>
 
-                        <button className={"logOutButton"}>Log out</button>
+                        <button className={"logOutButton"} onClick={this.logout}>Log out</button>
 
                     </Link>
                 </div>

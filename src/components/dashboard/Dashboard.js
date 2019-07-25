@@ -7,7 +7,6 @@ import axios from 'axios'
 
 export default class Dashboard extends Component {
 
-
     constructor(props) {
         super(props);
         this.state = {
@@ -54,9 +53,10 @@ export default class Dashboard extends Component {
                 console.log(error);
             });
     }
+
     logout(e){
-        localStorage.clear()
-}
+        localStorage.clear();
+    }
 
     render() {
 
@@ -137,7 +137,7 @@ export default class Dashboard extends Component {
                         <div className="card" href="#event1">
                             <div className="card-body">
 
-                                <h5 className="event-title">Event Title:{event.title}</h5>
+                                <a href="#"><h5 className="event-title">Event Title:{event.title}</h5></a>
                                 <h4 className="event-category">Category:{event.category}</h4>
                                 <h4 className="event-date">Date:{event.date}</h4>
                                 <h4 className="event-duration">Duration:{event.duration}</h4>
