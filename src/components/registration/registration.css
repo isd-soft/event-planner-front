@@ -1,8 +1,9 @@
-.RegisterPage {
-    margin: 0 auto;
-    margin-top: 30px;
-    max-width: 400px;
+.Registration {
+    margin:auto;
+    /*margin-left: 70px;*/
+    width: 400px;
+    height: 700px;
     padding: 40px 40px;
-    background: #fff;
+    background: white;
  
 }

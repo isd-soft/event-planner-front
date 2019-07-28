@@ -131,7 +131,7 @@ export default class NewEvent extends Component {
                 </div>
                 <div className="side-nav">
                     <div className="author">
-                        <h4 className={"nameOfCompany"}>ISD Events</h4>
+                        {/*<h4 className={"nameOfCompany"}>ISD Events</h4>*/}
                         <div className="logo">
                             <a
                                 className="simple-text logo-mini"

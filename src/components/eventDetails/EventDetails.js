@@ -144,7 +144,9 @@ export default class EventDetails extends Component {
                             <h4 className="event-date">Date:{this.state._event.date}</h4>
                             <h4 className="event-duration">Duration:{this.state._event.duration}</h4>
                             <h4 className="event-location">Location:{this.state._event.location}</h4>
-                            <h4 className="event-date">Price:{this.state._event.price}</h4>
+                            <h4 className="event-price">Price:{this.state._event.price}</h4>
+                            <h4 className="event-description">Description:{this.state._event.description}</h4>
+
                             {/*<a href="#" className="btn btn-primary">Participate:{_event.participants}</a>*/}
                         </div>
                     </div>

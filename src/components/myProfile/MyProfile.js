@@ -92,7 +92,7 @@ export default class MyProfile extends Component {
                 </div>
                 <div className="side-nav">
                     <div className="author">
-                        <h4 className={"nameOfCompany"}>ISD Events</h4>
+                        {/*<h4 className={"nameOfCompany"}>ISD Events</h4>*/}
                         <div className="logo">
                             <a
                                 className="simple-text logo-mini"
@@ -155,16 +155,15 @@ export default class MyProfile extends Component {
                 <div className="profile-card" href="#profile">
 
                     <div className="logo-img">
-                        <hr></hr>
                         <div className="profile-card-body">
                             <form onSubmit={this.handleSubmit}>
-                                <FormGroup controlId="firstname">
+                               <p> <FormGroup controlId="firstname">
                                     <ControlLabel class={"col-sm-5"}>First Name</ControlLabel>
                                     <div class="col-sm-5">
                                         <FormControl type="text" name="firstname" value={user.firstname}
                                                      onChange={this.handleChange}/>
                                     </div>
-                                </FormGroup>
+                               </FormGroup></p>
 
                                 <FormGroup controlId="lastname">
                                     <ControlLabel>Last Name</ControlLabel>

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {Button, ControlLabel, FormControl, FormGroup, HelpBlock, Row} from 'react-bootstrap';
 import './login.css';
+import './backimage.png';
 import {isContainWhiteSpace, isEmail, isEmpty, isLength} from 'shared/validator';
 import {Link} from "react-router-dom";
 import axios from 'axios'
@@ -77,7 +78,7 @@ class Login extends Component {
             const id = res.data.id;
             if (token && id) {
                 localStorage.setItem("jwtToken", token);
-                localStorage.setItem("id",id);
+                localStorage.setItem("id", id);
                 this.props.history.push("/dashboard");
                 console.log(this.props)
             }
@@ -106,8 +107,12 @@ class Login extends Component {
 
         return (
 
+
             <div className="Login">
+                <img src="backimage.png" id="bg" alt=""/>
+
                 <Row>
+
                     <form onSubmit={this.login}>
                         <label><h2><b>Log in</b></h2></label>
                         <FormGroup controlId="username"
@@ -130,14 +135,13 @@ class Login extends Component {
                         </FormGroup>
                         <p>
                             <Button type="submit" bsStyle="primary">Sign-In</Button>
-                            <Link to='/registration'>Register here,if you are not signed up.</Link></p>
+                            <Link to='/registration'>  Register here,if you are not signed up.</Link></p>
                     </form>
 
                 </Row>
-
-
             </div>
-        )
+
+            )
     }
 }
 
