@@ -13,11 +13,15 @@ export default class Dashboard extends Component {
         this.state = {
             user:{},
             events: [],
+            eventId:''
 
 
         }
     }
+    handleClick(value) {
+        localStorage.setItem("eventId", value);
 
+    }
     componentDidMount() {
 
         axios.interceptors.request.use((config) => {
@@ -137,13 +141,12 @@ export default class Dashboard extends Component {
                         <div className="card" href="#event1">
                             <div className="card-body">
 
-                                <a href={'/eventdetails'}> <h5 className="event-title">Event Title:{event.title}</h5></a>
+                                <a  href={"/eventdetails"} onClick = {() => this.handleClick(event.id)}><h5 className="event-title">{event.title}</h5></a>
                                 <h4 className="event-category">Category:{event.category}</h4>
-                                <h4 className="event-date">Date:{event.date}</h4>
-                                <h4 className="event-duration">Duration:{event.duration}</h4>
-                                <h4 className="event-location">Location:{event.location}</h4>
-                                <h4 className="event-date">Price:{event.price}</h4>
-                                <a href="#" className="btn btn-primary">Participate:{event.participants}</a>
+                                <h4 className="event-date">Start date:{event.startdate}</h4>
+                                <h4 className="event-date">End date:{event.enddate}</h4>
+
+                                {/*<a href="#" className="btn btn-primary">Participate:{event.participants}</a>*/}
                             </div>
                         </div>
                     </li>))}

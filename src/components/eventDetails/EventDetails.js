@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import './eventDetails.css';
 import logo from './face-0.png';
 import {Route, Link} from "react-router-dom";
-import {ControlLabel, FormControl, FormGroup} from "react-bootstrap";
 import axios from 'axios';
 
 
@@ -12,7 +11,7 @@ export default class EventDetails extends Component {
         super(props);
         this.state = {
             user:{},
-            _event: {}
+            event: {}
 
         };
     }
@@ -32,14 +31,14 @@ export default class EventDetails extends Component {
                 return Promise.reject(error);
             }
         );
+        let eventId = localStorage.getItem('eventId');
 
         //get data about event
         axios.get(
-            'http://localhost:8080/events/8'
+            'http://localhost:8080/events/'+eventId
         ).then(response => {
-            this.setState({_event: response.data});
-            //console.log(username);
-            // console.log(_events)
+            this.setState({event: response.data});
+
         })
             .catch(error => {
                 console.log(error);
@@ -58,7 +57,7 @@ export default class EventDetails extends Component {
             });
 
 
-        console.log(this.state._event);
+        console.log(this.state.event);
     }
 
     render() {
@@ -139,15 +138,14 @@ export default class EventDetails extends Component {
                     <div  className="card" href="#event1">
                         <div className="card-body">
 
-                            <a href={'/eventdetails'}> <h5 className="event-title">Event Title:{this.state._event.title}</h5></a>
-                            <h4 className="event-category">Category:{this.state._event.category}</h4>
-                            <h4 className="event-date">Date:{this.state._event.date}</h4>
-                            <h4 className="event-duration">Duration:{this.state._event.duration}</h4>
-                            <h4 className="event-location">Location:{this.state._event.location}</h4>
-                            <h4 className="event-price">Price:{this.state._event.price}</h4>
-                            <h4 className="event-description">Description:{this.state._event.description}</h4>
+                            <a > <h5 className="event-title">{this.state.event.title}</h5></a>
+                            <h4 className="event-category">Category:    {this.state.event.category}</h4>
+                            <h4 className="event-date">Start date:   {this.state.event.startdate}</h4>
+                            <h4 className="event-date">End date:    {this.state.event.enddate}</h4>
+                            <h4 className="event-location">Location:    {this.state.event.location}</h4>
+                            <h4 className="event-price">Price:        {this.state.event.price}</h4>
+                            <h4 className="event-description">Description: {this.state.event.description}</h4>
 
-                            {/*<a href="#" className="btn btn-primary">Participate:{_event.participants}</a>*/}
                         </div>
                     </div>
                 ))}
