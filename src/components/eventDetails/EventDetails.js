@@ -12,7 +12,8 @@ export default class EventDetails extends Component {
         this.state = {
             user:{},
             eventOrganizer:{},
-            event: {}
+            event: {},
+            answer: '',
 
         };
     }
@@ -65,8 +66,33 @@ export default class EventDetails extends Component {
 
 
     }
+    handleOnGoing() {
+        let id = localStorage.getItem('id');
+        let eventId = localStorage.getItem('eventId');
+        axios.post('http://localhost:8080/events/' + eventId + '/participate', {
+            answer: "coming"
+        }).then(res => {
+                console.log(this.answer)
+            }
+        )
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 
-
+    handleOnNotGoing() {
+        let id = localStorage.getItem('id');
+        let eventId = localStorage.getItem('eventId');
+        axios.post('http://localhost:8080/events/' + eventId + '/participate', {
+            answer: "not coming"
+        }).then(res => {
+                console.log(this.answer)
+            }
+        )
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 
     render() {
         // const {event} = this.state;
@@ -163,6 +189,10 @@ export default class EventDetails extends Component {
                             <h4 className="event-price">Price:        {this.state.event.price}</h4>
                             <h4 className="event-description">Description: {this.state.event.description}</h4>
                             <h4 className="event-description">Organizer: {this.state.eventOrganizer.firstname} {this.state.eventOrganizer.lastname}</h4>
+
+                            <button type="submit" className="btn btn-success" onClick={this.handleOnGoing.bind(this)}>Going</button>
+                            <button type="submit" className="btn btn-danger" onClick={this.handleOnNotGoing.bind(this)}>Not going</button>
+                            <button type="submit" className="btn btn-warning disabled">Maybe</button>
 
                         </div>
                     </div>
