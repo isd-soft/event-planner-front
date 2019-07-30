@@ -163,7 +163,7 @@ export default class MyEvents extends Component {
 
                                 <a  href={"/eventdetails"} onClick = {() => this.handleClick(event.id)}><h5 className="event-title">{event.title}</h5></a>
                                 <h4 className="event-category">Category:{event.category}</h4>
-                                <h4 className="event-date">Start date:{event.startdate}</h4>
+                                <h4 className="event-date">Start date:{event.startdate.substring(0,10)} at {event.startdate.substring(11,16)} o'clock</h4>
                                 <h4 className="event-date">End date:{event.enddate}</h4>
 
                                 {/*<a href="#" className="btn btn-primary">Participate:{event.participants}</a>*/}

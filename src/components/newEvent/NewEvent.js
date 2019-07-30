@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import {isContainWhiteSpace, isEmail, isEmpty, isLength} from 'shared/validator';
 import axios from 'axios'
 import {ControlLabel, FormControl, FormGroup} from "react-bootstrap";
+import swal from 'sweetalert';
 
 
 export default class NewEvent extends Component {
@@ -99,9 +100,12 @@ export default class NewEvent extends Component {
         axios.post("http://localhost:8080/events", this.state)
             .then(response => {
                 console.log(response)
+                swal("Good job!", "Event was created!", "success");
+
             })
             .catch(error => {
                 console.log(error)
+                swal("Oops!", " The title and date are required!", "error");
 
             })
 

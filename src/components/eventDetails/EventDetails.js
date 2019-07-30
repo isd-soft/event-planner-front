@@ -69,7 +69,7 @@ export default class EventDetails extends Component {
 
 
     render() {
-        const {user} = this.state;
+        // const {event} = this.state;
 
         return (
             <div>
@@ -157,7 +157,7 @@ export default class EventDetails extends Component {
 
                             <a > <h5 className="event-title">{this.state.event.title}</h5></a>
                             <h4 className="event-category">Category:    {this.state.event.category}</h4>
-                            <h4 className="event-date">Start date:   {this.state.event.startdate}</h4>
+                            <h4 className="event-date">Start date:{this.state.event.startdate} at o'clock</h4>
                             <h4 className="event-date">End date:    {this.state.event.enddate}</h4>
                             <h4 className="event-location">Location:    {this.state.event.location}</h4>
                             <h4 className="event-price">Price:        {this.state.event.price}</h4>
