@@ -4,6 +4,12 @@
  * @prop String name
  * @returns Boolean
  */
+
+export const isUsername = (name) => {
+    const re = /^[_A-z0-9]*((-|\s)*[_A-z0-9])*$/;
+    return re.test(name);
+}
+
 export const isName = (name) => {
     const re = /^[_A-z0-9]*((-|\s)*[_A-z0-9])*$/;
     return re.test(name);

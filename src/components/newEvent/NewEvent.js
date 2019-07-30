@@ -184,7 +184,16 @@ export default class NewEvent extends Component {
                                     {/*</a>*/}
                                 </Link>
                             </p>
+                            <br></br>
 
+                            <p>
+                                <Link to={"/myevents"}>
+                                    {/*<a href="#">*/}
+                                    <span><i className="fa fa-bar-chart"></i></span>
+                                    <span className={"dashboard-text"}> My Events</span>
+                                    {/*</a>*/}
+                                </Link>
+                            </p>
                         </ul>
                     </nav>
                 </div>

@@ -277,8 +277,8 @@ body {
 .profile-card {
     font-family: 'Cambria', sans-serif;
     border-radius: 6px;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(63, 63, 68, 0.1);
-    background-color: lightyellow;
+    /*box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(63, 63, 68, 0.1);*/
+    background-color: midnightblue;
     margin-left: 300px;
     margin-right: 200px;
     margin-top: 10px;
@@ -286,6 +286,8 @@ body {
     font-weight: 400;
     color: #333;
     font-size: 15px;
+    /*box-shadow: 4px 5px 15px 1px #888888;*/
+
 }
 
 .profile-card-body {
@@ -297,21 +299,28 @@ body {
 .card {
     font-family: 'Cambria', sans-serif;
     border-radius: 6px;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(63, 63, 68, 0.1);
-    background-color: lightyellow;
-    margin-left: 300px;
+    /*box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(63, 63, 68, 0.1);*/
+    background-color: midnightblue;
+    margin-left: 240px;
     margin-right: 200px;
-    margin-top: 10px;
+    margin-top: 0px;
     height: 230px;
     font-weight: 400;
     color: #333;
     font-size: 15px;
+
+    box-shadow: 10px 10px 10px 10px #888888;
+
 }
 
-.card-body {
+.card .card-body {
     font-family: 'Cambria', sans-serif;
-    margin-left: 70px;
-    margin-top: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 5px;
+    height: 230px;
+    box-shadow: 7px 7px 7px 7px #888888;
+    background-color: navajowhite;
 
 }
 
@@ -326,6 +335,7 @@ body {
     font-weight: 700;
     color: #333;
     font-size: 18px;
+    margin-left: 30px;
 }
 
 .card .image {

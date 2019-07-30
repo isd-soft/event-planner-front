@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {Button, ControlLabel, FormControl, FormGroup, HelpBlock, Row} from 'react-bootstrap';
 import './login.css';
 import './backimage.png';
-import {isContainWhiteSpace, isEmail, isEmpty, isLength} from 'shared/validator';
+import {isContainWhiteSpace, isEmail, isEmpty, isLength,isUsername} from 'shared/validator';
 import {Link} from "react-router-dom";
 import axios from 'axios'
 
@@ -48,7 +48,7 @@ class Login extends Component {
         }
         if (isEmpty(formData.username)) {
             errors.username = "Username can't be blank";
-        } else if (!isEmail(formData.username)) {
+        } else if (!isUsername(formData.username)) {
             errors.username = "Please enter a valid username";
         }
         if (isEmpty(formData.password)) {
@@ -57,12 +57,19 @@ class Login extends Component {
             errors.password = "Password should not contain white spaces";
         } else if (!isLength(formData.password, {gte: 6, lte: 16, trim: true})) {
             errors.password = "Password's length must between 6 to 16";
+        }else if(!(localStorage.getItem("jwtToken"))){
+            errors.username="This user doesn't exist.";
+
+            errors.password=" ";
+
         }
         if (isEmpty(errors)) {
             return true;
         } else {
             return errors;
         }
+
+
     };
 
     login = (e) => {
@@ -81,7 +88,10 @@ class Login extends Component {
                 localStorage.setItem("id", id);
                 this.props.history.push("/dashboard");
                 console.log(this.props)
-            }
+            }else {this.setState({
+                errors: errors,
+                formSubmitted: true
+            });}
         })
             .catch(function (error) {
                 console.log(error);
@@ -115,6 +125,8 @@ class Login extends Component {
 
                     <form onSubmit={this.login}>
                         <label><h2><b>Log in</b></h2></label>
+
+
                         <FormGroup controlId="username"
                                    validationState={formSubmitted ? (errors.username ? 'error' : 'success') : null}>
                             <ControlLabel>Username</ControlLabel>
@@ -124,6 +136,9 @@ class Login extends Component {
                             <HelpBlock>{errors.username}</HelpBlock>
                             }
                         </FormGroup>
+
+
+
                         <FormGroup controlId="password"
                                    validationState={formSubmitted ? (errors.password ? 'error' : 'success') : null}>
                             <ControlLabel>Password</ControlLabel>

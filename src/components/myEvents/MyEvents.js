@@ -1,11 +1,11 @@
 import React, {Component} from "react";
-import './dashboard.css';
-import logo from './face-0.png';
+import 'components/dashboard/dashboard.css';
+import logo from 'components/dashboard/face-0.png';
 import {Link} from "react-router-dom";
 import axios from 'axios'
 
 
-export default class Dashboard extends Component {
+export default class MyEvents extends Component {
 
 
     constructor(props) {
@@ -39,9 +39,10 @@ export default class Dashboard extends Component {
         axios.get(
             'http://localhost:8080/events'
         ).then(response => {
+
             this.setState({events: response.data.content});
-            //console.log(username);
-            console.log(response)
+
+            console.log(response.data.content[1])
         })
             .catch(error => {
                 console.log(error);
@@ -60,7 +61,7 @@ export default class Dashboard extends Component {
     }
     logout(e){
         localStorage.clear()
-}
+    }
 
     render() {
 
@@ -124,8 +125,8 @@ export default class Dashboard extends Component {
                             <p>
                                 <Link to={"/create"}>
                                     {/*<a href="#">*/}
-                                        <span><i className="fa fa-bar-chart"></i></span>
-                                        <span className={"dashboard-text"}>Create Event</span>
+                                    <span><i className="fa fa-bar-chart"></i></span>
+                                    <span className={"dashboard-text"}>Create Event</span>
                                     {/*</a>*/}
                                 </Link>
                             </p>
@@ -134,10 +135,10 @@ export default class Dashboard extends Component {
 
                             <p>
                                 <Link to={"/myevents"}>
-                                    {/*<a href="#">*/}
+                                    <a href="#">
                                         <span><i className="fa fa-bar-chart"></i></span>
                                         <span className={"dashboard-text"}> My Events</span>
-                                    {/*</a>*/}
+                                    </a>
                                 </Link>
                             </p>
 
@@ -145,10 +146,10 @@ export default class Dashboard extends Component {
                     </nav>
                 </div>
                 <div>
-                    <label className={"title"}>The list of events</label>
+                    <label className={"title"}>My Events</label>
                 </div>
                 <li>
-                    {this.state.events.map(event => (<li key={event.id}>
+                    {this.state.events.map(event => (<li key={event.id } value={this.state.user.id}>
                         <div className="card" href="#event1">
                             <div className="card-body">
 

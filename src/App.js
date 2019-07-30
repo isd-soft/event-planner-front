@@ -7,6 +7,7 @@ import MyProfile from 'components/myProfile/MyProfile'
 import NewEvent from 'components/newEvent/NewEvent'
 import {ProtectedRoute} from './components/util/ProtectedRoute'
 import EventDetails from "./components/eventDetails/EventDetails";
+import MyEvents from "./components/myEvents/MyEvents";
 
 class App extends Component {
     render() {
@@ -21,6 +22,7 @@ class App extends Component {
                     <ProtectedRoute path={'/profile'} component={MyProfile}/>
                     <ProtectedRoute path={'/create'} component={NewEvent}/>
                     <ProtectedRoute path={'/eventdetails'} component={EventDetails}/>
+                    <ProtectedRoute path={'/myevents'} component={MyEvents}/>
 
                 </div>
 

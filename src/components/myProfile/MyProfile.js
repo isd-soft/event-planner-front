@@ -19,6 +19,14 @@ export default class MyProfile extends Component {
                 email: '',
                 gender:'',
                 description:''
+            },
+            copyUser:{
+                firstname: '',
+                lastname: '',
+                username: '',
+                email: '',
+                gender:'',
+                description:''
             }
         };
         this.handleChange = this.handleChange.bind(this);
@@ -27,11 +35,11 @@ export default class MyProfile extends Component {
 
     handleChange(event) {
         const {name, value} = event.target;
-        const {user} = this.state;
+        const {copyUser} = this.state;
         this.setState({
-            user: {
-                ...user,
-                [name]: value
+            copyUser: {
+                ...copyUser,
+                [name]: value  //see
             }
         });
     }
@@ -40,11 +48,11 @@ export default class MyProfile extends Component {
     {
         let id = localStorage.getItem('id');
         e.preventDefault();
-        const {user} = this.state;
+        const {copyUser} = this.state;
 
         console.log('State:'+this.state.user);
 
-        axios.put('http://localhost:8080/user/' + id,user
+        axios.put('http://localhost:8080/user/' + id,copyUser
                 )
             .then(res => console.log(res.data));
     }
@@ -61,13 +69,19 @@ export default class MyProfile extends Component {
                 return Promise.reject(error);
             }
         );
-
         let id = localStorage.getItem('id');
         axios.get(
             'http://localhost:8080/user/' + id
         ).then(response => {
             this.setState({user: response.data});
-            // console.log(response)
+        })
+            .catch(error => {
+                console.log(error);
+            });
+        axios.get(
+            'http://localhost:8080/user/' + id
+        ).then(response => {
+            this.setState({copyUser: response.data});
         })
             .catch(error => {
                 console.log(error);
@@ -79,7 +93,7 @@ export default class MyProfile extends Component {
     }
 
     render() {
-        const {user} = this.state;
+        const {user,copyUser} = this.state;
 
         return (
             <div>
@@ -145,6 +159,16 @@ export default class MyProfile extends Component {
                                     {/*</a>*/}
                                 </Link>
                             </p>
+                            <br></br>
+
+                            <p>
+                                <Link to={"/myevents"}>
+                                    {/*<a href="#">*/}
+                                    <span><i className="fa fa-bar-chart"></i></span>
+                                    <span className={"dashboard-text"}> My Events</span>
+                                    {/*</a>*/}
+                                </Link>
+                            </p>
 
                         </ul>
                     </nav>
@@ -156,27 +180,31 @@ export default class MyProfile extends Component {
 
                     <div className="logo-img">
                         <div className="profile-card-body">
-                            <form onSubmit={this.handleSubmit}>
-                               <p> <FormGroup controlId="firstname">
-                                    <ControlLabel class={"col-sm-5"}>First Name</ControlLabel>
+                            <form class="form-horizontal"  onSubmit={this.handleSubmit}>
+
+
+                                <FormGroup controlId="firstname">
+                                    <ControlLabel class={"col-sm-5"} >First Name</ControlLabel>
                                     <div class="col-sm-5">
-                                        <FormControl type="text" name="firstname" value={user.firstname}
-                                                     onChange={this.handleChange}/>
+                                        <FormControl
+                                            type="text" name="firstname"
+                                            onChange={this.handleChange}
+                                            value={copyUser.firstname}/>
                                     </div>
-                               </FormGroup></p>
+                                </FormGroup>
 
                                 <FormGroup controlId="lastname">
-                                    <ControlLabel>Last Name</ControlLabel>
+                                    <ControlLabel class={"col-sm-5"} >Last Name</ControlLabel>
                                     <div class="col-sm-5">
                                         <FormControl
                                             type="text" name="lastname"
                                             onChange={this.handleChange}
-                                            value={user.lastname}/>
+                                            value={copyUser.lastname}/>
                                     </div>
                                 </FormGroup>
 
                                     <ControlLabel >Email</ControlLabel>
-                                <div class="col-sm-5">   {user.email}
+                                <div class="col-sm-5">   {copyUser.email}
                                     </div>
 
 
@@ -188,7 +216,7 @@ export default class MyProfile extends Component {
                                         <FormControl
                                             type={"text"} name={"description"}
                                             onChange={this.handleChange}
-                                            value={user.description}/>
+                                            value={copyUser.description}/>
                                     </div>
                                 </FormGroup>
                                 <FormGroup controlId="phoneNumber">
@@ -197,13 +225,13 @@ export default class MyProfile extends Component {
                                         <FormControl
                                             type={"text"} name={"phoneNumber"}
                                             onChange={this.handleChange}
-                                            value={user.phoneNumber}/>
+                                            value={copyUser.phoneNumber}/>
                                     </div>
                                 </FormGroup>
 
 
                                 <ControlLabel >Username</ControlLabel>
-                                <div class="col-sm-5">   {user.username}
+                                <div class="col-sm-5">   {copyUser.username}
                                 </div>
 
 
@@ -212,13 +240,13 @@ export default class MyProfile extends Component {
                                     <div className="col-sm-5">
                                         <select className="form-control" id="sel1" name={"gender"}
                                                 onChange={this.handleChange}
-                                                value={user.gender}>
+                                                value={copyUser.gender}>
                                             <option>Male</option>
                                             <option>Female</option>
                                         </select>
                                     </div>
                                 </div>
-                                <button type={"submit"} className="btn btn-primary">Save</button>
+                                <button  type={"submit"} className="btn btn-primary">Save</button>
                             </form>
 
 

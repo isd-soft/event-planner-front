@@ -74,7 +74,7 @@ export default class EventDetails extends Component {
                 </div>
                 <div className="side-nav">
                     <div className="author">
-                        <h4 className={"nameOfCompany"}>ISD Events</h4>
+                        {/*<h4 className={"nameOfCompany"}>ISD Events</h4>*/}
                         <div className="logo">
                             <a
                                 className="simple-text logo-mini"
@@ -116,8 +116,17 @@ export default class EventDetails extends Component {
                                     </a>
                                 </Link>
                             </p>
-
                             <br></br>
+
+                            <p>
+                                <Link to={"/myevents"}>
+                                    {/*<a href="#">*/}
+                                    <span><i className="fa fa-bar-chart"></i></span>
+                                    <span className={"dashboard-text"}> My Events</span>
+                                    {/*</a>*/}
+                                </Link>
+                            </p>
+
 
                             <p>
                                 <Link to={"/create"}>
@@ -127,7 +136,6 @@ export default class EventDetails extends Component {
                                     {/*</a>*/}
                                 </Link>
                             </p>
-
                         </ul>
                     </nav>
                 </div>
