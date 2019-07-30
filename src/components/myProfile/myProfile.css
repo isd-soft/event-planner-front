@@ -258,6 +258,8 @@ body {
     margin:0 auto;
     color: #333;
     font-size: 15px;
+    box-shadow: 7px 7px 7px 7px #888888;
+
 }
 
 .profile-card .profile-card-body {

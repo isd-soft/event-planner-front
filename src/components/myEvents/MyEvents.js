@@ -38,11 +38,19 @@ export default class MyEvents extends Component {
         );
         axios.get(
             'http://localhost:8080/events'
-        ).then(response => {
+        ).then(response =>{
+            for(let i=0;i<response.data.content.length;i++){
+                let userId=localStorage.getItem('id');
+                console.log(userId == response.data.content[i].userId);
 
-            this.setState({events: response.data.content});
+                if(userId == response.data.content[i].userId)
 
-            console.log(response.data.content[1])
+                {this.state.events.push(response.data.content[i]);
+                    console.log(response.data.content.events);
+                }
+        }          this.setState({events: this.state.events});
+
+
         })
             .catch(error => {
                 console.log(error);
@@ -149,7 +157,7 @@ export default class MyEvents extends Component {
                     <label className={"title"}>My Events</label>
                 </div>
                 <li>
-                    {this.state.events.map(event => (<li key={event.id } value={this.state.user.id}>
+                    {this.state.events.map(event => (<li key={event.id }>
                         <div className="card" href="#event1">
                             <div className="card-body">
 

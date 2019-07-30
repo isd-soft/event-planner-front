@@ -11,14 +11,11 @@ export default class EventDetails extends Component {
         super(props);
         this.state = {
             user:{},
+            eventOrganizer:{},
             event: {}
 
         };
     }
-
-
-
-
     componentDidMount() {
         axios.interceptors.request.use((config) => {
                 let token = localStorage.getItem('jwtToken');
@@ -38,6 +35,15 @@ export default class EventDetails extends Component {
             'http://localhost:8080/events/'+eventId
         ).then(response => {
             this.setState({event: response.data});
+            let organiserId=response.data.userId;
+            axios.get(
+                'http://localhost:8080/user/' + organiserId
+            ).then(res=> {
+                this.setState({eventOrganizer: res.data});
+            })
+                .catch(error => {
+                    console.log(error);
+                });
 
         })
             .catch(error => {
@@ -57,8 +63,10 @@ export default class EventDetails extends Component {
             });
 
 
-        console.log(this.state.event);
+
     }
+
+
 
     render() {
         const {user} = this.state;
@@ -126,6 +134,7 @@ export default class EventDetails extends Component {
                                     {/*</a>*/}
                                 </Link>
                             </p>
+                            <br></br>
 
 
                             <p>
@@ -153,6 +162,7 @@ export default class EventDetails extends Component {
                             <h4 className="event-location">Location:    {this.state.event.location}</h4>
                             <h4 className="event-price">Price:        {this.state.event.price}</h4>
                             <h4 className="event-description">Description: {this.state.event.description}</h4>
+                            <h4 className="event-description">Organizer: {this.state.eventOrganizer.firstname} {this.state.eventOrganizer.lastname}</h4>
 
                         </div>
                     </div>
