@@ -93,16 +93,18 @@ export default class EventDetails extends Component {
                 console.log(error);
             });
     }
-
+    logout(e){
+        localStorage.clear();
+    }
     render() {
         // const {event} = this.state;
 
         return (
             <div>
                 <div className="header">
-                    <Link to={"/login"}>
+                    <Link to={"/"}>
                         <a>
-                            <button className={"logOutButton"}>Log out</button>
+                            <button className={"logOutButton"} onClick={this.logout}>Log out</button>
                         </a>
                     </Link>
                 </div>

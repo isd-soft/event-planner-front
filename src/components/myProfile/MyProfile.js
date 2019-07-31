@@ -98,7 +98,7 @@ export default class MyProfile extends Component {
         return (
             <div>
                 <div className="header">
-                    <Link to={"/login"}>
+                    <Link to={"/"}>
                         <a>
                             <button className={"logOutButton"} onClick={this.logout}>Log out</button>
                         </a>

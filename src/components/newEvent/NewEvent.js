@@ -127,7 +127,7 @@ export default class NewEvent extends Component {
 
             <div>
                 <div className="header">
-                    <Link to={"/login"}>
+                    <Link to={"/"}>
 
                         <button className={"logOutButton"} onClick={this.logout}>Log out</button>
 

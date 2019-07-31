@@ -16,7 +16,7 @@ class App extends Component {
 
                 <div>
                     {/*<Route path='/'component={FetchRandomUser}/>*/}
-                    <Route path='/login' component={Login}/>
+                    <Route exact path="/" component={Login}/>
                     <Route path='/registration' component={Registration}/>
                     <ProtectedRoute path='/dashboard' component={Dashboard}/>
                     <ProtectedRoute path={'/profile'} component={MyProfile}/>

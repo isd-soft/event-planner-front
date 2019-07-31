@@ -68,7 +68,7 @@ export default class Dashboard extends Component {
 
             <div>
                 <div className="header">
-                    <Link to={"/login"}>
+                    <Link to={"/"}>
                         <a>
                             <button className={"logOutButton"} onClick={this.logout}>Log out</button>
                         </a>
