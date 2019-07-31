@@ -176,10 +176,9 @@ export default class MyProfile extends Component {
                 <div>
                     <label className={"title"}>MY PROFILE</label>
                 </div>
-                <div className="profile-card" href="#profile">
+                <div className="profile-card2" href="#profile">
 
-                    <div className="logo-img">
-                        <div className="profile-card-body">
+                        <div className="profile-card-body2">
                             <form class="form-horizontal"  onSubmit={this.handleSubmit}>
                                 <FormGroup controlId="firstname_lastname">
                                     <div class="col-sm-5">
@@ -246,7 +245,6 @@ export default class MyProfile extends Component {
                                 <button  type={"submit"} className="btn btn-primary">Save</button>
                             </form>
                         </div>
-                    </div>
                 </div>
             </div>
 

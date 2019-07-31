@@ -3,7 +3,8 @@ import './dashboard.css';
 import logo from './face-0.png';
 import {Link} from "react-router-dom";
 import axios from 'axios'
-
+import Pagination from "react-js-pagination";
+require("bootstrap/less/bootstrap.less");
 
 export default class Dashboard extends Component {
 
@@ -13,14 +14,29 @@ export default class Dashboard extends Component {
         this.state = {
             user:{},
             events: [],
-            eventId:''
+            eventId:'',
+            currentPage:1,
+            eventsPerPage: 10
 
 
         }
+        this.handleClick1 = this.handleClick1.bind(this);
+
     }
+
+    handlePageChange(pageNumber) {
+        console.log(`active page is ${pageNumber}`);
+        this.setState({activePage: pageNumber});
+    }
+
     handleClick(value) {
         localStorage.setItem("eventId", value);
 
+    }
+    handleClick1(event) {
+        this.setState({
+            currentPage: Number(event.target.id)
+        });
     }
     componentDidMount() {
 
@@ -63,7 +79,44 @@ export default class Dashboard extends Component {
 }
 
     render() {
+        const { events, currentPage, eventsPerPage } = this.state;
+// Logic for displaying todos
+        const indexOfLastEvent = currentPage * eventsPerPage;
+        const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
+        const currentEvents = events.slice(indexOfFirstEvent, indexOfLastEvent);
 
+        const renderEvents = currentEvents.map(event => (<li key={event.id}>
+        <div className="card" href="#event1">
+        <div className="card-body">
+
+        <a  href={"/eventdetails"} onClick = {() => this.handleClick(event.id)}><h5 className="event-title">{event.title}</h5></a>
+        <h4 className="event-category">Category:{event.category}</h4>
+        <h4 className="event-date">Start date:{event.startdate.substring(0,10)} at {event.startdate.substring(11,16)} o'clock</h4>
+        <h4 className="event-date">End date:{event.enddate}</h4>
+
+        {/*<a href="#" className="btn btn-primary">Participate:{event.participants}</a>*/}
+        </div>
+        </div>
+        </li>))
+
+
+        // Logic for displaying page numbers
+        const pageNumbers = [];
+        for (let i = 1; i <= Math.ceil(events.length / eventsPerPage); i++) {
+            pageNumbers.push(i);
+        }
+
+        const renderPageNumbers = pageNumbers.map(number => {
+            return (
+                <li
+                    key={number}
+                    id={number}
+                    onClick={this.handleClick1}
+                >
+                    {number}
+                </li>
+            );
+        });
         return (
 
             <div>
@@ -147,22 +200,32 @@ export default class Dashboard extends Component {
                 <div>
                     <label className={"title"}>THE LIST OF EVENTS</label>
                 </div>
-                <li>
-                    {this.state.events.map(event => (<li key={event.id}>
-                        <div className="card" href="#event1">
-                            <div className="card-body">
+                {/*<li>*/}
 
-                                <a  href={"/eventdetails"} onClick = {() => this.handleClick(event.id)}><h5 className="event-title">{event.title}</h5></a>
-                                <h4 className="event-category">Category:{event.category}</h4>
-                                <h4 className="event-date">Start date:{event.startdate.substring(0,10)} at {event.startdate.substring(11,16)} o'clock</h4>
-                                <h4 className="event-date">End date:{event.enddate}</h4>
+                    {/*{this.state.events.map(event => (<li key={event.id}>*/}
+                        {/*<div className="card" href="#event1">*/}
+                            {/*<div className="card-body">*/}
 
-                                {/*<a href="#" className="btn btn-primary">Participate:{event.participants}</a>*/}
-                            </div>
-                        </div>
-                    </li>))}
+                                {/*<a  href={"/eventdetails"} onClick = {() => this.handleClick(event.id)}><h5 className="event-title">{event.title}</h5></a>*/}
+                                {/*<h4 className="event-category">Category:{event.category}</h4>*/}
+                                {/*<h4 className="event-date">Start date:{event.startdate.substring(0,10)} at {event.startdate.substring(11,16)} o'clock</h4>*/}
+                                {/*<h4 className="event-date">End date:{event.enddate}</h4>*/}
 
-                </li>
+                                {/*/!*<a href="#" className="btn btn-primary">Participate:{event.participants}</a>*!/*/}
+                            {/*</div>*/}
+                        {/*</div>*/}
+                    {/*</li>))}*/}
+
+                {/*</li>*/}
+
+                <div>
+                    <ul>
+                        {renderEvents}
+                    </ul>
+                    <ul id="page-numbers">
+                        {renderPageNumbers}
+                    </ul>
+                </div>
 
             </div>
 

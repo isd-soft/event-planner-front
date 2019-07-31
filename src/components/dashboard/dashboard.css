@@ -270,7 +270,7 @@ body {
 }
 
 .profile-card-body {
-    font-family: 'Cambria', sans-serif;
+    font-family: 'Roboto',serif;
     margin-left: 200px;
     margin-top: 10px;
 
@@ -407,4 +407,20 @@ body {
 .sidebar .logo-tim img {
     width: 60px;
     height: 60px;
+}
+
+
+#page-numbers {
+    padding-left: 200px;
+    list-style: none;
+    display: flex;
+}
+
+#page-numbers > li {
+    margin-top: 100px;
+    margin-left: 20px;
+    color: blue;
+    user-select: none;
+    cursor: pointer;
+    background-color: yellow;
 }
