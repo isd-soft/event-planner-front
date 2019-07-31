@@ -2,9 +2,10 @@ import React, {Component} from "react";
 import {Button, ControlLabel, FormControl, FormGroup, HelpBlock, Row} from 'react-bootstrap';
 import './login.css';
 import './backimage.png';
-import {isContainWhiteSpace, isEmail, isEmpty, isLength,isUsername} from 'shared/validator';
+import {isContainWhiteSpace, isEmail, isEmpty, isLength, isUsername} from 'shared/validator';
 import {Link} from "react-router-dom";
 import axios from 'axios'
+import swal from 'sweetalert'
 
 
 class Login extends Component {
@@ -57,10 +58,10 @@ class Login extends Component {
             errors.password = "Password should not contain white spaces";
         } else if (!isLength(formData.password, {gte: 6, lte: 16, trim: true})) {
             errors.password = "Password's length must between 6 to 16";
-        }else if(!(localStorage.getItem("jwtToken"))){
-            errors.username="This user doesn't exist.";
+        } else if (!(localStorage.getItem("jwtToken"))) {
+            errors.username = "This user doesn't exist.";
 
-            errors.password=" ";
+            errors.password = " ";
 
         }
         if (isEmpty(errors)) {
@@ -86,26 +87,30 @@ class Login extends Component {
             if (token && id) {
                 localStorage.setItem("jwtToken", token);
                 localStorage.setItem("id", id);
+
                 this.props.history.push("/dashboard");
                 console.log(this.props)
-            }else {this.setState({
-                errors: errors,
-                formSubmitted: true
-            });}
+            } else {
+                this.setState({
+                    errors: errors,
+                    formSubmitted: true
+                });
+            }
         })
             .catch(function (error) {
+                swal(error.response.data.message)
                 console.log(error);
             });
 
 
         if (errors === true) {
             alert("You are successfully signed in with:" + "        Email:" + this.state.formData.username + "" + "       Password:" + this.state.formData.password);
-            window.location.reload();
-        } else {
-            this.setState({
-                errors: errors,
-                formSubmitted: true
-            });
+            // window.location.reload();
+            // } else {
+            //     this.setState({
+            //         errors: errors,
+            //         formSubmitted: true
+            //     });
         }
 
     };
@@ -138,7 +143,6 @@ class Login extends Component {
                         </FormGroup>
 
 
-
                         <FormGroup controlId="password"
                                    validationState={formSubmitted ? (errors.password ? 'error' : 'success') : null}>
                             <ControlLabel>Password</ControlLabel>
@@ -150,13 +154,13 @@ class Login extends Component {
                         </FormGroup>
                         <p>
                             <Button type="submit" bsStyle="primary">Sign-In</Button>
-                            <Link to='/registration'>  Register here,if you are not signed up.</Link></p>
+                            <Link to='/registration'> Register here,if you are not signed up.</Link></p>
                     </form>
 
                 </Row>
             </div>
 
-            )
+        )
     }
 }
 
