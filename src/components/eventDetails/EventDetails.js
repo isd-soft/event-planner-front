@@ -94,7 +94,7 @@ export default class EventDetails extends Component {
             });
     }
     logout(e){
-        localStorage.clear();
+        localStorage.clear()
     }
     render() {
         // const {event} = this.state;
