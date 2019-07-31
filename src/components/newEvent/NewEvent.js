@@ -78,33 +78,12 @@ export default class NewEvent extends Component {
     submitHandler = e => {
         e.preventDefault()
 
-
-       // this.verificationHandler();
-
-
-        axios.interceptors.request.use((config) => {
-                let token = localStorage.getItem('jwtToken');
-
-                if (token) {
-                    config.headers['Authorization'] = `Bearer ${token}`;
-                }
-                return config;
-            },
-            (error) => {
-                return Promise.reject(error);
-            }
-        );
-
-
-        console.log(this.state)
         axios.post("http://localhost:8080/events", this.state)
             .then(response => {
-                console.log(response)
                 swal("Good job!", "Event was created!", "success");
 
             })
             .catch(error => {
-                console.log(error)
                 swal("Oops!", " The title and date are required!", "error");
 
             })
@@ -201,7 +180,8 @@ export default class NewEvent extends Component {
                 <div>
                     <label className={"title"}>CREATE EVENT</label>
                 </div>
-                <div className="profile-card">
+                <div className={"card-event"}>
+                <div className="card-new-event">
                     <form className="form-horizontal" onSubmit={this.submitHandler}>
 
                                 <FormGroup controlId="event-title">
@@ -264,7 +244,7 @@ export default class NewEvent extends Component {
                                 </FormGroup>
                     </form>
 
-
+                </div>
                 </div>
             </div>
         )

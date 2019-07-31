@@ -14,13 +14,16 @@ export default class EventDetails extends Component {
             eventOrganizer: {},
             event: {},
             answer: '',
-
+            coming:[],
+            maybe:[],
+            notComing:[]
         };
     }
 
     componentDidMount() {
         axios.interceptors.request.use((config) => {
                 let token = localStorage.getItem('jwtToken');
+
                 if (token) {
                     config.headers['Authorization'] = `Bearer ${token}`;
                 }
@@ -58,13 +61,43 @@ export default class EventDetails extends Component {
             'http://localhost:8080/user/' + id
         ).then(res => {
             this.setState({user: res.data});
-            // console.log(response)
         })
             .catch(error => {
                 console.log(error);
             });
 
-
+        // //get data about COMING participants
+        // axios.get(
+        //     'http://localhost:8080/'
+        // ).then(response => {
+        //     this.setState({coming: response.data.content});
+        //     console.log(response)
+        // })
+        //     .catch(error => {
+        //         console.log(error);
+        //     });
+        //
+        // //get data about MAYBE coming participants
+        // axios.get(
+        //     'http://localhost:8080/'
+        // ).then(response => {
+        //     this.setState({coming: response.data.content});
+        //     console.log(response)
+        // })
+        //     .catch(error => {
+        //         console.log(error);
+        //     });
+        //
+        // //get data about NOT COMING participants
+        // axios.get(
+        //     'http://localhost:8080/'
+        // ).then(response => {
+        //     this.setState({notComing: response.data.content});
+        //     console.log(response)
+        // })
+        //     .catch(error => {
+        //         console.log(error);
+        //     });
     }
 
     handleOnComing() {
@@ -198,9 +231,11 @@ export default class EventDetails extends Component {
                 </div>
 
                 <div className="card1" href="#event1">
+                    <div className="card1-header">{this.state.event.title}</div>
+
                     <div className="card-body1">
 
-                        <a><h5 className="event-title">{this.state.event.title}</h5></a>
+                        {/*<a><h5 className="event-title">{this.state.event.title}</h5></a>*/}
                         <h4 className="event-category">Category: {this.state.event.category}</h4>
                         <h4 className="event-date">Start date:{this.state.event.startdate} at o'clock</h4>
                         <h4 className="event-date">End date: {this.state.event.enddate}</h4>
@@ -226,27 +261,32 @@ export default class EventDetails extends Component {
 
                     <div class="card-group">
 
-                        {/*// <!-- Card 1 -->*/}
                         <div class="card-att">
                             <div class="card-header">COMING</div>
                             <div class="card-body-att">
-                                <p class="card-text">Participants</p>
-
+                                    {/*{this.state.comings.map(coming => (<li key={coming.id}>*/}
+                                        {/*<h5>{this.coming.userId}</h5>*/}
+                                    {/*</li>*/}
+                                    {/*))}*/}
                             </div>
                         </div>
 
-                        {/*// <!-- Card 2 -->*/}
                         <div class="card-att">
                             <div class="card-header">MAYBE</div>
                             <div class="card-body-att">
-                                <p class="card-text">Participants
-                                </p>
+                                {/*{this.state.maybes.map(maybe => (<li key={maybe.id}>*/}
+                                        {/*<h5>{this.coming.userId}</h5>*/}
+                                    {/*</li>*/}
+                                {/*))}*/}
                             </div>
                         </div>
                         <div className="card-att">
                             <div className="card-header">NOT COMING</div>
                             <div className="card-body-att">
-                                <p className="card-text">Participants</p>
+                                {/*{this.state.notComings.map(notComing => (<li key={notComing.id}>*/}
+                                        {/*<h5>{this.coming.userId}</h5>*/}
+                                    {/*</li>*/}
+                                {/*))}                       */}
                             </div>
                         </div>
 
