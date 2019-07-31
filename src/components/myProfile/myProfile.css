@@ -3,7 +3,7 @@
 }
 
 .nameOfCompany {
-    font-family: 'Lucida Bright', 'Lucida', monospace;
+    font-family: 'Roboto',serif;
     color: lightpink;
     font-size: 20px;
 }
@@ -67,7 +67,7 @@ body {
     left: 10px;
     color: cornsilk;
     font-max-size: x-large;
-    font-family: "Lucida Bright", "Lucida", monospace;
+    font-family: 'Roboto',serif;
 }
 
 .nav-trigger {
@@ -113,7 +113,7 @@ body {
 }
 
 .firstname_lastname_text {
-    font-family: 'Cambria', sans-serif;
+    font-family: 'Roboto',serif;
     font-size: 15px;
     margin-left: 10px;
     color: navajowhite;
@@ -253,7 +253,7 @@ body {
     }
 }
 .profile-card {
-    font-family: 'Cambria', sans-serif;
+    font-family: 'Roboto',serif;
     background-color: #35475e;
     margin:0 auto;
     color: #333;
@@ -268,7 +268,7 @@ body {
 
 
 .title {
-    font-family: 'Cambria', sans-serif;
+    font-family: 'Roboto',serif;
     font-size: 20px;
     margin-left: 250px;
     margin-top: 80px;
@@ -294,7 +294,7 @@ body {
     cursor: pointer;
     border: 1px solid #35475d;
     float: right;
-    font-family: "Lucida Bright", "Lucida", monospace;
+    font-family: 'Roboto',serif;
     text-underline-color: cornsilk;
 }
 
@@ -308,7 +308,7 @@ body {
 
 .side-nav .dashboard-text {
     color: white;
-    font-family: 'Lucida Bright', 'Lucida', monospace;
+    font-family: 'Roboto',serif;
     margin-left: 50px;
     margin-top: 5px;
     font-size: 15px;

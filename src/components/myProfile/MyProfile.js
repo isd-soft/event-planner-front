@@ -134,7 +134,7 @@ export default class MyProfile extends Component {
                                         <br></br>
                                         <span><i className="fa fa-bar-chart"></i></span>
                                         <span><i className="fa fa-user"></i></span>
-                                        <span className={"dashboard-text"}>Dashboard</span>
+                                        <span className={"dashboard-text"}>DASHBOARD</span>
                                     </a>
                                 </Link>
                             </p>
@@ -144,7 +144,7 @@ export default class MyProfile extends Component {
                                 <Link to={"/profile"}>
                                     <a href="#">
                                         <span><i className="fa fa-bar-chart"></i></span>
-                                        <span className={"dashboard-text"}> My Profile</span>
+                                        <span className={"dashboard-text"}> MY PROFILE</span>
                                     </a>
                                 </Link>
                             </p>
@@ -155,7 +155,7 @@ export default class MyProfile extends Component {
                                 <Link to={"/create"}>
                                     {/*<a href="#">*/}
                                     <span><i className="fa fa-bar-chart"></i></span>
-                                    <span className={"dashboard-text"}>Create Event</span>
+                                    <span className={"dashboard-text"}>CREATE EVENT</span>
                                     {/*</a>*/}
                                 </Link>
                             </p>
@@ -165,7 +165,7 @@ export default class MyProfile extends Component {
                                 <Link to={"/myevents"}>
                                     {/*<a href="#">*/}
                                     <span><i className="fa fa-bar-chart"></i></span>
-                                    <span className={"dashboard-text"}> My Events</span>
+                                    <span className={"dashboard-text"}> MY EVENTS</span>
                                     {/*</a>*/}
                                 </Link>
                             </p>
@@ -174,7 +174,7 @@ export default class MyProfile extends Component {
                     </nav>
                 </div>
                 <div>
-                    <label className={"title"}>My profile</label>
+                    <label className={"title"}>MY PROFILE</label>
                 </div>
                 <div className="profile-card" href="#profile">
 

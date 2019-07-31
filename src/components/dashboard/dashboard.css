@@ -3,7 +3,7 @@
 }
 
 .nameOfCompany {
-    font-family: 'Lucida Bright', 'Lucida', monospace;
+    font-family: 'Roboto',serif;
     color: lightpink;
     font-size: 20px;
 }
@@ -13,7 +13,7 @@
 .navbar {
     overflow: hidden;
     background-color: #0497df;
-    font-family: Arial;
+    font-family: 'Roboto',serif;
 }
 
 /* Links inside the navbar */
@@ -31,7 +31,7 @@
     }
 .side-nav .dashboard-text {
     color: white;
-    font-family: 'Lucida Bright', 'Lucida', monospace;
+    font-family: 'Roboto',serif;
     margin-left: 50px;
     margin-top: 5px;
     font-size: 15px;
@@ -45,7 +45,7 @@
 body {
     margin: 0;
     paddin: 0;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Roboto',serif;
     background-color: #d5dae5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -64,27 +64,6 @@ body {
     overflow: hidden;
 }
 
-/*.side-nav .logo {*/
-/*background-color: #233245;*/
-/*color: #fff;*/
-/*}*/
-/*.header .logo {*/
-/*float: left;*/
-/*}*/
-/*.header .logo {*/
-/*height: 44px;*/
-/*z-index: 1;*/
-/*padding: 10px;*/
-/*font-weight: 700;*/
-/*color: #233245;*/
-/*}*/
-/*.logo  i {*/
-/*font-size: 22px;*/
-/*}*/
-/*.logo span {*/
-/*margin-left: 5px;*/
-/*text-transform: uppercase;*/
-/*}*/
 
 .header img {
     float: left;
@@ -98,7 +77,7 @@ body {
     left: 10px;
     color: cornsilk;
     font-max-size: x-large;
-    font-family: "Lucida Bright", "Lucida", monospace;
+    font-family: 'Roboto',serif;
 }
 
 .nav-trigger {
@@ -144,7 +123,7 @@ body {
 }
 
 .firstname_lastname_text {
-    font-family: 'Cambria', sans-serif;
+    font-family: 'Roboto',serif;
     font-size: 15px;
     margin-left: 10px;
     color: navajowhite;
@@ -275,7 +254,7 @@ body {
     }
 }
 .profile-card {
-    font-family: 'Cambria', sans-serif;
+    font-family: 'Roboto',serif;
     border-radius: 6px;
     /*box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(63, 63, 68, 0.1);*/
     background-color: midnightblue;
@@ -297,7 +276,7 @@ body {
 
 }
 .card {
-    font-family: 'Cambria', sans-serif;
+    font-family: 'Roboto',serif;
     border-radius: 6px;
     /*box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(63, 63, 68, 0.1);*/
     background-color: midnightblue;
@@ -314,7 +293,7 @@ body {
 }
 
 .card .card-body {
-    font-family: 'Cambria', sans-serif;
+    font-family: 'Roboto',serif;
     margin-left: 0px;
     margin-right: 0px;
     margin-top: 5px;
@@ -325,7 +304,7 @@ body {
 }
 
 .title {
-    font-family: 'Cambria', sans-serif;
+    font-family: 'Roboto',serif;
     font-size: 20px;
     margin-left: 250px;
     margin-top: 80px;
@@ -364,7 +343,7 @@ body {
     cursor: pointer;
     border: 1px solid #35475d;
     float: right;
-    font-family: "Lucida Bright", "Lucida", monospace;
+    font-family: 'Roboto',serif;
     text-underline-color: cornsilk;
 }
 
@@ -381,7 +360,7 @@ body {
     margin: 10px 10px;
     color: white;
     line-height: 20px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Roboto',serif;
 }
 
 .sidebar .logo a.logo-mini {

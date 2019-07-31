@@ -3,7 +3,7 @@
 }
 
 .nameOfCompany {
-    font-family: 'Lucida Bright', 'Lucida', monospace;
+    font-family: 'Roboto',serif;
     color: lightpink;
     font-size: 20px;
 }
@@ -13,7 +13,7 @@
 .navbar {
     overflow: hidden;
     background-color: #0497df;
-    font-family: Arial;
+    font-family: 'Roboto',serif;
 }
 
 /* Links inside the navbar */
@@ -28,7 +28,7 @@
 
 .dashboard-text {
     color: white;
-    font-family: 'Lucida Bright', 'Lucida', monospace;
+    font-family: 'Roboto',serif;
     margin-left: 5px;
     font-size: 15px;
 }
@@ -36,7 +36,7 @@
 body {
     margin: 0;
     paddin: 0;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Roboto',serif;
     background-color: #d5dae5;
     /*-webkit-font-smoothing: antialiased;*/
     /*-moz-osx-font-smoothing: grayscale;*/
@@ -55,28 +55,6 @@ body {
     overflow: hidden;
 }
 
-/*.side-nav .logo {*/
-/*background-color: #233245;*/
-/*color: #fff;*/
-/*}*/
-/*.header .logo {*/
-/*float: left;*/
-/*}*/
-/*.header .logo {*/
-/*height: 44px;*/
-/*z-index: 1;*/
-/*padding: 10px;*/
-/*font-weight: 700;*/
-/*color: #233245;*/
-/*}*/
-/*.logo  i {*/
-/*font-size: 22px;*/
-/*}*/
-/*.logo span {*/
-/*margin-left: 5px;*/
-/*text-transform: uppercase;*/
-/*}*/
-
 .header img {
     float: left;
     width: 10px;
@@ -89,7 +67,7 @@ body {
     left: 10px;
     color: cornsilk;
     font-max-size: x-large;
-    font-family: "Lucida Bright", "Lucida", monospace;
+    font-family: 'Roboto',serif;
 }
 
 .nav-trigger {
@@ -275,7 +253,7 @@ body {
     }
 }
 .profile-card {
-    font-family: 'Cambria', sans-serif;
+    font-family: 'Roboto',serif;
     border-radius: 6px;
     /*box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(63, 63, 68, 0.1);*/
     background-color: lightyellow;
@@ -289,13 +267,13 @@ body {
 }
 
 .profile-card-body {
-    font-family: 'Cambria', sans-serif;
+    font-family: 'Roboto',serif;
     margin-left: 220px;
     margin-top: 60px;
 
 }
-.card {
-    font-family: 'Cambria', sans-serif;
+.card1 {
+    font-family: 'Roboto',serif;
     border-radius: 6px;
     /*box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(63, 63, 68, 0.1);*/
     background-color: lightyellow;
@@ -308,15 +286,71 @@ body {
     font-size: 15px;
 }
 
-.card-body {
-    font-family: 'Cambria', sans-serif;
-    margin-left: 70px;
-    margin-top: 10px;
+.card1 .card-body1 {
+    font-family: 'Roboto',serif;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 5px;
+    height: 270px;
+    box-shadow: 7px 7px 7px 7px #888888;
+    background-color: navajowhite;
 
 }
 
+.card1 .attendance-buttons .btn btn-success{
+margin-left: 100px;
+}
+.card1 .card-body1 .form-control{
+    background-color: aqua;
+    font-size:15px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+}
+
+.card-group{
+    display:flex;
+}
+
+.card-att {
+    font-family: 'Roboto',serif;
+    border-radius: 6px;
+    background-color: navajowhite;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 20px;
+    height: 400px;
+    font-weight: 400;
+    color: #333;
+    font-size: 15px;
+    box-shadow: 10px 10px 10px 10px #888888;
+
+}
+.card-att .card-header{
+    background-color: skyblue;
+    font-weight: 500;
+    font-size:20px;
+text-align:center;
+    font-family: 'Roboto',serif;
+    height: 30px;
+}
+.card-att .card-body-att{
+    width: 275px;
+}
+
+/*.card-att .card-body-att {*/
+    /*font-family: 'Cambria', sans-serif;*/
+    /*!*margin-left: 10px;*!*/
+    /*!*margin-right: 10px;*!*/
+    /*!*margin-top: 5px;*!*/
+    /*padding: 5px 5px 5px 5px;*/
+    /*height: 230px;*/
+    /*box-shadow: 7px 7px 7px 7px #888888;*/
+    /*background-color: navajowhite;*/
+
+/*}*/
+
 .title {
-    font-family: 'Cambria', sans-serif;
+    font-family: 'Roboto',serif;
     font-size: 20px;
     margin-left: 250px;
     margin-top: 80px;
@@ -354,7 +388,7 @@ body {
     cursor: pointer;
     border: 1px solid #35475d;
     float: right;
-    font-family: "Lucida Bright", "Lucida", monospace;
+    font-family: 'Roboto',serif;
     text-underline-color: cornsilk;
 }
 
@@ -371,7 +405,7 @@ body {
     margin: 10px 10px;
     color: white;
     line-height: 20px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Roboto',serif;
 }
 
 .sidebar .logo a.logo-mini {
@@ -405,7 +439,7 @@ body {
 
 .side-nav .dashboard-text {
     color: white;
-    font-family: 'Lucida Bright', 'Lucida', monospace;
+    font-family: 'Roboto',serif;
     margin-left: 50px;
     margin-top: 5px;
     font-size: 15px;
@@ -425,3 +459,4 @@ body {
     width: 60px;
     height: 60px;
 }
+

@@ -104,7 +104,7 @@ export default class Dashboard extends Component {
                                         <br></br>
                                         <span><i className="fa fa-bar-chart"></i></span>
                                         <span><i className="fa fa-user"></i></span>
-                                        <span className={"dashboard-text"}>Dashboard</span>
+                                        <span className={"dashboard-text"}>DASHBOARD</span>
                                     </a>
                                 </Link>
                             </p>
@@ -114,7 +114,7 @@ export default class Dashboard extends Component {
                                 <Link to={"/profile"}>
                                     <a href="#">
                                         <span><i className="fa fa-bar-chart"></i></span>
-                                        <span className={"dashboard-text"}> My Profile</span>
+                                        <span className={"dashboard-text"}> MY PROFILE</span>
                                     </a>
                                 </Link>
                             </p>
@@ -125,7 +125,7 @@ export default class Dashboard extends Component {
                                 <Link to={"/create"}>
                                     {/*<a href="#">*/}
                                         <span><i className="fa fa-bar-chart"></i></span>
-                                        <span className={"dashboard-text"}>Create Event</span>
+                                        <span className={"dashboard-text"}>CREATE EVENT</span>
                                     {/*</a>*/}
                                 </Link>
                             </p>
@@ -136,7 +136,7 @@ export default class Dashboard extends Component {
                                 <Link to={"/myevents"}>
                                     {/*<a href="#">*/}
                                         <span><i className="fa fa-bar-chart"></i></span>
-                                        <span className={"dashboard-text"}> My Events</span>
+                                        <span className={"dashboard-text"}> MY EVENTS</span>
                                     {/*</a>*/}
                                 </Link>
                             </p>
@@ -145,7 +145,7 @@ export default class Dashboard extends Component {
                     </nav>
                 </div>
                 <div>
-                    <label className={"title"}>The list of events</label>
+                    <label className={"title"}>THE LIST OF EVENTS</label>
                 </div>
                 <li>
                     {this.state.events.map(event => (<li key={event.id}>
