@@ -201,75 +201,70 @@ export default class NewEvent extends Component {
                 <div>
                     <label className={"title"}>CREATE EVENT</label>
                 </div>
-                <div className="profile-card" href="#profile">
-
-                            {/*Create Event -   form */}
-                            <form  onSubmit={this.submitHandler}>
+                <div className="profile-card">
+                    <form className="form-horizontal" onSubmit={this.submitHandler}>
 
                                 <FormGroup controlId="event-title">
-                                    <ControlLabel>* Title</ControlLabel>
                                     <div className="col-sm-5">
+                                        <ControlLabel>* Title</ControlLabel>
                                         <FormControl type="text" name="title" placeholder="Event title"
                                                      value={title} onChange={this.changeHandle}/>
                                     </div>
                                 </FormGroup>
 
                                 <FormGroup controlId="Description">
-                                    <ControlLabel>Description</ControlLabel>
                                     <div className="col-sm-5">
+                                        <ControlLabel>Description</ControlLabel>
                                         <FormControl type="text" name="description" placeholder="Description"
                                                      value={description} onChange={this.changeHandle}/>
                                     </div>
                                 </FormGroup>
 
-                                <FormGroup controlId="startdate">
-                                    <ControlLabel>* Start Date</ControlLabel>
+                                <FormGroup controlId="startdate_enddate">
                                     <div className="col-sm-5">
+                                        <ControlLabel>* Start Date</ControlLabel>
                                         <FormControl type="datetime-local" name="startdate" placeholder='Enter date'
                                                      value={startdate} onChange={this.changeHandle}/>
                                     </div>
-                                </FormGroup>
-
-                                <FormGroup controlId="enddate">
-                                    <ControlLabel>End Date</ControlLabel>
                                     <div className="col-sm-5">
+                                        <ControlLabel>End Date</ControlLabel>
                                         <FormControl type="datetime-local" name="enddate" placeholder='Enter date'
                                                      value={enddate} onChange={this.changeHandle}/>
                                     </div>
                                 </FormGroup>
 
-
-                                <FormGroup controlId="categoru">
-                                    <ControlLabel>Category</ControlLabel>
+                                <FormGroup controlId="category">
                                     <div className="col-sm-5">
-                                        <FormControl type="text" name="category" placeholder="Enter duration"
+                                        <ControlLabel>Category</ControlLabel>
+                                        <FormControl type="text" name="category" placeholder="Enter category of event"
                                                      value={category} onChange={this.changeHandle}/>
                                     </div>
                                 </FormGroup>
 
-
                                 <FormGroup controlId="price">
-                                    <ControlLabel>Price</ControlLabel>
                                     <div className="col-sm-5">
+                                        <ControlLabel>Price</ControlLabel>
                                         <FormControl type="text" name="price" placeholder='Enter price'
                                                      value={price} onChange={this.changeHandle}/>
                                     </div>
                                 </FormGroup>
 
                                 <FormGroup controlId="location">
-                                    <ControlLabel>Location</ControlLabel>
                                     <div className="col-sm-5">
+                                        <ControlLabel>Location</ControlLabel>
                                         <FormControl type="text" name="location" placeholder='Enter location'
                                                      value={location} onChange={this.changeHandle}/>
                                     </div>
                                 </FormGroup>
-                                {/*<hr></hr>*/}
 
-                                <button type="submit" href="/dashboard" className="btn btn-primary">Create</button>
-                                {/*<a href="/dashboard" className="btn btn-primary">Create</a>*/}
+                                <FormGroup controlId="submitButton">
+                                    <div>
+                                        <button type="submit" href="/dashboard" className="btn btn-primary">Create</button>
+                                    </div>
+                                </FormGroup>
+                    </form>
 
-                                {/*Event Form end*/}
-                            </form>
+
                 </div>
             </div>
         )

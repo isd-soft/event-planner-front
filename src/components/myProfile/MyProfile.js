@@ -181,21 +181,16 @@ export default class MyProfile extends Component {
                     <div className="logo-img">
                         <div className="profile-card-body">
                             <form class="form-horizontal"  onSubmit={this.handleSubmit}>
-
-
-                                <FormGroup controlId="firstname">
-                                    <ControlLabel class={"col-sm-5"} >First Name</ControlLabel>
+                                <FormGroup controlId="firstname_lastname">
                                     <div class="col-sm-5">
+                                        <ControlLabel class={"col-sm-5"} >First Name</ControlLabel>
                                         <FormControl
                                             type="text" name="firstname"
                                             onChange={this.handleChange}
                                             value={copyUser.firstname}/>
                                     </div>
-                                </FormGroup>
-
-                                <FormGroup controlId="lastname">
-                                    <ControlLabel class={"col-sm-5"} >Last Name</ControlLabel>
-                                    <div class="col-sm-5">
+                                    <div className="col-sm-5">
+                                        <ControlLabel class={"col-sm-5"}>Last Name</ControlLabel>
                                         <FormControl
                                             type="text" name="lastname"
                                             onChange={this.handleChange}
@@ -203,25 +198,32 @@ export default class MyProfile extends Component {
                                     </div>
                                 </FormGroup>
 
-                                    <ControlLabel >Email</ControlLabel>
-                                <div class="col-sm-5">   {copyUser.email}
+                                <FormGroup controlId="username_email">
+                                    <div className="col-sm-5">
+                                        <ControlLabel>Username</ControlLabel>
+                                        <br/>
+                                        {copyUser.username}
                                     </div>
-
-
-
+                                    <div className="col-sm-5">
+                                        <ControlLabel>Email</ControlLabel>
+                                        <br/>
+                                        {copyUser.email}
+                                    </div>
+                                </FormGroup>
 
                                 <FormGroup controlId="description">
-                                    <ControlLabel>Description</ControlLabel>
                                     <div class="col-sm-5">
+                                        <ControlLabel>Description</ControlLabel>
                                         <FormControl
                                             type={"text"} name={"description"}
                                             onChange={this.handleChange}
                                             value={copyUser.description}/>
                                     </div>
                                 </FormGroup>
+
                                 <FormGroup controlId="phoneNumber">
-                                    <ControlLabel>Phone Number</ControlLabel>
                                     <div class="col-sm-5">
+                                        <ControlLabel>Phone Number</ControlLabel>
                                         <FormControl
                                             type={"text"} name={"phoneNumber"}
                                             onChange={this.handleChange}
@@ -229,15 +231,9 @@ export default class MyProfile extends Component {
                                     </div>
                                 </FormGroup>
 
-
-                                <ControlLabel >Username</ControlLabel>
-                                <div class="col-sm-5">   {copyUser.username}
-                                </div>
-
-
-                                <div className="form-group">
-                                    <label htmlFor="sell">Gender</label>
+                                <FormGroup controlId="phoneNumber">
                                     <div className="col-sm-5">
+                                        <label htmlFor="sell">Gender</label>
                                         <select className="form-control" id="sel1" name={"gender"}
                                                 onChange={this.handleChange}
                                                 value={copyUser.gender}>
@@ -245,11 +241,10 @@ export default class MyProfile extends Component {
                                             <option>Female</option>
                                         </select>
                                     </div>
-                                </div>
+                                </FormGroup>
+
                                 <button  type={"submit"} className="btn btn-primary">Save</button>
                             </form>
-
-
                         </div>
                     </div>
                 </div>
