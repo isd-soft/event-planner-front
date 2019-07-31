@@ -67,7 +67,7 @@ export default class EventDetails extends Component {
 
     }
 
-    handleOnGoing() {
+    handleOnComing() {
         let id = localStorage.getItem('id');
         let eventId = localStorage.getItem('eventId');
         axios.post('http://localhost:8080/events/' + eventId + '/participate', {
@@ -81,11 +81,25 @@ export default class EventDetails extends Component {
             });
     }
 
-    handleOnNotGoing() {
+    handleOnNotComing() {
         let id = localStorage.getItem('id');
         let eventId = localStorage.getItem('eventId');
         axios.post('http://localhost:8080/events/' + eventId + '/participate', {
             answer: "not coming"
+        }).then(res => {
+                console.log(this.answer)
+            }
+        )
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    handleOnMaybeComing() {
+        let id = localStorage.getItem('id');
+        let eventId = localStorage.getItem('eventId');
+        axios.post('http://localhost:8080/events/' + eventId + '/participate', {
+            answer: "maybe"
         }).then(res => {
                 console.log(this.answer)
             }
@@ -194,14 +208,18 @@ export default class EventDetails extends Component {
                         <h4 className="event-price">Price: {this.state.event.price}</h4>
                         <h4 className="event-description">Description: {this.state.event.description}</h4>
                         <h4 className="event-description">Organizer: {this.state.eventOrganizer.firstname} {this.state.eventOrganizer.lastname}</h4>
-                    {/*<div className={"attendance-buttons "}*/}
                         <button type="submit" className="btn btn-success col-sm-2"
-                                onClick={this.handleOnGoing.bind(this)}>Going
+                                onClick={this.handleOnComing.bind(this)}>
+                            Coming
                         </button>
-                        <button type="submit" className="btn btn-danger col-sm-2" onClick={this.handleOnNotGoing.bind(this)}>Not
-                            going
+                        <button type="submit" className="btn btn-danger col-sm-2"
+                                onClick={this.handleOnNotComing.bind(this)}>
+                            Not coming
                         </button>
-                        <button type="submit" className="btn btn-warning col-sm-2">Maybe</button>
+                        <button type="submit" className="btn btn-warning col-sm-2"
+                                onClick={this.handleOnMaybeComing.bind(this)}>
+                            Maybe
+                        </button>
                     {/*</div>*/}
                     </div>
 
