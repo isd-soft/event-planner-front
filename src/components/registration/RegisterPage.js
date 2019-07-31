@@ -56,7 +56,7 @@ class RegisterPage extends React.Component {
                     console.log(res.status);
                      if (res.status === 200) {
                          swal("Registration successful")
-                         this.props.history.push("/login");
+                         this.props.history.push("/");
                          console.log(res.status);
                          console.log(res.statusText);
                      }
