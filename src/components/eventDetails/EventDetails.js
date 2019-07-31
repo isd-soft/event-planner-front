@@ -10,13 +10,14 @@ export default class EventDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user:{},
-            eventOrganizer:{},
+            user: {},
+            eventOrganizer: {},
             event: {},
             answer: '',
 
         };
     }
+
     componentDidMount() {
         axios.interceptors.request.use((config) => {
                 let token = localStorage.getItem('jwtToken');
@@ -33,13 +34,13 @@ export default class EventDetails extends Component {
 
         //get data about event
         axios.get(
-            'http://localhost:8080/events/'+eventId
+            'http://localhost:8080/events/' + eventId
         ).then(response => {
             this.setState({event: response.data});
-            let organiserId=response.data.userId;
+            let organiserId = response.data.userId;
             axios.get(
                 'http://localhost:8080/user/' + organiserId
-            ).then(res=> {
+            ).then(res => {
                 this.setState({eventOrganizer: res.data});
             })
                 .catch(error => {
@@ -55,7 +56,7 @@ export default class EventDetails extends Component {
         let id = localStorage.getItem('id');
         axios.get(
             'http://localhost:8080/user/' + id
-        ).then(res=> {
+        ).then(res => {
             this.setState({user: res.data});
             // console.log(response)
         })
@@ -64,8 +65,8 @@ export default class EventDetails extends Component {
             });
 
 
-
     }
+
     handleOnGoing() {
         let id = localStorage.getItem('id');
         let eventId = localStorage.getItem('eventId');
@@ -93,9 +94,11 @@ export default class EventDetails extends Component {
                 console.log(error);
             });
     }
-    logout(e){
-        localStorage.clear()
+
+    logout(e) {
+        localStorage.clear();
     }
+
     render() {
         // const {event} = this.state;
 
@@ -138,7 +141,7 @@ export default class EventDetails extends Component {
                                         <br></br>
                                         <span><i className="fa fa-bar-chart"></i></span>
                                         <span><i className="fa fa-user"></i></span>
-                                        <span className={"dashboard-text"}>Dashboard</span>
+                                        <span className={"dashboard-text"}>DASHBOARD</span>
                                     </a>
                                 </Link>
                             </p>
@@ -148,7 +151,7 @@ export default class EventDetails extends Component {
                                 <Link to={"/profile"}>
                                     <a href="#">
                                         <span><i className="fa fa-bar-chart"></i></span>
-                                        <span className={"dashboard-text"}> My Profile</span>
+                                        <span className={"dashboard-text"}> MY PROFILE</span>
                                     </a>
                                 </Link>
                             </p>
@@ -158,7 +161,7 @@ export default class EventDetails extends Component {
                                 <Link to={"/myevents"}>
                                     {/*<a href="#">*/}
                                     <span><i className="fa fa-bar-chart"></i></span>
-                                    <span className={"dashboard-text"}> My Events</span>
+                                    <span className={"dashboard-text"}> MY EVENTS</span>
                                     {/*</a>*/}
                                 </Link>
                             </p>
@@ -169,7 +172,7 @@ export default class EventDetails extends Component {
                                 <Link to={"/create"}>
                                     {/*<a href="#">*/}
                                     <span><i className="fa fa-bar-chart"></i></span>
-                                    <span className={"dashboard-text"}>Create Event</span>
+                                    <span className={"dashboard-text"}>CREATE EVENT</span>
                                     {/*</a>*/}
                                 </Link>
                             </p>
@@ -177,32 +180,63 @@ export default class EventDetails extends Component {
                     </nav>
                 </div>
                 <div>
-                    <label className={"title"}>Event Details</label>
+                    <label className={"title"}>EVENT DETAILS</label>
                 </div>
 
-                    <div  className="card" href="#event1">
-                        <div className="card-body">
+                <div className="card1" href="#event1">
+                    <div className="card-body1">
 
-                            <a > <h5 className="event-title">{this.state.event.title}</h5></a>
-                            <h4 className="event-category">Category:    {this.state.event.category}</h4>
-                            <h4 className="event-date">Start date:{this.state.event.startdate} at o'clock</h4>
-                            <h4 className="event-date">End date:    {this.state.event.enddate}</h4>
-                            <h4 className="event-location">Location:    {this.state.event.location}</h4>
-                            <h4 className="event-price">Price:        {this.state.event.price}</h4>
-                            <h4 className="event-description">Description: {this.state.event.description}</h4>
-                            <h4 className="event-description">Organizer: {this.state.eventOrganizer.firstname} {this.state.eventOrganizer.lastname}</h4>
-
-                            <button type="submit" className="btn btn-success" onClick={this.handleOnGoing.bind(this)}>Going</button>
-                            <button type="submit" className="btn btn-danger" onClick={this.handleOnNotGoing.bind(this)}>Not going</button>
-                            <button type="submit" className="btn btn-warning disabled">Maybe</button>
-
-                        </div>
+                        <a><h5 className="event-title">{this.state.event.title}</h5></a>
+                        <h4 className="event-category">Category: {this.state.event.category}</h4>
+                        <h4 className="event-date">Start date:{this.state.event.startdate} at o'clock</h4>
+                        <h4 className="event-date">End date: {this.state.event.enddate}</h4>
+                        <h4 className="event-location">Location: {this.state.event.location}</h4>
+                        <h4 className="event-price">Price: {this.state.event.price}</h4>
+                        <h4 className="event-description">Description: {this.state.event.description}</h4>
+                        <h4 className="event-description">Organizer: {this.state.eventOrganizer.firstname} {this.state.eventOrganizer.lastname}</h4>
+                    {/*<div className={"attendance-buttons "}*/}
+                        <button type="submit" className="btn btn-success col-sm-2"
+                                onClick={this.handleOnGoing.bind(this)}>Going
+                        </button>
+                        <button type="submit" className="btn btn-danger col-sm-2" onClick={this.handleOnNotGoing.bind(this)}>Not
+                            going
+                        </button>
+                        <button type="submit" className="btn btn-warning col-sm-2">Maybe</button>
+                    {/*</div>*/}
                     </div>
-                ))}
 
 
+                    <div class="card-group">
+
+                        {/*// <!-- Card 1 -->*/}
+                        <div class="card-att">
+                            <div class="card-header">COMING</div>
+                            <div class="card-body-att">
+                                <p class="card-text">Participants</p>
+
+                            </div>
+                        </div>
+
+                        {/*// <!-- Card 2 -->*/}
+                        <div class="card-att">
+                            <div class="card-header">MAYBE</div>
+                            <div class="card-body-att">
+                                <p class="card-text">Participants
+                                </p>
+                            </div>
+                        </div>
+                        <div className="card-att">
+                            <div className="card-header">NOT COMING</div>
+                            <div className="card-body-att">
+                                <p className="card-text">Participants</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
 
             </div>
+
 
         );
     }

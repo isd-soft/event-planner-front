@@ -2,10 +2,9 @@ import React, {Component} from "react";
 import {Button, ControlLabel, FormControl, FormGroup, HelpBlock, Row} from 'react-bootstrap';
 import './login.css';
 import './backimage.png';
-import {isContainWhiteSpace, isEmail, isEmpty, isLength, isUsername} from 'shared/validator';
+import {isContainWhiteSpace, isEmail, isEmpty, isLength,isUsername} from 'shared/validator';
 import {Link} from "react-router-dom";
 import axios from 'axios'
-import swal from "sweetalert";
 
 
 class Login extends Component {
@@ -78,31 +77,36 @@ class Login extends Component {
         e.preventDefault();
         let errors = this.validateLoginForm();
 
-            axios.post('http://localhost:8080/authenticate', {
-                username: this.state.formData.username,
-                password: this.state.formData.password
-            }).then(res => {
-                const token = res.data.token;
-                const id = res.data.id;
-                if (token && id) {
-                    localStorage.setItem("jwtToken", token);
-                    localStorage.setItem("id", id);
-                    this.props.history.push("/dashboard");
-                    console.log(this.props)
-                } else {
-                    this.setState({
-
-                        errors: errors,
-                        formSubmitted: true
-                    });
-                }
-            })
-                .catch(function (error) {
-                    swal(error.response.data.message)
-                    console.log(error);
-                });
+        axios.post('http://localhost:8080/authenticate', {
+            username: this.state.formData.username,
+            password: this.state.formData.password
+        }).then(res => {
+            const token = res.data.token;
+            const id = res.data.id;
+            if (token && id) {
+                localStorage.setItem("jwtToken", token);
+                localStorage.setItem("id", id);
+                this.props.history.push("/dashboard");
+                console.log(this.props)
+            }else {this.setState({
+                errors: errors,
+                formSubmitted: true
+            });}
+        })
+            .catch(function (error) {
+                console.log(error);
+            });
 
 
+        if (errors === true) {
+            alert("You are successfully signed in with:" + "        Email:" + this.state.formData.username + "" + "       Password:" + this.state.formData.password);
+            window.location.reload();
+        } else {
+            this.setState({
+                errors: errors,
+                formSubmitted: true
+            });
+        }
 
     };
 
