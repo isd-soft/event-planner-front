@@ -66,17 +66,17 @@ export default class EventDetails extends Component {
                 console.log(error);
             });
 
-        // //get data about COMING participants
-        // axios.get(
-        //     'http://localhost:8080/'
-        // ).then(response => {
-        //     this.setState({coming: response.data.content});
-        //     console.log(response)
-        // })
-        //     .catch(error => {
-        //         console.log(error);
-        //     });
-        //
+        //get data about COMING participants
+        axios.get(
+            'http://localhost:8080/events/'+eventId+'/participants',{answer:"coming"}
+        ).then(response => {
+            this.setState({comings: response.data});
+            console.log(response)
+        })
+            .catch(error => {
+                console.log(error);
+            });
+
         // //get data about MAYBE coming participants
         // axios.get(
         //     'http://localhost:8080/'
