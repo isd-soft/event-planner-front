@@ -13,15 +13,29 @@ export default class MyEvents extends Component {
         this.state = {
             user:{},
             events: [],
-            eventId:''
+            eventId:'',
+            currentPage:1,
+            eventsPerPage: 2
 
 
         }
+        this.handleClick1 = this.handleClick1.bind(this);
+
     }
+
+
     handleClick(value) {
         localStorage.setItem("eventId", value);
 
     }
+
+    handleClick1(event) {
+        this.setState({
+            currentPage: Number(event.target.id)
+
+        });
+    }
+
     componentDidMount() {
 
         axios.interceptors.request.use((config) => {
@@ -68,7 +82,46 @@ export default class MyEvents extends Component {
     }
 
     render() {
+        const { events, currentPage, eventsPerPage } = this.state;
 
+        const indexOfLastEvent = currentPage * eventsPerPage;
+        const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
+        const currentEvents = events.slice(indexOfFirstEvent, indexOfLastEvent);
+
+        const renderEvents = currentEvents.map(event => (<li key={event.id}>
+
+            <div className="card" href="#event1">
+                <div className="card-body">
+
+                    <a  href={"/eventdetails"} onClick = {() => this.handleClick(event.id)}><h5 className="event-title">{event.title}</h5></a>
+                    <h4 className="event-category">Category:{event.category}</h4>
+                    <h4 className="event-date">Start date:{event.startdate.substring(0,10)} at {event.startdate.substring(11,16)} o'clock</h4>
+                    <h4 className="event-date">End date:{event.enddate}</h4>
+
+                </div>
+            </div>
+        </li>))
+
+
+        // Logic for displaying page numbers
+        const pageNumbers = [];
+        for (let i = 1; i <= Math.ceil(events.length / eventsPerPage); i++) {
+            pageNumbers.push(i);
+        }
+
+        const renderPageNumbers = pageNumbers.map(number => {
+            return (
+                <button
+                    className="btn1"
+
+                    key={number}
+                    id={number}
+                    onClick={this.handleClick1}
+                >
+                    {number}
+                </button>
+            );
+        });
         return (
 
             <div>
@@ -151,23 +204,20 @@ export default class MyEvents extends Component {
                 </div>
                 <div>
                     <label className={"title"}>MY EVENTS</label>
-                </div> Events
-                <li>
-                    {this.state.events.map(event => (<li key={event.id }>
-                        <div className="card" href="#event1">
-                            <div className="card-body">
+                </div>
+                <div>
+                    <ul>
+                        {renderEvents}
+                    </ul>
 
-                                <a  href={"/eventdetails"} onClick = {() => this.handleClick(event.id)}><h5 className="event-title">{event.title}</h5></a>
-                                <h4 className="event-category">Category:{event.category}</h4>
-                                <h4 className="event-date">Start date:{event.startdate.substring(0,10)} at {event.startdate.substring(11,16)} o'clock</h4>
-                                <h4 className="event-date">End date:{event.enddate}</h4>
+                    <div className="pagination" id={"myDIV"}>
+                        <button className={"btn1"}  >&laquo;</button>
+                        {renderPageNumbers}
 
-                                {/*<a href="#" className="btn btn-primary">Participate:{event.participants}</a>*/}
-                            </div>
-                        </div>
-                    </li>))}
+                        <button className={"btn1"}>&raquo;</button>
+                    </div>
 
-                </li>
+                </div>
 
             </div>
 

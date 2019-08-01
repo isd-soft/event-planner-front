@@ -219,15 +219,12 @@ export default class Dashboard extends Component {
                     </ul>
 
                     <div className="pagination" id={"myDIV"}>
-                        <button className={"btn1"}  cl>&laquo;</button>
+                        <button className={"btn1"}  >&laquo;</button>
                                                    {renderPageNumbers}
 
                         <button className={"btn1"}>&raquo;</button>
                     </div>
 
-                    {/*<ul id="page-numbers">*/}
-                        {/*{renderPageNumbers}*/}
-                    {/*</ul>*/}
                 </div>
 
             </div>

@@ -229,10 +229,9 @@ export default class EventDetails extends Component {
                 </div>
 
                 <div className="card1" href="#event1">
-                    <div className="card1-header">{this.state.event.title}</div>
 
                     <div className="card-body1">
-
+                        <div className="event-title">{this.state.event.title}</div>
                         <h4 className="event-category">Category: {this.state.event.category}</h4>
                         <h4 className="event-date">Start date:{this.state.event.startdate}</h4>
                         <h4 className="event-date">End date: {this.state.event.enddate}</h4>

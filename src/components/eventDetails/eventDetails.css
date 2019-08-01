@@ -256,7 +256,7 @@ body {
     font-family: 'Roboto',serif;
     border-radius: 6px;
     /*box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(63, 63, 68, 0.1);*/
-    background-color: lightyellow;
+    background-color: navajowhite;
     margin-left: 300px;
     margin-right: 200px;
     margin-top: 10px;
@@ -289,9 +289,8 @@ body {
 .card1 .card-body1 {
     font-family: 'Roboto',serif;
     border-radius: 6px;
-    /*box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(63, 63, 68, 0.1);*/
-    background-color: #e2e2da;
-    padding:20px 100px 70px 100px;
+    background-color: navajowhite;
+    padding:20px 100px 70px 50px;
     font-weight: 400;
     color: #333;
     font-size: 15px;

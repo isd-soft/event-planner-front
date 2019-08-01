@@ -220,6 +220,7 @@ export default class MyProfile extends Component {
                                     <div class="col-sm-5">
                                         <ControlLabel>Description</ControlLabel>
                                         <FormControl
+                                            placeholder={"Enter your description"}
                                             type={"text"} name={"description"}
                                             onChange={this.handleChange}
                                             value={copyUser.description}/>
@@ -230,6 +231,7 @@ export default class MyProfile extends Component {
                                     <div class="col-sm-5">
                                         <ControlLabel>Phone Number</ControlLabel>
                                         <FormControl
+                                            placeholder={"Enter your description"}
                                             type={"text"} name={"phoneNumber"}
                                             onChange={this.handleChange}
                                             value={copyUser.phoneNumber}/>
