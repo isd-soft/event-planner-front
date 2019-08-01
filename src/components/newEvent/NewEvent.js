@@ -80,7 +80,7 @@ export default class NewEvent extends Component {
         axios.post("http://localhost:8080/events", this.state)
             .then(response => {
                 swal("Good job!", "Event was created!", "success");
-
+                this.props.history.push("/dashboard");
             })
             .catch(error => {
                 swal("Oops!", " The title and date are required!", "error");

@@ -3,6 +3,7 @@ import './eventDetails.css';
 import logo from './face-0.png';
 import {Route, Link} from "react-router-dom";
 import axios from 'axios';
+import swal from 'sweetalert';
 
 
 export default class EventDetails extends Component {
@@ -101,6 +102,37 @@ export default class EventDetails extends Component {
         )
             .catch(function (error) {
                 console.log(error);
+            });
+
+    }
+
+    handleEditEvent() {
+        this.props.history.push("/edit");
+    }
+
+    handleDeleteEvent() {
+        swal({
+            title: "Do you want to delete this event?",
+            text: "You will not be able to undo this action!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+
+                    let eventId = localStorage.getItem('eventId');
+                    axios.delete('http://localhost:8080/events/' + eventId).then(res => {
+                        swal("Event has been deleted!", {
+                            icon: "success",
+                        });
+                        this.props.history.push("/dashboard");
+                        }
+                    )
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }
             });
 
     }
@@ -240,21 +272,28 @@ export default class EventDetails extends Component {
                         <h4 className="event-description">Description: {this.state.event.description}</h4>
                         <h4 className="event-description">Organizer: {this.state.eventOrganizer.firstname} {this.state.eventOrganizer.lastname}</h4>
 
-                        {this.state.thisUserIsEventOrganiser ? <br />
-                            : <div className="participation-buttons">
+                        {this.state.thisUserIsEventOrganiser ?
+                            <div className="organize-buttons">
+                                <button type="submit" className="btn btn-primary col-md-4"
+                                        onClick={this.handleEditEvent.bind(this)}>Edit
+                                </button>
+                                <button type="submit" className="btn btn-danger col-md-6"
+                                        onClick={this.handleDeleteEvent.bind(this)}>Delete
+                                </button>
+                            </div>
+                            :
+                            <div className="participation-buttons">
                                 <button type="submit" className="btn btn-success col-md-4"
-                                        onClick={this.handleOnComing.bind(this)}>
-                                    Coming
+                                        onClick={this.handleOnComing.bind(this)}>Coming
                                 </button>
                                 <button type="submit" className="btn btn-danger col-md-4"
-                                        onClick={this.handleOnNotComing.bind(this)}>
-                                    Not coming
+                                        onClick={this.handleOnNotComing.bind(this)}>Not coming
                                 </button>
                                 <button type="submit" className="btn btn-warning col-md-4"
-                                        onClick={this.handleOnMaybeComing.bind(this)}>
-                                    Maybe
+                                        onClick={this.handleOnMaybeComing.bind(this)}>Maybe
                                 </button>
-                            </div>}
+                            </div>
+                        }
 
 
                     {/*</div>*/}
