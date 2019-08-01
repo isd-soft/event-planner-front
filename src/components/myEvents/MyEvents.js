@@ -41,14 +41,11 @@ export default class MyEvents extends Component {
         ).then(response =>{
             for(let i=0;i<response.data.content.length;i++){
                 let userId=localStorage.getItem('id');
-                console.log(userId == response.data.content[i].userId);
 
-                if(userId == response.data.content[i].userId)
-
-                {this.state.events.push(response.data.content[i]);
-                    console.log(response.data.content.events);
+                if(userId == response.data.content[i].userId) {
+                    this.state.events.push(response.data.content[i]);
                 }
-        }          this.setState({events: this.state.events});
+        }           this.setState({events: this.state.events});
 
 
         })
@@ -61,13 +58,12 @@ export default class MyEvents extends Component {
             'http://localhost:8080/user/' + id
         ).then(response => {
             this.setState({user: response.data});
-            console.log(response)
         })
             .catch(error => {
                 console.log(error);
             });
     }
-    logout(e){
+    logout(){
         localStorage.clear()
     }
 

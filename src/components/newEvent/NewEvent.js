@@ -69,7 +69,6 @@ export default class NewEvent extends Component {
             'http://localhost:8080/user/' + id
         ).then(res=> {
             this.setState({user: res.data});
-            // console.log(response)
         })
             .catch(error => {
                 console.log(error);

@@ -89,7 +89,6 @@ class Login extends Component {
                 localStorage.setItem("id", id);
 
                 this.props.history.push("/dashboard");
-                console.log(this.props)
             } else {
                 this.setState({
                     errors: errors,

@@ -16,7 +16,8 @@ export default class EventDetails extends Component {
             answer: '',
             coming:[],
             maybe:[],
-            notComing:[]
+            notComing:[],
+            thisUserIsEventOrganiser: true
         };
     }
 
@@ -34,6 +35,7 @@ export default class EventDetails extends Component {
             }
         );
         let eventId = localStorage.getItem('eventId');
+        let id = localStorage.getItem('id');
 
         //get data about event
         axios.get(
@@ -41,6 +43,9 @@ export default class EventDetails extends Component {
         ).then(response => {
             this.setState({event: response.data});
             let organiserId = response.data.userId;
+            if (id != organiserId){
+                this.setState({thisUserIsEventOrganiser: false})
+            }
             axios.get(
                 'http://localhost:8080/user/' + organiserId
             ).then(res => {
@@ -56,7 +61,6 @@ export default class EventDetails extends Component {
             });
 
         //get data about user
-        let id = localStorage.getItem('id');
         axios.get(
             'http://localhost:8080/user/' + id
         ).then(res => {
@@ -107,7 +111,6 @@ export default class EventDetails extends Component {
         axios.post('http://localhost:8080/events/' + eventId + '/participate', {
             answer: "coming"
         }).then(res => {
-                console.log(this.answer)
             }
         )
             .catch(function (error) {
@@ -121,7 +124,6 @@ export default class EventDetails extends Component {
         axios.post('http://localhost:8080/events/' + eventId + '/participate', {
             answer: "not coming"
         }).then(res => {
-                console.log(this.answer)
             }
         )
             .catch(function (error) {
@@ -135,7 +137,6 @@ export default class EventDetails extends Component {
         axios.post('http://localhost:8080/events/' + eventId + '/participate', {
             answer: "maybe"
         }).then(res => {
-                console.log(this.answer)
             }
         )
             .catch(function (error) {
@@ -143,7 +144,7 @@ export default class EventDetails extends Component {
             });
     }
 
-    logout(e) {
+    logout() {
         localStorage.clear();
     }
 
@@ -233,24 +234,30 @@ export default class EventDetails extends Component {
                     <div className="card-body1">
 
                         <h4 className="event-category">Category: {this.state.event.category}</h4>
-                        <h4 className="event-date">Start date:{this.state.event.startdate} at o'clock</h4>
+                        <h4 className="event-date">Start date:{this.state.event.startdate}</h4>
                         <h4 className="event-date">End date: {this.state.event.enddate}</h4>
                         <h4 className="event-location">Location: {this.state.event.location}</h4>
                         <h4 className="event-price">Price: {this.state.event.price}</h4>
                         <h4 className="event-description">Description: {this.state.event.description}</h4>
                         <h4 className="event-description">Organizer: {this.state.eventOrganizer.firstname} {this.state.eventOrganizer.lastname}</h4>
-                        <button type="submit" className="btn btn-success col-sm-2"
-                                onClick={this.handleOnComing.bind(this)}>
-                            Coming
-                        </button>
-                        <button type="submit" className="btn btn-danger col-sm-2"
-                                onClick={this.handleOnNotComing.bind(this)}>
-                            Not coming
-                        </button>
-                        <button type="submit" className="btn btn-warning col-sm-2"
-                                onClick={this.handleOnMaybeComing.bind(this)}>
-                            Maybe
-                        </button>
+
+                        {this.state.thisUserIsEventOrganiser ? <br />
+                            : <div className="participation-buttons">
+                                <button type="submit" className="btn btn-success col-md-4"
+                                        onClick={this.handleOnComing.bind(this)}>
+                                    Coming
+                                </button>
+                                <button type="submit" className="btn btn-danger col-md-4"
+                                        onClick={this.handleOnNotComing.bind(this)}>
+                                    Not coming
+                                </button>
+                                <button type="submit" className="btn btn-warning col-md-4"
+                                        onClick={this.handleOnMaybeComing.bind(this)}>
+                                    Maybe
+                                </button>
+                            </div>}
+
+
                     {/*</div>*/}
                     </div>
 

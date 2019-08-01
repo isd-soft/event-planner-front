@@ -41,8 +41,6 @@ class RegisterPage extends React.Component {
     handleErrorMessage = (message) => {
         this.setState({
             errorMessage: this.state.errorMessage + message
-        }, () => {
-            // console.log(errorMessage)
         })
     }
 
@@ -53,20 +51,15 @@ class RegisterPage extends React.Component {
         if (user.firstname && user.lastname && user.username && user.password && user.passwordConfirmation && user.email) {
             if (user.password === user.passwordConfirmation){
                 axios.post('http://localhost:8080/register', user).then(res => {
-                    console.log(res.status);
                      if (res.status === 200) {
                          swal("Good job!", "You are successfully registered!", "success");
                          this.props.history.push("/");
-                         console.log(res.status);
-                         console.log(res.statusText);
                      }
                 })
                     .catch(function (error) {
                         swal(error.response.data);
                         console.log(error.response.status);
                         console.log(error.response.data);
-                        // console.log(this);
-                       // console.log("in catch: " + errorMessage);
                     });
             } else {
                 swal("Oops!", "You are not registered!", "error");

@@ -51,8 +51,6 @@ export default class MyProfile extends Component {
         e.preventDefault();
         const {copyUser} = this.state;
 
-        console.log('State:'+this.state.user);
-
         axios.put('http://localhost:8080/user/' + id,copyUser
                 )
             .then(response => {

@@ -52,9 +52,7 @@ export default class Dashboard extends Component {
         axios.get(
             'http://localhost:8080/events'
         ).then(response => {
-            this.setState({events: response.data.content});
-            //console.log(username);
-            console.log(response)
+            this.setState({events: (response.data.content).reverse()});
         })
             .catch(error => {
                 console.log(error);
@@ -65,7 +63,6 @@ export default class Dashboard extends Component {
             'http://localhost:8080/user/' + id
         ).then(response => {
             this.setState({user: response.data});
-            console.log(response)
         })
             .catch(error => {
                 console.log(error);
@@ -89,8 +86,9 @@ export default class Dashboard extends Component {
 
         <a  href={"/eventdetails"} onClick = {() => this.handleClick(event.id)}><h5 className="event-title">{event.title}</h5></a>
         <h4 className="event-category">Category:{event.category}</h4>
-        <h4 className="event-date">Start date:{event.startdate.substring(0,10)} at {event.startdate.substring(11,16)} o'clock</h4>
-        <h4 className="event-date">End date:{event.enddate}</h4>
+            {/*<h4 className="event-date">Start date:{event.startdate.substring(0,10)} at {event.startdate.substring(11,16)} o'clock</h4>*/}
+            <h4 className="event-date">Start date: {new Date(event.startdate).toDateString()}{", " + event.startdate.substring(11,16)}</h4>
+            <h4 className="event-date">End date:{event.enddate}</h4>
 
         </div>
         </div>

@@ -10,7 +10,6 @@ export const ProtectedRoute = ({
         <Route
             {...rest}
             render={props => {
-                console.log(localStorage.getItem("jwtToken"))
                 if (localStorage.getItem("jwtToken")!=null) {
 
                     return <Component {...props} />;
