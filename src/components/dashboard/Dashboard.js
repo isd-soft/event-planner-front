@@ -3,7 +3,6 @@ import './dashboard.css';
 import logo from './face-0.png';
 import {Link} from "react-router-dom";
 import axios from 'axios'
-import Pagination from "react-js-pagination";
 require("bootstrap/less/bootstrap.less");
 
 export default class Dashboard extends Component {
@@ -16,7 +15,7 @@ export default class Dashboard extends Component {
             events: [],
             eventId:'',
             currentPage:1,
-            eventsPerPage: 10
+            eventsPerPage: 3
 
 
         }
@@ -80,12 +79,13 @@ export default class Dashboard extends Component {
 
     render() {
         const { events, currentPage, eventsPerPage } = this.state;
-// Logic for displaying todos
+
         const indexOfLastEvent = currentPage * eventsPerPage;
         const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
         const currentEvents = events.slice(indexOfFirstEvent, indexOfLastEvent);
 
         const renderEvents = currentEvents.map(event => (<li key={event.id}>
+
         <div className="card" href="#event1">
         <div className="card-body">
 
@@ -176,10 +176,8 @@ export default class Dashboard extends Component {
 
                             <p>
                                 <Link to={"/create"}>
-                                    {/*<a href="#">*/}
                                         <span><i className="fa fa-bar-chart"></i></span>
                                         <span className={"dashboard-text"}>CREATE EVENT</span>
-                                    {/*</a>*/}
                                 </Link>
                             </p>
 
