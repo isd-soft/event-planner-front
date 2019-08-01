@@ -20,9 +20,8 @@ export default class NewEvent extends Component {
             startdate: null,
             enddate: null,
             price: "",
-            location: "",
-            // participants: "",
-            // organizers: ""
+            location: ""
+
         }
     }
 

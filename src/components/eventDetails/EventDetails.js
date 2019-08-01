@@ -107,7 +107,7 @@ export default class EventDetails extends Component {
     }
 
     handleEditEvent() {
-        this.props.history.push("/edit");
+        this.props.history.push("/editevent");
     }
 
     handleDeleteEvent() {
@@ -253,6 +253,7 @@ export default class EventDetails extends Component {
                                     <span className={"dashboard-text"}>CREATE EVENT</span>
                                 </Link>
                             </p>
+
                         </ul>
                     </nav>
                 </div>
