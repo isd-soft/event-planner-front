@@ -15,7 +15,7 @@ export default class Dashboard extends Component {
             events: [],
             eventId:'',
             currentPage:1,
-            eventsPerPage: 3
+            eventsPerPage: 2
 
 
         }
@@ -23,10 +23,7 @@ export default class Dashboard extends Component {
 
     }
 
-    handlePageChange(pageNumber) {
-        console.log(`active page is ${pageNumber}`);
-        this.setState({activePage: pageNumber});
-    }
+
 
     handleClick(value) {
         localStorage.setItem("eventId", value);
@@ -35,6 +32,7 @@ export default class Dashboard extends Component {
     handleClick1(event) {
         this.setState({
             currentPage: Number(event.target.id)
+
         });
     }
     componentDidMount() {
@@ -94,7 +92,6 @@ export default class Dashboard extends Component {
         <h4 className="event-date">Start date:{event.startdate.substring(0,10)} at {event.startdate.substring(11,16)} o'clock</h4>
         <h4 className="event-date">End date:{event.enddate}</h4>
 
-        {/*<a href="#" className="btn btn-primary">Participate:{event.participants}</a>*/}
         </div>
         </div>
         </li>))
@@ -108,13 +105,15 @@ export default class Dashboard extends Component {
 
         const renderPageNumbers = pageNumbers.map(number => {
             return (
-                <li
+                <button
+                    className="btn"
+
                     key={number}
                     id={number}
                     onClick={this.handleClick1}
                 >
                     {number}
-                </li>
+                </button>
             );
         });
         return (
@@ -220,9 +219,17 @@ export default class Dashboard extends Component {
                     <ul>
                         {renderEvents}
                     </ul>
-                    <ul id="page-numbers">
-                        {renderPageNumbers}
-                    </ul>
+
+                    <div className="pagination" id={"myDIV"}>
+                        <button className={"btn"}  cl>&laquo;</button>
+                                                   {renderPageNumbers}
+
+                        <button className={"btn"}>&raquo;</button>
+                    </div>
+
+                    {/*<ul id="page-numbers">*/}
+                        {/*{renderPageNumbers}*/}
+                    {/*</ul>*/}
                 </div>
 
             </div>

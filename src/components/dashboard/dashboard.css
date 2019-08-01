@@ -410,17 +410,60 @@ body {
 }
 
 
-#page-numbers {
-    padding-left: 200px;
-    list-style: none;
-    display: flex;
+/*.page-numbers {*/
+    /*padding-left: 200px;*/
+    /*list-style: none;*/
+    /*display: flex;*/
+/*}*/
+
+/*.page-numbers > li {*/
+    /*margin-top: 100px;*/
+    /*margin-left: 20px;*/
+    /*color: blue;*/
+    /*user-select: none;*/
+    /*cursor: pointer;*/
+    /*background-color: yellow;*/
+/*}*/
+.pagination {
+    display: inline-block;
+    margin-left:300px;
+    /*background-color: skyblue;*/
+
 }
 
-#page-numbers > li {
-    margin-top: 100px;
-    margin-left: 20px;
-    color: blue;
-    user-select: none;
+.pagination a {
+    color: black;
+    float: left;
+    padding: 5px 16px;
+    text-decoration: none;
+    /*background-color: skyblue;*/
+
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+    background-color:#4CAF50;
+    border-radius: 5px;
+}
+
+
+
+.btn {
+    border: none;
+    outline: none;
+    padding: 10px 16px;
+    background-color: #f1f1f1;
     cursor: pointer;
-    background-color: yellow;
+    font-size: 18px;
+}
+
+/* Style the active class, and buttons on mouse-over */
+.active, .btn:hover {
+    background-color: #666;
+    color: white;
 }
