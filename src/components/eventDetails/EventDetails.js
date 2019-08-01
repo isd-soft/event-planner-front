@@ -66,38 +66,39 @@ export default class EventDetails extends Component {
                 console.log(error);
             });
 
-        //get data about COMING participants
-        axios.get(
-            'http://localhost:8080/events/'+eventId+'/participants',{answer:"coming"}
-        ).then(response => {
-            this.setState({comings: response.data});
-            console.log(response)
-        })
-            .catch(error => {
+        // GET LIST OF COMING USERS
+        axios.post('http://localhost:8080/events/' + eventId + '/participants', {
+            answer: "coming"
+        }).then(res => {
+            this.setState({coming: res.data} );
+            }
+        )
+            .catch(function (error) {
                 console.log(error);
             });
 
-        // //get data about MAYBE coming participants
-        // axios.get(
-        //     'http://localhost:8080/'
-        // ).then(response => {
-        //     this.setState({coming: response.data.content});
-        //     console.log(response)
-        // })
-        //     .catch(error => {
-        //         console.log(error);
-        //     });
-        //
-        // //get data about NOT COMING participants
-        // axios.get(
-        //     'http://localhost:8080/'
-        // ).then(response => {
-        //     this.setState({notComing: response.data.content});
-        //     console.log(response)
-        // })
-        //     .catch(error => {
-        //         console.log(error);
-        //     });
+        // GET LIST OF NOT COMING USERS
+        axios.post('http://localhost:8080/events/' + eventId + '/participants', {
+            answer: "not coming"
+        }).then(res => {
+                this.setState({notComing: res.data} );
+            }
+        )
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        // GET LIST OF MAYBE COMING USERS
+        axios.post('http://localhost:8080/events/' + eventId + '/participants', {
+            answer: "maybe"
+        }).then(res => {
+                this.setState({maybe: res.data} );
+            }
+        )
+            .catch(function (error) {
+                console.log(error);
+            });
+
     }
 
     handleOnComing() {
@@ -206,10 +207,8 @@ export default class EventDetails extends Component {
 
                             <p>
                                 <Link to={"/myevents"}>
-                                    {/*<a href="#">*/}
                                     <span><i className="fa fa-bar-chart"></i></span>
                                     <span className={"dashboard-text"}> MY EVENTS</span>
-                                    {/*</a>*/}
                                 </Link>
                             </p>
                             <br></br>
@@ -217,10 +216,8 @@ export default class EventDetails extends Component {
 
                             <p>
                                 <Link to={"/create"}>
-                                    {/*<a href="#">*/}
                                     <span><i className="fa fa-bar-chart"></i></span>
                                     <span className={"dashboard-text"}>CREATE EVENT</span>
-                                    {/*</a>*/}
                                 </Link>
                             </p>
                         </ul>
@@ -235,7 +232,6 @@ export default class EventDetails extends Component {
 
                     <div className="card-body1">
 
-                        {/*<a><h5 className="event-title">{this.state.event.title}</h5></a>*/}
                         <h4 className="event-category">Category: {this.state.event.category}</h4>
                         <h4 className="event-date">Start date:{this.state.event.startdate} at o'clock</h4>
                         <h4 className="event-date">End date: {this.state.event.enddate}</h4>
@@ -264,29 +260,26 @@ export default class EventDetails extends Component {
                         <div class="card-att">
                             <div class="card-header">COMING</div>
                             <div class="card-body-att">
-                                    {/*{this.state.comings.map(coming => (<li key={coming.id}>*/}
-                                        {/*<h5>{this.coming.userId}</h5>*/}
-                                    {/*</li>*/}
-                                    {/*))}*/}
+                                {this.state.coming.map(user => (
+                                        <h4 className="coming-user">{user.firstname} {user.lastname}</h4>
+                                ))}
                             </div>
                         </div>
 
                         <div class="card-att">
                             <div class="card-header">MAYBE</div>
                             <div class="card-body-att">
-                                {/*{this.state.maybes.map(maybe => (<li key={maybe.id}>*/}
-                                        {/*<h5>{this.coming.userId}</h5>*/}
-                                    {/*</li>*/}
-                                {/*))}*/}
+                                {this.state.maybe.map(user => (
+                                    <h4 className="maybe-coming-user">{user.firstname} {user.lastname}</h4>
+                                ))}
                             </div>
                         </div>
                         <div className="card-att">
                             <div className="card-header">NOT COMING</div>
                             <div className="card-body-att">
-                                {/*{this.state.notComings.map(notComing => (<li key={notComing.id}>*/}
-                                        {/*<h5>{this.coming.userId}</h5>*/}
-                                    {/*</li>*/}
-                                {/*))}                       */}
+                                {this.state.notComing.map(user => (
+                                    <h4 className="not-coming-user">{user.firstname} {user.lastname}</h4>
+                                ))}
                             </div>
                         </div>
 

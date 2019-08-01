@@ -195,8 +195,8 @@ export default class NewEvent extends Component {
                                 <FormGroup controlId="Description">
                                     <div className="col-sm-5">
                                         <ControlLabel>Description</ControlLabel>
-                                        <FormControl type="text" name="description" placeholder="Description"
-                                                     value={description} onChange={this.changeHandle}/>
+                                        <textarea className="form-control" rows="5" id="comment" name="description" placeholder="Description"
+                                                  value={description} onChange={this.changeHandle}></textarea>
                                     </div>
                                 </FormGroup>
 
@@ -237,11 +237,9 @@ export default class NewEvent extends Component {
                                     </div>
                                 </FormGroup>
 
-                                <FormGroup controlId="submitButton">
-                                    <div>
+
                                         <button type="submit" href="/dashboard" className="btn btn-primary">Create</button>
-                                    </div>
-                                </FormGroup>
+
                     </form>
 
                 </div>
