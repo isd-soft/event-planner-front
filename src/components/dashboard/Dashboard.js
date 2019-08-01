@@ -106,7 +106,7 @@ export default class Dashboard extends Component {
         const renderPageNumbers = pageNumbers.map(number => {
             return (
                 <button
-                    className="btn"
+                    className="btn1"
 
                     key={number}
                     id={number}
@@ -221,10 +221,10 @@ export default class Dashboard extends Component {
                     </ul>
 
                     <div className="pagination" id={"myDIV"}>
-                        <button className={"btn"}  cl>&laquo;</button>
+                        <button className={"btn1"}  cl>&laquo;</button>
                                                    {renderPageNumbers}
 
-                        <button className={"btn"}>&raquo;</button>
+                        <button className={"btn1"}>&raquo;</button>
                     </div>
 
                     {/*<ul id="page-numbers">*/}

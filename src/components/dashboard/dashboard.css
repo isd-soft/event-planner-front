@@ -453,7 +453,7 @@ body {
 
 
 
-.btn {
+.btn1 {
     border: none;
     outline: none;
     padding: 10px 16px;
@@ -463,7 +463,7 @@ body {
 }
 
 /* Style the active class, and buttons on mouse-over */
-.active, .btn:hover {
+.active, .btn1:hover {
     background-color: #666;
     color: white;
 }

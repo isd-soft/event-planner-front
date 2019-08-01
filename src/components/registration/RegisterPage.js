@@ -55,7 +55,7 @@ class RegisterPage extends React.Component {
                 axios.post('http://localhost:8080/register', user).then(res => {
                     console.log(res.status);
                      if (res.status === 200) {
-                         swal("Registration successful")
+                         swal("Good job!", "You are successfully registered!", "success");
                          this.props.history.push("/");
                          console.log(res.status);
                          console.log(res.statusText);
@@ -69,7 +69,7 @@ class RegisterPage extends React.Component {
                        // console.log("in catch: " + errorMessage);
                     });
             } else {
-                swal("Passwords doesn't match!");
+                swal("Oops!", "You are not registered!", "error");
             }
         }
 

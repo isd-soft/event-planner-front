@@ -5,6 +5,7 @@ import {Route, Link} from "react-router-dom";
 import {ControlLabel, FormControl, FormGroup} from "react-bootstrap";
 import {isContainWhiteSpace, isEmail, isEmpty, isLength} from 'shared/validator';
 import axios from 'axios';
+import swal from "sweetalert";
 
 
 export default class MyProfile extends Component {
@@ -54,7 +55,14 @@ export default class MyProfile extends Component {
 
         axios.put('http://localhost:8080/user/' + id,copyUser
                 )
-            .then(res => console.log(res.data));
+            .then(response => {
+                swal("Good job!", "Your profile details were updated!", "success");
+
+            })
+            .catch(error => {
+                swal("Oops!", "Your profile details were not updated!", "error");
+
+            })
     }
 
     componentDidMount() {
