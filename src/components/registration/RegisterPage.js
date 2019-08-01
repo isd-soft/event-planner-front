@@ -57,12 +57,10 @@ class RegisterPage extends React.Component {
                      }
                 })
                     .catch(function (error) {
-                        swal(error.response.data);
+                        swal("Error!", error.response.data, "error");
                         console.log(error.response.status);
                         console.log(error.response.data);
                     });
-            } else {
-                swal("Oops!", "You are not registered!", "error");
             }
         }
 

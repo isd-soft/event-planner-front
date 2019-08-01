@@ -265,7 +265,10 @@ export default class EventDetails extends Component {
 
                     <div className="card-body1">
                         <div className="event-title">{this.state.event.title}</div>
-                        <h4 className="event-category">Category: {this.state.event.category}</h4>
+                        {this.state.event.category ?
+                            <h4 className="event-category">Category: {this.state.event.category}</h4>
+                            : ""
+                        }
                         <h4 className="event-date">Start date:{this.state.event.startdate}</h4>
                         <h4 className="event-date">End date: {this.state.event.enddate}</h4>
                         <h4 className="event-location">Location: {this.state.event.location}</h4>

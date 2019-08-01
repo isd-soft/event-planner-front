@@ -68,9 +68,13 @@ export default class Dashboard extends Component {
                 console.log(error);
             });
     }
+
+
+
     logout(e){
         localStorage.clear()
-}
+    }
+
 
     render() {
         const { events, currentPage, eventsPerPage } = this.state;
@@ -80,19 +84,26 @@ export default class Dashboard extends Component {
         const currentEvents = events.slice(indexOfFirstEvent, indexOfLastEvent);
 
         const renderEvents = currentEvents.map(event => (<li key={event.id}>
-
         <div className="card" href="#event1">
         <div className="card-body">
 
-        <a  href={"/eventdetails"} onClick = {() => this.handleClick(event.id)}><h5 className="event-title">{event.title}</h5></a>
-        <h4 className="event-category">Category:{event.category}</h4>
-            {/*<h4 className="event-date">Start date:{event.startdate.substring(0,10)} at {event.startdate.substring(11,16)} o'clock</h4>*/}
+        <a href={"/eventdetails"} onClick = {() => this.handleClick(event.id)}><h5 className="event-title">{event.title}</h5></a>
+            {event.category ?
+                <h4 className="event-category">Category:{event.category}</h4>
+                :
+                ""
+            }
+
             <h4 className="event-date">Start date: {new Date(event.startdate).toDateString()}{", " + event.startdate.substring(11,16)}</h4>
-            <h4 className="event-date">End date:{event.enddate}</h4>
+            {event.enddate ?
+                <h4 className="event-date">End date: {new Date(event.enddate).toDateString() + ", " + event.enddate.substring(11,16)}
+                </h4> : ""
+            }
 
         </div>
         </div>
         </li>))
+
 
 
         // Logic for displaying page numbers
