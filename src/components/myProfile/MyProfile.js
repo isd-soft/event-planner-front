@@ -180,7 +180,7 @@ export default class MyProfile extends Component {
                     </nav>
                 </div>
                 <div>
-                    <label className={"title"}>MY PROFILE</label>
+                    <label className="top-label">MY PROFILE</label>
                 </div>
                 <div className="profile-card2" href="#profile">
 

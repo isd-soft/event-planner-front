@@ -207,7 +207,7 @@ export default class EditEvent extends Component {
                     </nav>
                 </div>
                 <div>
-                    <label className={"title"}>EDIT EVENT</label>
+                    <label className="top-label">EDIT EVENT</label>
                 </div>
                 <div className={"card-event"}>
                     <div className="card-new-event">

@@ -203,7 +203,7 @@ export default class MyEvents extends Component {
                     </nav>
                 </div>
                 <div>
-                    <label className={"title"}>MY EVENTS</label>
+                    <label className="top-label">MY EVENTS</label>
                 </div>
                 <div>
                     <ul>

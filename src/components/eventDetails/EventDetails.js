@@ -44,7 +44,7 @@ export default class EventDetails extends Component {
         ).then(response => {
             this.setState({event: response.data});
             let organiserId = response.data.userId;
-            if (id != organiserId){
+            if (id != organiserId) {
                 this.setState({thisUserIsEventOrganiser: false})
             }
             axios.get(
@@ -75,7 +75,7 @@ export default class EventDetails extends Component {
         axios.post('http://localhost:8080/events/' + eventId + '/participants', {
             answer: "coming"
         }).then(res => {
-            this.setState({coming: res.data} );
+                this.setState({coming: res.data});
             }
         )
             .catch(function (error) {
@@ -86,7 +86,7 @@ export default class EventDetails extends Component {
         axios.post('http://localhost:8080/events/' + eventId + '/participants', {
             answer: "not coming"
         }).then(res => {
-                this.setState({notComing: res.data} );
+                this.setState({notComing: res.data});
             }
         )
             .catch(function (error) {
@@ -97,14 +97,12 @@ export default class EventDetails extends Component {
         axios.post('http://localhost:8080/events/' + eventId + '/participants', {
             answer: "maybe"
         }).then(res => {
-                this.setState({maybe: res.data} );
-
+                this.setState({maybe: res.data});
             }
         )
             .catch(function (error) {
                 console.log(error);
             });
-
 
     }
 
@@ -125,10 +123,10 @@ export default class EventDetails extends Component {
 
                     let eventId = localStorage.getItem('eventId');
                     axios.delete('http://localhost:8080/events/' + eventId).then(res => {
-                        swal("Event has been deleted!", {
-                            icon: "success",
-                        });
-                        this.props.history.push("/dashboard");
+                            swal("Event has been deleted!", {
+                                icon: "success",
+                            });
+                            this.props.history.push("/dashboard");
                         }
                     )
                         .catch(function (error) {
@@ -145,7 +143,6 @@ export default class EventDetails extends Component {
         axios.post('http://localhost:8080/events/' + eventId + '/participate', {
             answer: "coming"
         }).then(res => {
-
             }
         )
             .catch(function (error) {
@@ -194,7 +191,7 @@ export default class EventDetails extends Component {
                 <div className="header">
                     <Link to={"/"}>
                         <a>
-                            <button className={"logOutButton"} onClick={this.logout  }>Log out</button>
+                            <button className={"logOutButton"} onClick={this.logout}>Log out</button>
                         </a>
                     </Link>
                 </div>
@@ -264,7 +261,7 @@ export default class EventDetails extends Component {
                     </nav>
                 </div>
                 <div>
-                    <label className={"title"}>EVENT DETAILS</label>
+                    <label className="top-label">EVENT DETAILS</label>
                 </div>
 
                 <div className="card1" href="#event1">
@@ -316,7 +313,7 @@ export default class EventDetails extends Component {
                             <div class="card-header">COMING</div>
                             <div class="card-body-att">
                                 {this.state.coming.map(user => (
-                                        <h4 className="coming-user">{user.firstname} {user.lastname}</h4>
+                                    <h4 className="coming-user">{user.firstname} {user.lastname}</h4>
                                 ))}
                             </div>
                         </div>

@@ -15,6 +15,15 @@
     font-size: 15px;
 }
 
+.top-label {
+    font-size: 2rem;
+    margin: 80px 0px 0px 300px;
+    display: inline-block;
+    padding: 5px;
+    background-color: navajowhite;
+    border-radius: 10px;
+}
+
 body {
     margin: 0;
     paddin: 0;

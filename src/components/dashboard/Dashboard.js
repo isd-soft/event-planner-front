@@ -3,6 +3,7 @@ import './dashboard.css';
 import logo from './face-0.png';
 import {Link} from "react-router-dom";
 import axios from 'axios'
+
 require("bootstrap/less/bootstrap.less");
 
 export default class Dashboard extends Component {
@@ -11,10 +12,10 @@ export default class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user:{},
+            user: {},
             events: [],
-            eventId:'',
-            currentPage:1,
+            eventId: '',
+            currentPage: 1,
             eventsPerPage: 2
 
 
@@ -24,17 +25,18 @@ export default class Dashboard extends Component {
     }
 
 
-
     handleClick(value) {
         localStorage.setItem("eventId", value);
 
     }
+
     handleClick1(event) {
         this.setState({
             currentPage: Number(event.target.id)
 
         });
     }
+
     componentDidMount() {
 
         axios.interceptors.request.use((config) => {
@@ -58,7 +60,7 @@ export default class Dashboard extends Component {
                 console.log(error);
             });
 
-        let id=localStorage.getItem('id');
+        let id = localStorage.getItem('id');
         axios.get(
             'http://localhost:8080/user/' + id
         ).then(response => {
@@ -70,40 +72,41 @@ export default class Dashboard extends Component {
     }
 
 
-
-    logout(e){
+    logout(e) {
         localStorage.clear()
     }
 
 
     render() {
-        const { events, currentPage, eventsPerPage } = this.state;
+        const {events, currentPage, eventsPerPage} = this.state;
 
         const indexOfLastEvent = currentPage * eventsPerPage;
         const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
         const currentEvents = events.slice(indexOfFirstEvent, indexOfLastEvent);
 
         const renderEvents = currentEvents.map(event => (<li key={event.id}>
-        <div className="card" href="#event1">
-        <div className="card-body">
+            <div className="card" href="#event1">
+                <div className="card-body">
 
-        <a href={"/eventdetails"} onClick = {() => this.handleClick(event.id)}><h5 className="event-title">{event.title}</h5></a>
-            {event.category ?
-                <h4 className="event-category">Category:{event.category}</h4>
-                :
-                ""
-            }
+                    <a href={"/eventdetails"} onClick={() => this.handleClick(event.id)}><h5
+                        className="event-title">{event.title}</h5></a>
+                    {event.category ?
+                        <h4 className="event-category">Category:{event.category}</h4>
+                        :
+                        ""
+                    }
 
-            <h4 className="event-date">Start date: {new Date(event.startdate).toDateString()}{", " + event.startdate.substring(11,16)}</h4>
-            {event.enddate ?
-                <h4 className="event-date">End date: {new Date(event.enddate).toDateString() + ", " + event.enddate.substring(11,16)}
-                </h4> : ""
-            }
+                    <h4 className="event-date">Start
+                        date: {new Date(event.startdate).toDateString()}{", " + event.startdate.substring(11, 16)}</h4>
+                    {event.enddate ?
+                        <h4 className="event-date">End
+                            date: {new Date(event.enddate).toDateString() + ", " + event.enddate.substring(11, 16)}
+                        </h4> : ""
+                    }
 
-        </div>
-        </div>
+                </div>
+            </div>
         </li>))
-
 
 
         // Logic for displaying page numbers
@@ -184,8 +187,8 @@ export default class Dashboard extends Component {
 
                             <p>
                                 <Link to={"/create"}>
-                                        <span><i className="fa fa-bar-chart"></i></span>
-                                        <span className={"dashboard-text"}>CREATE EVENT</span>
+                                    <span><i className="fa fa-bar-chart"></i></span>
+                                    <span className={"dashboard-text"}>CREATE EVENT</span>
                                 </Link>
                             </p>
 
@@ -194,8 +197,8 @@ export default class Dashboard extends Component {
                             <p>
                                 <Link to={"/myevents"}>
                                     {/*<a href="#">*/}
-                                        <span><i className="fa fa-bar-chart"></i></span>
-                                        <span className={"dashboard-text"}> MY EVENTS</span>
+                                    <span><i className="fa fa-bar-chart"></i></span>
+                                    <span className={"dashboard-text"}> MY EVENTS</span>
                                     {/*</a>*/}
                                 </Link>
                             </p>
@@ -204,23 +207,23 @@ export default class Dashboard extends Component {
                     </nav>
                 </div>
                 <div>
-                    <label className={"title"}>THE LIST OF EVENTS</label>
+                    <label className="top-label">THE LIST OF EVENTS</label>
                 </div>
                 {/*<li>*/}
 
-                    {/*{this.state.events.map(event => (<li key={event.id}>*/}
-                        {/*<div className="card" href="#event1">*/}
-                            {/*<div className="card-body">*/}
+                {/*{this.state.events.map(event => (<li key={event.id}>*/}
+                {/*<div className="card" href="#event1">*/}
+                {/*<div className="card-body">*/}
 
-                                {/*<a  href={"/eventdetails"} onClick = {() => this.handleClick(event.id)}><h5 className="event-title">{event.title}</h5></a>*/}
-                                {/*<h4 className="event-category">Category:{event.category}</h4>*/}
-                                {/*<h4 className="event-date">Start date:{event.startdate.substring(0,10)} at {event.startdate.substring(11,16)} o'clock</h4>*/}
-                                {/*<h4 className="event-date">End date:{event.enddate}</h4>*/}
+                {/*<a  href={"/eventdetails"} onClick = {() => this.handleClick(event.id)}><h5 className="event-title">{event.title}</h5></a>*/}
+                {/*<h4 className="event-category">Category:{event.category}</h4>*/}
+                {/*<h4 className="event-date">Start date:{event.startdate.substring(0,10)} at {event.startdate.substring(11,16)} o'clock</h4>*/}
+                {/*<h4 className="event-date">End date:{event.enddate}</h4>*/}
 
-                                {/*/!*<a href="#" className="btn btn-primary">Participate:{event.participants}</a>*!/*/}
-                            {/*</div>*/}
-                        {/*</div>*/}
-                    {/*</li>))}*/}
+                {/*/!*<a href="#" className="btn btn-primary">Participate:{event.participants}</a>*!/*/}
+                {/*</div>*/}
+                {/*</div>*/}
+                {/*</li>))}*/}
 
                 {/*</li>*/}
 
@@ -230,8 +233,8 @@ export default class Dashboard extends Component {
                     </ul>
 
                     <div className="pagination" id={"myDIV"}>
-                        <button className={"btn1"}  >&laquo;</button>
-                                                   {renderPageNumbers}
+                        <button className={"btn1"}>&laquo;</button>
+                        {renderPageNumbers}
 
                         <button className={"btn1"}>&raquo;</button>
                     </div>

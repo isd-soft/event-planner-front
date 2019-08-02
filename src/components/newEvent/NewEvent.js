@@ -176,7 +176,7 @@ export default class NewEvent extends Component {
                     </nav>
                 </div>
                 <div>
-                    <label className={"title"}>CREATE EVENT</label>
+                    <label className="top-label">CREATE EVENT</label>
                 </div>
                 <div className={"card-event"}>
                 <div className="card-new-event">
