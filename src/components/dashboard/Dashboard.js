@@ -80,7 +80,7 @@ export default class Dashboard extends Component {
     }
 
 
-    logout(e) {
+    logout() {
         localStorage.clear()
     }
 
@@ -101,11 +101,15 @@ export default class Dashboard extends Component {
 
                         <a href={"/eventdetails"} onClick={() => this.handleClick(event.id)}><h5
                             className="event-title">{event.title}</h5></a>
-                        <h4 className="event-category">Category:{event.category}</h4>
-                        {/*<h4 className="event-date">Start date:{event.startdate.substring(0,10)} at {event.startdate.substring(11,16)} o'clock</h4>*/}
-                        {/*<h4 className="event-date">Start date: {new Date(event.startdate).toDateString()}{", " + event.startdate.substring(11,16)}</h4>*/}
-                        <h4 className="event-date">End date:{event.enddate}</h4>
-
+                        {event.category ?
+                            <h4 className="event-category">Category: {event.category}</h4>
+                            : ""
+                        }
+                        <h4 className="event-date">Start date: {new Date(event.startdate).toUTCString()}</h4>
+                        {event.enddate ?
+                            <h4 className="event-date">End date: {new Date(event.enddate).toUTCString()}</h4>
+                            : ""
+                        }
                     </div>
                 </div>
             )
@@ -164,7 +168,6 @@ export default class Dashboard extends Component {
                 </div>
                 <div className="side-nav">
                     <div className="author">
-                        {/*<h4 className={"nameOfCompany"}>ISD Events</h4>*/}
                         <div className="logo">
                             <a
                                 className="simple-text logo-mini"
@@ -220,10 +223,8 @@ export default class Dashboard extends Component {
 
                             <p>
                                 <Link to={"/myevents"}>
-                                    {/*<a href="#">*/}
                                     <span><i className="fa fa-bar-chart"></i></span>
                                     <span className={"dashboard-text"}> MY EVENTS</span>
-                                    {/*</a>*/}
                                 </Link>
                             </p>
 
