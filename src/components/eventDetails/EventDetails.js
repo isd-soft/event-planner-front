@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import './eventDetails.css';
 import logo from './face-0.png';
-import {Route, Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 import axios from 'axios';
 import swal from 'sweetalert';
 
@@ -139,6 +139,7 @@ export default class EventDetails extends Component {
 
     handleOnComing() {
         let id = localStorage.getItem('id');
+        6;
         let eventId = localStorage.getItem('eventId');
         axios.post('http://localhost:8080/events/' + eventId + '/participate', {
             answer: "coming"
