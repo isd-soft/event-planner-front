@@ -98,11 +98,13 @@ export default class EventDetails extends Component {
             answer: "maybe"
         }).then(res => {
                 this.setState({maybe: res.data} );
+
             }
         )
             .catch(function (error) {
                 console.log(error);
             });
+
 
     }
 
@@ -143,11 +145,13 @@ export default class EventDetails extends Component {
         axios.post('http://localhost:8080/events/' + eventId + '/participate', {
             answer: "coming"
         }).then(res => {
+
             }
         )
             .catch(function (error) {
                 console.log(error);
             });
+        window.location.reload();
     }
 
     handleOnNotComing() {
@@ -161,6 +165,7 @@ export default class EventDetails extends Component {
             .catch(function (error) {
                 console.log(error);
             });
+        window.location.reload();
     }
 
     handleOnMaybeComing() {
@@ -174,6 +179,7 @@ export default class EventDetails extends Component {
             .catch(function (error) {
                 console.log(error);
             });
+        window.location.reload();
     }
 
     logout() {
@@ -188,7 +194,7 @@ export default class EventDetails extends Component {
                 <div className="header">
                     <Link to={"/"}>
                         <a>
-                            <button className={"logOutButton"} onClick={this.logout}>Log out</button>
+                            <button className={"logOutButton"} onClick={this.logout  }>Log out</button>
                         </a>
                     </Link>
                 </div>
