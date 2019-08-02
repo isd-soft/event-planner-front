@@ -17,8 +17,6 @@ export default class EditEvent extends Component {
                 firstname: '',
                 lastname: ''
             },
-            // events:[],
-            // copyEvents:[]
             event: {
                 title: null,
                 description: "",
@@ -92,11 +90,8 @@ export default class EditEvent extends Component {
             'http://localhost:8080/events/' + eventId
         ).then(response => {
             this.setState({event: response.data});
-            console.log(response.data);
         })
-            .catch(error => {
-                console.log(error);
-            });
+
 
         axios.get(
             'http://localhost:8080/events/' + eventId
@@ -104,7 +99,6 @@ export default class EditEvent extends Component {
             this.setState({copyEvent: response.data});
         })
             .catch(error => {
-                console.log(error);
             });
 
 
@@ -115,9 +109,6 @@ export default class EditEvent extends Component {
         ).then(response => {
             this.setState({user: response.data});
         })
-            .catch(error => {
-                console.log(error);
-            });
 
     }
 

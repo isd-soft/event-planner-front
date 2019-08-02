@@ -15,13 +15,14 @@ export default class MyEvents extends Component {
             events: [],
             eventId:'',
             currentPage:1,
-            eventsPerPage: 2
+            eventsPerPage: 10
 
 
         }
-        this.handleClick1 = this.handleClick1.bind(this);
+        this.handlePages = this.handlePages.bind(this);
 
     }
+
 
 
     handleClick(value) {
@@ -29,12 +30,22 @@ export default class MyEvents extends Component {
 
     }
 
-    handleClick1(event) {
+    handlePages = (e) => {
         this.setState({
-            currentPage: Number(event.target.id)
+            currentPage: Number(e.target.id)
 
         });
     }
+
+
+    handleNext = () => {
+        this.state.currentPage === 417 ? this.setState({currentPage: 1}) : this.setState({currentPage: this.state.currentPage + 1})
+    };
+
+    handleBack = () => {
+        this.state.currentPage === 1 ? this.setState({currentPage: 417}) : this.setState({currentPage: this.state.currentPage - 1})
+    };
+
 
     componentDidMount() {
 
@@ -82,46 +93,71 @@ export default class MyEvents extends Component {
     }
 
     render() {
-        const { events, currentPage, eventsPerPage } = this.state;
+        const left = '<';
+        const right = '>';
+        const {currentPage, eventsPerPage, events} = this.state;
+        const lastPage = currentPage * eventsPerPage;
+        const firstPage = lastPage - eventsPerPage;
 
-        const indexOfLastEvent = currentPage * eventsPerPage;
-        const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
-        const currentEvents = events.slice(indexOfFirstEvent, indexOfLastEvent);
+        const renderEvents = events.slice(firstPage, lastPage).map((event) => {
+            return (
 
-        const renderEvents = currentEvents.map(event => (<li key={event.id}>
+                <div className="card" href="#event1">
+                    <div className="card-body">
 
-            <div className="card" href="#event1">
-                <div className="card-body">
+                        <a href={"/eventdetails"} onClick={() => this.handleClick(event.id)}><h5
+                            className="event-title">{event.title}</h5></a>
+                        <h4 className="event-category">Category:{event.category}</h4>
+                        {/*<h4 className="event-date">Start date:{event.startdate.substring(0,10)} at {event.startdate.substring(11,16)} o'clock</h4>*/}
+                        {/*<h4 className="event-date">Start date: {new Date(event.startdate).toDateString()}{", " + event.startdate.substring(11,16)}</h4>*/}
+                        <h4 className="event-date">End date:{event.enddate}</h4>
 
-                    <a  href={"/eventdetails"} onClick = {() => this.handleClick(event.id)}><h5 className="event-title">{event.title}</h5></a>
-                    <h4 className="event-category">Category:{event.category}</h4>
-                    <h4 className="event-date">Start date:{event.startdate.substring(0,10)} at {event.startdate.substring(11,16)} o'clock</h4>
-                    <h4 className="event-date">End date:{event.enddate}</h4>
-
+                    </div>
                 </div>
-            </div>
-        </li>))
+            )
+        });
 
 
-        // Logic for displaying page numbers
-        const pageNumbers = [];
-        for (let i = 1; i <= Math.ceil(events.length / eventsPerPage); i++) {
-            pageNumbers.push(i);
+        const numbers = [];
+        if (this.state.currentPage === 414) {
+            for (let i = this.state.currentPage - 1; i <= this.state.currentPage + 3; i++) {
+                numbers.push(i);
+            }
+        } else if (this.state.currentPage === 415) {
+            for (let i = this.state.currentPage - 2; i <= this.state.currentPage + 2; i++) {
+                numbers.push(i);
+            }
+        } else if (this.state.currentPage === 416) {
+            for (let i = this.state.currentPage - 3; i <= this.state.currentPage + 1; i++) {
+                numbers.push(i);
+            }
+        } else if (this.state.currentPage === 417) {
+            for (let i = this.state.currentPage - 4; i <= this.state.currentPage; i++) {
+                numbers.push(i);
+            }
+        } else if (this.state.currentPage >= 3) {
+            for (let i = this.state.currentPage - 2; i <= this.state.currentPage + 2; i++) {
+                numbers.push(i);
+            }
+        } else if (this.state.currentPage === 2) {
+            for (let i = this.state.currentPage - 1; i <= this.state.currentPage + 3; i++) {
+                numbers.push(i);
+            }
+        } else if (this.state.currentPage === 1) {
+            for (let i = this.state.currentPage; i <= this.state.currentPage + 4; i++) {
+                numbers.push(i);
+            }
         }
 
-        const renderPageNumbers = pageNumbers.map(number => {
+        const renderPagination = numbers.map(number => {
             return (
-                <button
-                    className="btn1"
-
-                    key={number}
-                    id={number}
-                    onClick={this.handleClick1}
-                >
+                <button className={(this.state.currentPage === number ? 'active' : '') + ' controls'} key={number}
+                        id={number} onClick={this.handlePages}>
                     {number}
                 </button>
             );
         });
+
         return (
 
             <div>
@@ -205,19 +241,22 @@ export default class MyEvents extends Component {
                 <div>
                     <label className="top-label">MY EVENTS</label>
                 </div>
+
                 <div>
                     <ul>
                         {renderEvents}
                     </ul>
 
-                    <div className="pagination" id={"myDIV"}>
-                        <button className={"btn1"}  >&laquo;</button>
-                        {renderPageNumbers}
-
-                        <button className={"btn1"}>&raquo;</button>
-                    </div>
 
                 </div>
+                <div className={"pagination"}>
+                    <ul>
+                        <button className="lt" onClick={this.handleBack}>{left}</button>
+                        {renderPagination}
+                        <button className="rt" onClick={this.handleNext}>{right}</button>
+                    </ul>
+                </div>
+
 
             </div>
 
