@@ -139,7 +139,6 @@ export default class EventDetails extends Component {
 
     handleOnComing() {
         let id = localStorage.getItem('id');
-        6;
         let eventId = localStorage.getItem('eventId');
         axios.post('http://localhost:8080/events/' + eventId + '/participate', {
             answer: "coming"

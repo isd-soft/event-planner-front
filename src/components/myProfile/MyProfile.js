@@ -1,9 +1,8 @@
 import React, {Component} from "react";
 import './myProfile.css';
 import logo from './face-0.png';
-import {Route, Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {ControlLabel, FormControl, FormGroup} from "react-bootstrap";
-import {isContainWhiteSpace, isEmail, isEmpty, isLength} from 'shared/validator';
 import axios from 'axios';
 import swal from "sweetalert";
 
@@ -112,7 +111,6 @@ export default class MyProfile extends Component {
                 </div>
                 <div className="side-nav">
                     <div className="author">
-                        {/*<h4 className={"nameOfCompany"}>ISD Events</h4>*/}
                         <div className="logo">
                             <a
                                 className="simple-text logo-mini"
@@ -220,7 +218,7 @@ export default class MyProfile extends Component {
                                     <div class="col-sm-5">
                                         <ControlLabel>Description</ControlLabel>
                                         <FormControl
-                                            placeholder={"Enter your description"}
+                                            placeholder={"Enter description"}
                                             type={"text"} name={"description"}
                                             onChange={this.handleChange}
                                             value={copyUser.description}/>
@@ -231,7 +229,7 @@ export default class MyProfile extends Component {
                                     <div class="col-sm-5">
                                         <ControlLabel>Phone Number</ControlLabel>
                                         <FormControl
-                                            placeholder={"Enter your description"}
+                                            placeholder={"Enter your phone number"}
                                             type={"text"} name={"phoneNumber"}
                                             onChange={this.handleChange}
                                             value={copyUser.phoneNumber}/>

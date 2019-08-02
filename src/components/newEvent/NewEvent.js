@@ -76,6 +76,11 @@ export default class NewEvent extends Component {
     submitHandler = e => {
         e.preventDefault()
 
+        if ((Date.parse(this.state.startdate) >= Date.parse(this.state.enddate))) {
+            swal("Error!", "End date should be greater than Start date", "error");
+            return;
+        }
+
         axios.post("http://localhost:8080/events", this.state)
             .then(response => {
                 swal("Good job!", "Event was created!", "success");
@@ -83,7 +88,6 @@ export default class NewEvent extends Component {
             })
             .catch(error => {
                 swal("Oops!", " The title and date are required!", "error");
-
             })
     }
 
@@ -186,7 +190,7 @@ export default class NewEvent extends Component {
                                     <div className="col-sm-5">
                                         <ControlLabel>* Title</ControlLabel>
                                         <FormControl type="text" name="title" placeholder="Event title"
-                                                     value={title} onChange={this.changeHandle}/>
+                                                     value={title} onChange={this.changeHandle} required/>
                                     </div>
                                 </FormGroup>
 
@@ -202,7 +206,7 @@ export default class NewEvent extends Component {
                                     <div className="col-sm-5">
                                         <ControlLabel>* Start Date</ControlLabel>
                                         <FormControl type="datetime-local" name="startdate" placeholder='Enter date'
-                                                     value={startdate} onChange={this.changeHandle}/>
+                                                     value={startdate} onChange={this.changeHandle} required/>
                                     </div>
                                     <div className="col-sm-5">
                                         <ControlLabel>End Date</ControlLabel>
