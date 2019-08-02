@@ -241,9 +241,10 @@ export default class MyProfile extends Component {
                                 <FormGroup controlId="phoneNumber">
                                     <div className="col-sm-5">
                                         <label htmlFor="sell">Gender</label>
-                                        <select className="form-control" id="sel1" name={"gender"}
+                                        <select required className="form-control" id="sel1" name={"gender"}
                                                 onChange={this.handleChange}
                                                 value={copyUser.gender}>
+                                            <option value="" disabled selected>Click to select</option>
                                             <option>Male</option>
                                             <option>Female</option>
                                         </select>
