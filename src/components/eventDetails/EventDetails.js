@@ -185,7 +185,8 @@ export default class EventDetails extends Component {
     }
 
     render() {
-        // const {event} = this.state;
+        // const {startDate} = this.state.event.startDate;
+        const {event} = this.state;
 
         return (
             <div>
@@ -198,7 +199,6 @@ export default class EventDetails extends Component {
                 </div>
                 <div className="side-nav">
                     <div className="author">
-                        {/*<h4 className={"nameOfCompany"}>ISD Events</h4>*/}
                         <div className="logo">
                             <a
                                 className="simple-text logo-mini"
@@ -273,11 +273,11 @@ export default class EventDetails extends Component {
                             <h4 className="event-category">Category: {this.state.event.category}</h4>
                             : ""
                         }
-                        <h4 className="event-date">Start date:{this.state.event.startdate}</h4>
-                        <h4 className="event-date">End date: {this.state.event.enddate}</h4>
-                        <h4 className="event-location">Location: {this.state.event.location}</h4>
-                        <h4 className="event-price">Price: {this.state.event.price}</h4>
-                        <h4 className="event-description">Description: {this.state.event.description}</h4>
+                        <h4 className="event-date">Start date: {new Date(event.startdate).toUTCString()} </h4>
+                        <h4 className="event-date">End date: {new Date(event.enddate).toUTCString()}</h4>
+                        <h4 className="event-location">Location: {event.location}</h4>
+                        <h4 className="event-price">Price: {event.price}</h4>
+                        <h4 className="event-description">Description: {event.description}</h4>
                         <h4 className="event-description">Organizer: {this.state.eventOrganizer.firstname} {this.state.eventOrganizer.lastname}</h4>
 
                         {this.state.thisUserIsEventOrganiser ?
