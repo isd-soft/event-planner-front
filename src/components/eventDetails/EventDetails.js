@@ -15,9 +15,9 @@ export default class EventDetails extends Component {
             eventOrganizer: {},
             event: {},
             answer: '',
-            coming:[],
-            maybe:[],
-            notComing:[],
+            coming: [],
+            maybe: [],
+            notComing: [],
             thisUserIsEventOrganiser: true
         };
     }
@@ -267,15 +267,16 @@ export default class EventDetails extends Component {
 
                     <div className="card-body1">
                         <div className="event-title">{this.state.event.title}</div>
-                        {this.state.event.category ?
-                            <h4 className="event-category">Category: {this.state.event.category}</h4>
-                            : ""
-                        }
-                        <h4 className="event-date">Start date: {new Date(event.startdate).toUTCString()} </h4>
-                        <h4 className="event-date">End date: {new Date(event.enddate).toUTCString()}</h4>
-                        <h4 className="event-location">Location: {event.location}</h4>
-                        <h4 className="event-price">Price: {event.price}</h4>
-                        <h4 className="event-description">Description: {event.description}</h4>
+                        {event.category ?
+                            <h4 className="event-category">Category: {this.state.event.category}</h4> : ""}
+                        <h4 className="event-date">Start
+                            date: {new Date(event.startdate).toUTCString().substring(0, 22)} </h4>
+                        <h4 className="event-date">End
+                            date: {new Date(event.enddate).toUTCString().substring(0, 22)}</h4>
+                        {event.location ? <h4 className="event-location">Location: {event.location}</h4> : ""}
+                        {event.price ? <h4 className="event-price">Price: {event.price}</h4> : ""}
+                        {event.description ?
+                            <h4 className="event-description">Description: {event.description}</h4> : ""}
                         <h4 className="event-description">Organizer: {this.state.eventOrganizer.firstname} {this.state.eventOrganizer.lastname}</h4>
 
                         {this.state.thisUserIsEventOrganiser ?
@@ -302,7 +303,7 @@ export default class EventDetails extends Component {
                         }
 
 
-                    {/*</div>*/}
+                        {/*</div>*/}
                     </div>
 
 

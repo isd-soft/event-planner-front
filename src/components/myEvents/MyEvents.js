@@ -15,7 +15,7 @@ export default class MyEvents extends Component {
             events: [],
             eventId:'',
             currentPage:1,
-            eventsPerPage: 1
+            eventsPerPage: 5
 
 
         }
@@ -109,13 +109,22 @@ export default class MyEvents extends Component {
 
                 <div className="card" href="#event1">
                     <div className="card-body">
-
                         <a href={"/eventdetails"} onClick={() => this.handleClick(event.id)}><h5
                             className="event-title">{event.title}</h5></a>
-                        <h4 className="event-category">Category:{event.category}</h4>
-                        {/*<h4 className="event-date">Start date:{event.startdate.substring(0,10)} at {event.startdate.substring(11,16)} o'clock</h4>*/}
-                        {/*<h4 className="event-date">Start date: {new Date(event.startdate).toDateString()}{", " + event.startdate.substring(11,16)}</h4>*/}
-                        <h4 className="event-date">End date:{event.enddate}</h4>
+
+
+
+                        {event.category ?
+                            <h4 className="event-category">Category: {event.category}</h4>
+                            : ""
+                        }
+
+
+                        <h4 className="event-date">Start date: {new Date(event.startdate).toUTCString().substring(0,22)}</h4>
+                        {event.enddate ?
+                            <h4 className="event-date">End date: {new Date(event.enddate).toUTCString().substring(0,22)}</h4>
+                            : ""
+                        }
 
                     </div>
                 </div>

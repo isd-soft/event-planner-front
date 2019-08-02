@@ -115,9 +115,9 @@ export default class Dashboard extends Component {
                             <h4 className="event-category">Category: {event.category}</h4>
                             : ""
                         }
-                        <h4 className="event-date">Start date: {new Date(event.startdate).toUTCString()}</h4>
+                        <h4 className="event-date">Start date: {new Date(event.startdate).toUTCString().substring(0,22)}</h4>
                         {event.enddate ?
-                            <h4 className="event-date">End date: {new Date(event.enddate).toUTCString()}</h4>
+                            <h4 className="event-date">End date: {new Date(event.enddate).toUTCString().substring(0,22)}</h4>
                             : ""
                         }
                     </div>
