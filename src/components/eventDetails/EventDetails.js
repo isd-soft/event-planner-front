@@ -284,7 +284,7 @@ export default class EventDetails extends Component {
                                 <button type="submit" className="btn btn-primary col-md-4"
                                         onClick={this.handleEditEvent.bind(this)}>Edit
                                 </button>
-                                <button type="submit" className="btn btn-danger col-md-6"
+                                <button type="submit" className="btn btn-danger col-md-4"
                                         onClick={this.handleDeleteEvent.bind(this)}>Delete
                                 </button>
                             </div>
@@ -293,11 +293,11 @@ export default class EventDetails extends Component {
                                 <button type="submit" className="btn btn-success col-md-4"
                                         onClick={this.handleOnComing.bind(this)}>Coming
                                 </button>
-                                <button type="submit" className="btn btn-danger col-md-4"
-                                        onClick={this.handleOnNotComing.bind(this)}>Not coming
-                                </button>
                                 <button type="submit" className="btn btn-warning col-md-4"
                                         onClick={this.handleOnMaybeComing.bind(this)}>Maybe
+                                </button>
+                                <button type="submit" className="btn btn-danger col-md-4"
+                                        onClick={this.handleOnNotComing.bind(this)}>Not coming
                                 </button>
                             </div>
                         }
