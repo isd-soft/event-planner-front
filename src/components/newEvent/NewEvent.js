@@ -207,6 +207,7 @@ export default class NewEvent extends Component {
                                         <ControlLabel>* Start Date</ControlLabel>
                                         <FormControl type="datetime-local" name="startdate" placeholder='Enter date'
                                                      value={startdate} onChange={this.changeHandle} required/>
+                                        <h6 >Please introduce the date and time completely.</h6>
                                     </div>
                                     <div className="col-sm-5">
                                         <ControlLabel>End Date</ControlLabel>

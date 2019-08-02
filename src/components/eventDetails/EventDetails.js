@@ -184,7 +184,6 @@ export default class EventDetails extends Component {
     }
 
     render() {
-        // const {startDate} = this.state.event.startDate;
         const {event} = this.state;
 
         return (

@@ -15,7 +15,7 @@ export default class MyEvents extends Component {
             events: [],
             eventId:'',
             currentPage:1,
-            eventsPerPage: 10
+            eventsPerPage: 1
 
 
         }
@@ -39,13 +39,18 @@ export default class MyEvents extends Component {
 
 
     handleNext = () => {
-        this.state.currentPage === 417 ? this.setState({currentPage: 1}) : this.setState({currentPage: this.state.currentPage + 1})
+        const {currentPage, eventsPerPage} = this.state;
+        const lastPage = currentPage * eventsPerPage;
+        const firstPage = lastPage - eventsPerPage;
+        (this.state.currentPage === firstPage && currentPage!==Number.parseInt(this.state.events.length/eventsPerPage) )? this.setState({currentPage: lastPage}) : this.setState({currentPage: this.state.currentPage +1})
     };
 
     handleBack = () => {
-        this.state.currentPage === 1 ? this.setState({currentPage: 417}) : this.setState({currentPage: this.state.currentPage - 1})
-    };
+        const {currentPage, eventsPerPage} = this.state;
+        const lastPage = currentPage * eventsPerPage;
+        (this.state.currentPage === lastPage && currentPage!==1 ) ? this.setState({currentPage: lastPage}) : this.setState({currentPage: this.state.currentPage - 1})
 
+    };
 
     componentDidMount() {
 
@@ -118,46 +123,28 @@ export default class MyEvents extends Component {
         });
 
 
-        const numbers = [];
-        if (this.state.currentPage === 414) {
-            for (let i = this.state.currentPage - 1; i <= this.state.currentPage + 3; i++) {
-                numbers.push(i);
-            }
-        } else if (this.state.currentPage === 415) {
-            for (let i = this.state.currentPage - 2; i <= this.state.currentPage + 2; i++) {
-                numbers.push(i);
-            }
-        } else if (this.state.currentPage === 416) {
-            for (let i = this.state.currentPage - 3; i <= this.state.currentPage + 1; i++) {
-                numbers.push(i);
-            }
-        } else if (this.state.currentPage === 417) {
-            for (let i = this.state.currentPage - 4; i <= this.state.currentPage; i++) {
-                numbers.push(i);
-            }
-        } else if (this.state.currentPage >= 3) {
-            for (let i = this.state.currentPage - 2; i <= this.state.currentPage + 2; i++) {
-                numbers.push(i);
-            }
-        } else if (this.state.currentPage === 2) {
-            for (let i = this.state.currentPage - 1; i <= this.state.currentPage + 3; i++) {
-                numbers.push(i);
-            }
-        } else if (this.state.currentPage === 1) {
-            for (let i = this.state.currentPage; i <= this.state.currentPage + 4; i++) {
-                numbers.push(i);
-            }
+
+        const pageNumbers = [];
+        for (let i = 1; i <= Math.ceil(events.length / eventsPerPage); i++) {
+            pageNumbers.push(i);
         }
 
-        const renderPagination = numbers.map(number => {
-            return (
-                <button className={(this.state.currentPage === number ? 'active' : '') + ' controls'} key={number}
-                        id={number} onClick={this.handlePages}>
-                    {number}
-                </button>
-            );
-        });
+        const renderPageNumbers = pageNumbers.map(number => {
+            if(!(events.length <= eventsPerPage)) {
+                return (
+                    <button className={(this.state.currentPage === number ? 'active' : '') + ' controls'} key={number}
+                            id={number} onClick={this.handlePages}>
+                        {number}
+                    </button>
+                );
+            }});
 
+        let nrOfPages;
+        if(events.length % eventsPerPage ===0){
+            nrOfPages=Number.parseInt(events.length/eventsPerPage);
+        }else{
+            nrOfPages=Number.parseInt(events.length/eventsPerPage)+1;
+        }
         return (
 
             <div>
@@ -241,19 +228,18 @@ export default class MyEvents extends Component {
                 <div>
                     <label className="top-label">MY EVENTS</label>
                 </div>
-
                 <div>
-                    <ul>
+                    {this.state.events<1? <h3 className={"noEvents"}>There are not any events.</h3>:<ul>
                         {renderEvents}
-                    </ul>
+                    </ul>}
 
 
                 </div>
                 <div className={"pagination"}>
                     <ul>
-                        <button className="lt" onClick={this.handleBack}>{left}</button>
-                        {renderPagination}
-                        <button className="rt" onClick={this.handleNext}>{right}</button>
+                        {(eventsPerPage <= this.state.events.length && currentPage>1)? <button className="lt" onClick={this.handleBack}>{left}</button> : ""}
+                        {renderPageNumbers}
+                        {(eventsPerPage <= this.state.events.length && currentPage!==nrOfPages )? <button className="rt" onClick={this.handleNext}>{right}</button> : ""}
                     </ul>
                 </div>
 
