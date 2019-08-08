@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Button, ControlLabel, FormControl, FormGroup, HelpBlock, Row} from 'react-bootstrap';
 import './login.css';
-import './backimage.png';
+import './backgr.png';
 import {isContainWhiteSpace, isEmail, isEmpty, isLength, isUsername} from 'shared/validator';
 import {Link} from "react-router-dom";
 import axios from 'axios'
@@ -18,7 +18,7 @@ class Login extends Component {
             errors: {}, // Contains login field errors
             formSubmitted: false, // Indicates submit status of login form
             loading: false, // Indicates in progress state of login form
-            email: null,
+            username: null,
             password: null,
 
         }
@@ -97,20 +97,9 @@ class Login extends Component {
             }
         })
             .catch(function (error) {
-                swal(error.response.data.message)
-                console.log(error);
+                swal("Oops!",error.response.data.message,'error')
             });
 
-
-        if (errors === true) {
-            alert("You are successfully signed in with:" + "        Email:" + this.state.formData.username + "" + "       Password:" + this.state.formData.password);
-            // window.location.reload();
-            // } else {
-            //     this.setState({
-            //         errors: errors,
-            //         formSubmitted: true
-            //     });
-        }
 
     };
 

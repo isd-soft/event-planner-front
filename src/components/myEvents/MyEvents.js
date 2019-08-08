@@ -75,7 +75,7 @@ export default class MyEvents extends Component {
                 if(userId == response.data.content[i].userId) {
                     this.state.events.push(response.data.content[i]);
                 }
-        }           this.setState({events: this.state.events});
+        }           this.setState({events: (this.state.events).reverse()});
 
 
         })

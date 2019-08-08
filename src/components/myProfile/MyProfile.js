@@ -53,7 +53,7 @@ export default class MyProfile extends Component {
         axios.put('http://localhost:8080/user/' + id,copyUser
                 )
             .then(response => {
-                swal("Good job!", "Your profile details were updated!", "success");
+                swal("Profile updated!", "Your profile details were updated!", "success");
 
             })
             .catch(error => {
@@ -188,16 +188,18 @@ export default class MyProfile extends Component {
                                     <div class="col-sm-5">
                                         <ControlLabel class={"col-sm-5"} >First Name</ControlLabel>
                                         <FormControl
+                                            placeholder={'Enter your firstname'}
                                             type="text" name="firstname"
                                             onChange={this.handleChange}
-                                            value={copyUser.firstname}/>
+                                            value={copyUser.firstname} required/>
                                     </div>
                                     <div className="col-sm-5">
                                         <ControlLabel class={"col-sm-5"}>Last Name</ControlLabel>
                                         <FormControl
+                                            placeholder={'Enter your lastname'}
                                             type="text" name="lastname"
                                             onChange={this.handleChange}
-                                            value={copyUser.lastname}/>
+                                            value={copyUser.lastname} required/>
                                     </div>
                                 </FormGroup>
 
@@ -218,7 +220,7 @@ export default class MyProfile extends Component {
                                     <div class="col-sm-5">
                                         <ControlLabel>Description</ControlLabel>
                                         <FormControl
-                                            placeholder={"Enter description"}
+                                            placeholder={"Enter your description"}
                                             type={"text"} name={"description"}
                                             onChange={this.handleChange}
                                             value={copyUser.description}/>

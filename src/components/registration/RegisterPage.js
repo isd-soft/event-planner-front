@@ -46,6 +46,8 @@ class RegisterPage extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
+
+
         this.setState({submitted: true});
         const {user} = this.state;
         if (user.firstname && user.lastname && user.username && user.password && user.passwordConfirmation && user.email) {

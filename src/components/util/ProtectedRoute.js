@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import userActions from '../actions/user.actions'
+// import userActions from '../actions/user.actions'
 
 export const ProtectedRoute = ({
                                    component: Component,

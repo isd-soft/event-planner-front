@@ -207,8 +207,8 @@ export default class EditEvent extends Component {
                             <FormGroup controlId="event-title">
                                 <div className="col-sm-5">
                                     <ControlLabel>* Title</ControlLabel>
-                                    <FormControl type="text" name="title" placeholder="Event title"
-                                                 value={copyEvent.title} onChange={this.handleChange}/>
+                                    <FormControl type="text" name="title" placeholder="Enter event title"
+                                                 value={copyEvent.title} onChange={this.handleChange} required/>
                                 </div>
                             </FormGroup>
 
@@ -216,7 +216,7 @@ export default class EditEvent extends Component {
                                 <div className="col-sm-5">
                                     <ControlLabel>Description</ControlLabel>
                                     <textarea className="form-control" rows="5" id="comment" name="description"
-                                              placeholder="Description"
+                                              placeholder="Enter description"
                                               value={copyEvent.description} onChange={this.handleChange}></textarea>
                                 </div>
                             </FormGroup>
@@ -226,6 +226,8 @@ export default class EditEvent extends Component {
                                     <ControlLabel>* Start Date</ControlLabel>
                                     <FormControl type="datetime-local" name="startdate" placeholder='Enter date'
                                                  value={copyEvent.startdate} onChange={this.handleChange}/>
+                                    <h6 >Please introduce the date and time completely.</h6>
+
                                 </div>
                                 <div className="col-sm-5">
                                     <ControlLabel>End Date</ControlLabel>

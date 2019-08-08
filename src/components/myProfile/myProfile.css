@@ -208,7 +208,7 @@ body {
 .profile-card2 {
     font-family: 'Roboto',serif;
     border-radius: 6px;
-    background-color: navajowhite;
+    /*background-color: rgba(200,187,223,0.8);*/
     margin-left: 300px;
     margin-right: 200px;
     margin-top: 10px;
@@ -216,12 +216,13 @@ body {
     font-weight: 400;
     color: #333;
     font-size: 15px;
+
 }
 
 .profile-card2 .profile-card-body2 {
     font-family: 'Roboto',serif;
     border-radius: 6px;
-    background-color: navajowhite;
+    background-color: rgba(200,187,223,0.8);
     padding:20px 100px 40px 100px;
     font-weight: 400;
     color: #333;

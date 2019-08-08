@@ -16,7 +16,7 @@ export default class Dashboard extends Component {
             events: [],
             eventId: '',
             currentPage: 1,
-            eventsPerPage: 10,
+            eventsPerPage: 3,
 
 
         }

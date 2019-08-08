@@ -83,7 +83,7 @@ export default class NewEvent extends Component {
 
         axios.post("http://localhost:8080/events", this.state)
             .then(response => {
-                swal("Good job!", "Event was created!", "success");
+                swal("Event created!", "Event was successfully created!", "success");
                 this.props.history.push("/dashboard");
             })
             .catch(error => {
@@ -189,12 +189,12 @@ export default class NewEvent extends Component {
                                 <FormGroup controlId="event-title">
                                     <div className="col-sm-5">
                                         <ControlLabel>* Title</ControlLabel>
-                                        <FormControl type="text" name="title" placeholder="Event title"
+                                        <FormControl type="text" name="title" placeholder="Enter event title"
                                                      value={title} onChange={this.changeHandle} required/>
                                     </div>
                                 </FormGroup>
 
-                                <FormGroup controlId="Description">
+                                <FormGroup controlId="Enter description">
                                     <div className="col-sm-5">
                                         <ControlLabel>Description</ControlLabel>
                                         <textarea className="form-control" rows="5" id="comment" name="description" placeholder="Description"
